@@ -1,0 +1,66 @@
+[user]
+    email = jgcorradi@gmail.com
+    name = Julio Corradi
+
+[alias]
+    # Undo a 'git push'
+    undopush = push -f origin HEAD^:master
+    # unchanged file to prevent commits
+    unchanged = git update-index --assume-unchanged
+    # lazy alias
+    a = add .
+    b = branch
+    bs = !git b -a
+    c = checkout
+    cmt = commit -am
+    st = status
+    ## /só de zua ##
+    track = "!f() { git checkout --track -B $1 origin/$1; }; f"
+    update = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git st && git pull origin $BRANCH && git push origin $BRANCH; }; f"
+    bu = !git c master && git fetch -p && git fetch --all && git update
+    master = !git c master && git update
+    develop = !git c develop && git update
+    hml = !git c hml && git update
+
+    #branch-deploy
+    branch-deploy = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git pull origin $BRANCH && git push origin $BRANCH && git checkout develop && git pull origin develop && git merge $BRANCH && git push origin develop && git checkout hml && git pull origin hml && git merge develop && git push origin hml && git checkout $BRANCH && say -v "cellos" "Finished"; }; f"
+
+    # Merges master into hml, pushes it to origin and go back to master
+    deploy-hml = !git pull origin develop && git push origin develop && git checkout hml && git merge develop && git pull origin hml && git push origin hml && git checkout develop
+
+    # Merges master into dev, pushes it to origin and go back to master
+    deploy-dev = !git add . && git commit -am 'deployed by alias' && git status && git pull origin develop && git push origin develop && say -v Zarvox 'git git giiiit'
+
+    rmbranch = update-ref -d HEAD
+
+    undomerge = reset --hard HEAD@{1}
+
+[core]
+    whitespace = space-before-tab,indent-with-non-tab,trailing-space
+    excludesfile = /Users/pivot/.gitignore_global
+
+[color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+    ui = auto
+    [apply]
+    # Detect whitespace errors when applying a patch
+    whitespace = fix
+    [merge]
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
+    summary = true
+
+# Use 'origin' as the default remote on the 'master' branch in all cases
+[branch "master"]
+    remote = origin
+    merge = refs/heads/master
+
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
+    [mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
