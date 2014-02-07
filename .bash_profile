@@ -239,6 +239,28 @@ alias profile=bash_profile;
 # GIT
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Build a hotfix branch
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function hotfix () {
+    HOTFIX="hotfix-$1"
+    if [ $HOTFIX != "hotfix-" ]; then
+        echo "# Generating hotfix based on master" \
+        && printf "${Red}$DIVIDER${NC}\n" \
+        && git checkout master \
+        && echo "# Your branch will be named as $HOTIFX" \
+        && printf "${Red}$DIVIDER${NC}\n" \
+        && git checkout -b $HOTFIX \r
+        && git push origin $HOTFIX \
+        && git checkout master \
+        && echo "# Tracking your $HOTIFX" \
+        && printf "${Red}$DIVIDER${NC}\n" \
+        && git checkout --track -B $HOTFIX origin/$HOTFIX;
+    else
+        echo "# You have to name your hotfix" \
+        && printf "${Red}$DIVIDER${NC}\n"
+    fi
+}
+
 # Status
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function __git_dirty() {
