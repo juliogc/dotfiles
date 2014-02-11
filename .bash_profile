@@ -135,6 +135,7 @@ alias rm='rm -i';
 alias cp='cp -i';
 alias mv='mv -i';
 alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc';
+alias g='git';
 
 # Network
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -234,6 +235,27 @@ alias httpdconfig=httpdconf;
 alias bash_profile='subl $HOME/.profile';
 alias profile=bash_profile;
 
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# COMMONS
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Ask a question
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# @usage: if __ask "Kill process $pid <$pname> with signal $sig?"; then ... fi
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function __ask() {
+    printf "${Red}$DIVIDER${NC}\n";
+    printf "${Whi}$@${NC} (y/n) ";
+    read answer;
+    case "$answer" in
+        *[Yy]) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # GIT
@@ -244,22 +266,27 @@ alias profile=bash_profile;
 function hotfix () {
     HOTFIX="hotfix-$1"
     if [ $HOTFIX != "hotfix-" ]; then
-        echo "# Generating hotfix based on master" \
-        && printf "${Red}$DIVIDER${NC}\n" \
-        && git checkout master \
-        && echo "# Your branch will be named as $HOTIFX" \
-        && printf "${Red}$DIVIDER${NC}\n" \
-        && git checkout -b $HOTFIX \r
-        && git push origin $HOTFIX \
-        && git checkout master \
-        && echo "# Tracking your $HOTIFX" \
-        && printf "${Red}$DIVIDER${NC}\n" \
-        && git checkout --track -B $HOTFIX origin/$HOTFIX;
+        if __ask 'Do you really want to create a $HOTFIX branch?'; then
+            echo "# Generating hotfix based on master" \
+            && printf "${Red}$DIVIDER${NC}\n" \
+            && git checkout master \
+            && echo "# Your branch will be named as $HOTIFX" \
+            && printf "${Red}$DIVIDER${NC}\n" \
+            && git checkout -b $HOTFIX \
+            && git push origin $HOTFIX \
+            && git checkout master \
+            && echo "# Tracking your $HOTIFX" \
+            && printf "${Red}$DIVIDER${NC}\n" \
+            && git checkout --track -B $HOTFIX origin/$HOTFIX;
+        else
+            echo 'Ok, bye!';
+        fi
     else
         echo "# You have to name your hotfix" \
         && printf "${Red}$DIVIDER${NC}\n"
     fi
 }
+
 
 # Status
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
