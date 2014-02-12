@@ -255,6 +255,118 @@ function __ask() {
     esac
 }
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# UTILS
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Hi!
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function hi () {
+    CURRENTBRANCH=__git_branch;
+    BRANCH=$CURRENTBRANCH;
+
+    printf "${Pur}                            What you wanna do?${NC}\n" \
+    && printf "${Red}$DIVIDER${NC}\n" \
+    && printf "${Yel}1. ${Whi}Deploy branch${NC}\n" \
+    && printf "${Yel}2. ${Whi}List branches${NC}\n" \
+    && printf "${Yel}X. ${Whi}Exit${NC}\n";
+    read opt;
+
+    case $opt in
+        1)
+            case CURRENTBRANCH in
+                hml)
+                    $CURRENTBRANCH
+                ;;
+                develop)
+                    $CURRENTBRANCH
+                ;;
+                *)
+                    $CURRENTBRANCH
+                ;;
+            esac
+        ;;
+        2)
+            if [[ -d .git ]]; then
+                git branch -a;
+                hi;
+            else
+                echo "You're not in a git repository" \
+                && hi;
+            fi 
+        ;;
+        # 3) echo "three" ;;
+        *)
+            if [[ $opt == 'exit' || $opt == 'EXIT' || $opt == 'x' || $opt == 'X' ]]; then
+                printf "${Red}$DIVIDER${NC}\n" \
+                && echo 'Ok, bye!';
+            else
+                clear;
+                printf "${Red}$DIVIDER${NC}\n" \
+                && printf "${Pur}                               Invalid option${NC}\n" \
+                && printf "${Red}$DIVIDER${NC}\n";
+                hi;
+            fi
+        ;;
+    esac
+}
+
+# Uncompress files
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function extract() {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2) tar xvjf $1   ;;
+            *.tar.gz)  tar xvzf $1   ;;
+            *.tbz2)    tar xvjf $1   ;;
+            *.tar)     tar xvf $1    ;;
+            *.bz2)     bunzip2 $1    ;;
+            *.rar)     unrar x $1    ;;
+            *.tgz)     tar xvzf $1   ;;
+            *.zip)     unzip $1      ;;
+            *.gz)      gunzip $1     ;;
+            *.7z)      7z x $1       ;;
+            *.Z)       uncompress $1 ;;
+            *)         echo "'$1' cannot be extracted via >extract<" ;;
+        esac
+    else
+        echo "'$1' is not a valid file!";
+    fi
+}
+
+# Launch file on localhost
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function localhost() {
+        LOCALHOST="http://$(iplocal||'localhost')";
+        DIRECTORY=$(pwd);
+        PORT='^[0-9]+$';
+        if [[ $1 =~ $PORT ]]; then
+        # Launch a local web server from specific port
+                open "http://localhost:$1";
+        elif [ `echo $DIRECTORY | grep -o "$WORKSPACE.*"` ]; then
+        # Launch a local web server from workspace
+                AMBIENT=`echo "$DIRECTORY" | sed 's,'"$WORKSPACE"','"$LOCALHOST"','`;
+                open "$AMBIENT/$1";
+        else
+        # Launch a local web server from a directory if isn't workspace folder
+                python -m SimpleHTTPServer 8080 &> /dev/null &
+                open http://localhost:8080/;
+        fi
+}
+
+# Show the project tree
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function tree() {
+   find ${1:-.} -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g';
+}
+
+# Attempts to create and navigate to directory specified by pathname.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function mkd() {
+    mkdir -p "$@" && cd "$_";
+}
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
