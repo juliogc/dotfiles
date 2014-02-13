@@ -496,3 +496,4 @@ function ii() {
     printf "\n${BRed}Users logged on:\n$NC"; w -hs | cut -d " " -f1 | sort | uniq
     printf "\n${BRed}Open connections:\n$NC"; netstat -pan --inet;
 }
+
