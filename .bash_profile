@@ -43,7 +43,6 @@ set -o ignoreeof
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # @usage: printf "${Bla}black ${Red}red ${NC} ...\n"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 # Regular         Bold               Underline          High Intensity     BoldHigh Intens..   Background         High Intensity Bgs
 Yel='\e[0;33m';   BYel='\e[1;33m';   UYel='\e[4;33m';   IYel='\e[0;93m';   BIYel='\e[1;93m';   On_Yel='\e[43m';   On_IYel='\e[0;103m';
 Pur='\e[0;35m';   BPur='\e[1;35m';   UPur='\e[4;35m';   IPur='\e[0;95m';   BIPur='\e[1;95m';   On_Pur='\e[45m';   On_IPur='\e[0;105m';
@@ -266,37 +265,50 @@ function hi () {
     CURRENTBRANCH=__git_branch;
     BRANCH=$CURRENTBRANCH;
 
-    printf "${Pur}                            What you wanna do?${NC}\n" \
+    printf "\n[${Gre}?] ${Whi}Hi! What would you like to do?${NC}\n" \
     && printf "${Red}$DIVIDER${NC}\n" \
     && printf "${Yel}1. ${Whi}Deploy branch${NC}\n" \
     && printf "${Yel}2. ${Whi}List branches${NC}\n" \
-    && printf "${Yel}X. ${Whi}Exit${NC}\n";
+    && printf "${Yel}3. ${Whi}Add current folder in sublime${NC}\n" \
+    && printf "${Yel}x. ${Whi}Exit${NC}\n";
     read opt;
 
     case $opt in
         1)
-            case CURRENTBRANCH in
-                hml)
-                    $CURRENTBRANCH
-                ;;
-                develop)
-                    $CURRENTBRANCH
-                ;;
-                *)
-                    $CURRENTBRANCH
-                ;;
-            esac
+            if [[ -d .git ]]; then
+                case CURRENTBRANCH in
+                    hml)
+                        git pull origin hml && git push origin hml
+                    ;;
+                    develop)
+                        git add . \
+                        && git commit -am 'Fancy deploy via Hi!' \
+                        && git update && git checkout hml \
+                        && git merge develop && git update \
+                        && git checkout develop;
+                    ;;
+                    *)
+                        git add . \
+                        && git commit -am 'Fancy deploy via Hi!' \
+                        && git update \
+                        && git branch-deploy;
+                    ;;
+                esac
+            else
+                __hi_error_message;
+            fi
         ;;
         2)
             if [[ -d .git ]]; then
                 git branch -a;
                 hi;
             else
-                echo "You're not in a git repository" \
-                && hi;
+                __hi_error_message;
             fi 
         ;;
-        # 3) echo "three" ;;
+        3)
+            subl -a .;
+        ;;
         *)
             if [[ $opt == 'exit' || $opt == 'EXIT' || $opt == 'x' || $opt == 'X' ]]; then
                 printf "${Red}$DIVIDER${NC}\n" \
@@ -310,6 +322,11 @@ function hi () {
             fi
         ;;
     esac
+}
+
+function __hi_error_message () {
+    echo "You're not in a git repository";
+    hi;
 }
 
 # Uncompress files
@@ -459,3 +476,23 @@ export GIT_EDITOR='vim'
 # Load rvm
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# PROCESS/SYSTEM RELATED FUNCTIONS:
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Get current host related info.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function ii() {
+    printf "You are logged on ${BRed}$HOST\n"
+    printf "\n${BRed}Additionnal information:\n$NC"; uname -a
+    printf "\n${BRed}Diskspace:\n$NC" ; df2 / $HOME
+    printf "\n${BRed}Current date:\n$NC"; date
+    printf "\n${BRed}Machine stats:\n$NC" ; uptime
+    printf "\n${BRed}Memory stats:\n$NC" ; free
+    printf "\n${BRed}Local IP Address:\n$NC" ; ip
+    printf "\n${BRed}Lan IP Address:\n$NC" ; iplocal
+    printf "\n${BRed}Users logged on:\n$NC"; w -hs | cut -d " " -f1 | sort | uniq
+    printf "\n${BRed}Open connections:\n$NC"; netstat -pan --inet;
+}
