@@ -62,7 +62,7 @@ NC='\e[0m'
 ALERT=${BWhi}${On_Red};
 
 # Delimiter line
-DIVIDER=`printf %81s |tr " " "~"`;
+DIVIDER=`printf %81s |tr " " "="`;
 
 # Number of CPUs
 NCPU=$(sysctl hw.ncpu | awk '{print $2}');
@@ -265,10 +265,12 @@ function hi () {
     CURRENTBRANCH=__git_branch;
     BRANCH=$CURRENTBRANCH;
 
-    printf "\n[${Gre}?] ${Whi}Hi! What would you like to do?${NC}\n" \
+    printf "\n[${Gre}Hi!${NC}] ${Whi}What would you like to do?${NC}\n" \
     && printf "${Red}$DIVIDER${NC}\n" \
+    && printf "\n[${Gre}Git${NC}] \n" \
     && printf "${Yel}1. ${Whi}Deploy branch${NC}\n" \
     && printf "${Yel}2. ${Whi}List branches${NC}\n" \
+    && printf "\n[${Gre}Project${NC}] \n" \
     && printf "${Yel}3. ${Whi}Add current folder in sublime${NC}\n" \
     && printf "${Yel}x. ${Whi}Exit${NC}\n";
     read opt;
