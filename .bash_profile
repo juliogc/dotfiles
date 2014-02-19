@@ -225,13 +225,13 @@ alias devmodeon='defaults write com.apple.dashboard devmode YES && killall Dock'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
 alias gitconfig='subl $HOME/.gitconfig';
-alias reload='source ~/.profile && dscacheutil -flushcache';
+alias reload='source ~/.bash_profile && dscacheutil -flushcache';
 alias bashrc='subl $HOME/.bashrc';
 alias httpdvhosts='subl /private/etc/apache2/extra/httpd-vhosts.conf';
 alias vhosts=httpdvhosts;
 alias httpdconf='subl /etc/apache2/httpd.conf';
 alias httpdconfig=httpdconf;
-alias bash_profile='subl $HOME/.profile';
+alias bash_profile='subl $HOME/.bash_profile';
 alias profile=bash_profile;
 
 
@@ -498,4 +498,3 @@ function ii() {
     printf "\n${BRed}Users logged on:\n$NC"; w -hs | cut -d " " -f1 | sort | uniq
     printf "\n${BRed}Open connections:\n$NC"; netstat -pan --inet;
 }
-
