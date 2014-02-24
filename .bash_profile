@@ -7,7 +7,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Define how Bash prompt looks like:
 # @see http://effectif.com/git/config
-WORKSPACE=$HOME/Projetos;
+WORKSPACE=$HOME/Sites;
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -297,7 +297,7 @@ function hi () {
                     ;;
                 esac
             else
-                __hi_error_message;
+                __hi_git_error_message;
             fi
         ;;
         2)
@@ -305,7 +305,7 @@ function hi () {
                 git branch -a;
                 hi;
             else
-                __hi_error_message;
+                __hi_git_error_message;
             fi 
         ;;
         3)
@@ -326,7 +326,7 @@ function hi () {
     esac
 }
 
-function __hi_error_message () {
+function __hi_git_error_message () {
     echo "You're not in a git repository";
     hi;
 }
