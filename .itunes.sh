@@ -103,5 +103,5 @@ showHelp () {
 currentsong () {
     artist=`osascript -e 'tell application "iTunes" to artist of current track as string'`;
     track=`osascript -e 'tell application "iTunes" to name of current track as string'`;
-    echo "$artist:  $track";
+    echo `printf "[${Gre}$artist${NC}] - ${Blu}$track ${NC}"`;
 }
