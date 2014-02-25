@@ -238,7 +238,7 @@ alias profile=bash_profile;
 # iTunes alias
 # Depends from .itunes.sh
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias playerstatus="song status";
+alias status="song status";
 alias play="song play";
 alias pause="song pause";
 alias next="song next";
