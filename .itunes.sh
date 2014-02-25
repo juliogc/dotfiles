@@ -7,7 +7,7 @@
 # thanks to David Schlosnagle
 ####################################
 
-function song () {
+function iTunes () {
     if [[ $1 ]]; then
         opt=$1;
     else
@@ -71,8 +71,8 @@ function song () {
             osascript -e 'tell application "iTunes" to stop';
         ;;
             
-        "quit"    ) echo "Quitting iTunes.";
-            osascript -e 'tell application "iTunes" to quit';
+        "exit"    ) echo "Exiting iTunes.";
+            osascript -e 'tell application "iTunes" to exit';
             exit 1 ;;
 
         "help" | * ) echo "help:";
@@ -83,22 +83,21 @@ function song () {
 
 showHelp () {
     printf "${Red}$DIVIDER${NC}\n";
-    echo "iTunes Command Line Interface";
+    printf "[${Gre}iTunes${NC}] ${Whi}Command Line Interface${NC}\n";
     printf "${Red}$DIVIDER${NC}\n";
-    # echo "Usage: `basename $0` <option>";
     echo;
-    echo " status   = Shows iTunes' status, current artist and track.";
-    echo " play     = Start playing iTunes.";
-    echo " pause    = Pause iTunes.";
-    echo " next     = Go to the next track.";
-    echo " prev     = Go to the previous track.";
-    echo " mute     = Mute iTunes' volume.";
-    echo " unmute   = Unmute iTunes' volume.";
-    echo " vol up   = Increase iTunes' volume by 10%";
-    echo " vol down = Increase iTunes' volume by 10%";
-    echo " vol #    = Set iTunes' volume to # [0-100]";
-    echo " stop     = Stop iTunes.";
-    echo " quit     = Quit iTunes.";
+    echo "status   = Shows iTunes' status, current artist and track.";
+    echo "play     = Start playing iTunes.";
+    echo "pause    = Pause iTunes.";
+    echo "next     = Go to the next track.";
+    echo "prev     = Go to the previous track.";
+    echo "mute     = Mute iTunes' volume.";
+    echo "unmute   = Unmute iTunes' volume.";
+    echo "vol up   = Increase iTunes' volume by 10%";
+    echo "vol down = Increase iTunes' volume by 10%";
+    echo "vol #    = Set iTunes' volume to # [0-100]";
+    echo "stop     = Stop iTunes.";
+    echo "exit     = Exit iTunes.";
 }
 
 currentsong () {

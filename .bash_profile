@@ -238,20 +238,20 @@ alias profile=bash_profile;
 # iTunes alias
 # Depends from .itunes.sh
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias status="song status";
-alias play="song play";
-alias pause="song pause";
-alias next="song next";
-alias prev="song prev";
-alias mute="song mute";
-alias mute="song mute";
-alias unmute="song unmute";
-alias stop="song stop";
-alias volup="song vol up";
-alias voldown="song vol down";
-alias setvol="song vol $1";
-alias stop="song stop";
-alias songquit="song quit";
+alias status="iTunes status";
+alias play="iTunes play";
+alias pause="iTunes pause";
+alias next="iTunes next";
+alias prev="iTunes prev";
+alias mute="iTunes mute";
+alias mute="iTunes mute";
+alias unmute="iTunes unmute";
+alias stop="iTunes stop";
+alias volup="iTunes vol up";
+alias voldown="iTunes vol down";
+alias setvol="iTunes vol $1";
+alias stop="iTunes stop";
+alias songquit="iTunes quit";
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
