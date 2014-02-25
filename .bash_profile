@@ -21,6 +21,7 @@ WORKSPACE=$HOME/Sites;
 # This makes sub sourcing work, so can move large chunks to their own file.
 source "$HOME/.git-prompt.sh"
 source "$HOME/.nvm/nvm.sh"
+source "$HOME/.itunes.sh"
 
 # If not running interactively, don't do anything
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
