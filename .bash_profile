@@ -235,6 +235,24 @@ alias httpdconfig=httpdconf;
 alias bash_profile='subl $HOME/.bash_profile';
 alias profile=bash_profile;
 
+# iTunes alias
+# Depends from .itunes.sh
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alias playerstatus="song status";
+alias play="song play";
+alias pause="song pause";
+alias next="song next";
+alias prev="song prev";
+alias mute="song mute";
+alias mute="song mute";
+alias unmute="song unmute";
+alias stop="song stop";
+alias volup="song vol up";
+alias voldown="song vol down";
+alias setvol="song vol $1";
+alias stop="song stop";
+alias songquit="song quit";
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
