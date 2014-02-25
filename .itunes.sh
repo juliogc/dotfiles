@@ -8,10 +8,10 @@
 ####################################
 
 function song () {
-    showHelp;
     if [[ $1 ]]; then
         opt=$1;
     else
+        showHelp;
         read opt;
     fi
 
@@ -19,26 +19,28 @@ function song () {
         "status" ) state=`osascript -e 'tell application "iTunes" to player state as string'`;
             echo "iTunes is currently $state.";
             if [ $state = "playing" ]; then
-                artist=`osascript -e 'tell application "iTunes" to artist of current track as string'`;
-                track=`osascript -e 'tell application "iTunes" to name of current track as string'`;
-                echo "Current track $artist:  $track";
+                currentsong;
             fi
         ;;
 
         "play"    ) echo "Playing iTunes.";
             osascript -e 'tell application "iTunes" to play';
+            currentsong;
         ;;
 
         "pause"    ) echo "Pausing iTunes.";
             osascript -e 'tell application "iTunes" to pause';
+            currentsong;
         ;;
 
         "next"    ) echo "Going to next track." ;
             osascript -e 'tell application "iTunes" to next track';
+            currentsong;
         ;;
 
         "prev"    ) echo "Going to previous track.";
             osascript -e 'tell application "iTunes" to previous track';
+            currentsong;
         ;;
 
         "mute"    ) echo "Muting iTunes volume level.";
@@ -97,4 +99,10 @@ showHelp () {
     echo " vol #    = Set iTunes' volume to # [0-100]";
     echo " stop     = Stop iTunes.";
     echo " quit     = Quit iTunes.";
+}
+
+currentsong () {
+    artist=`osascript -e 'tell application "iTunes" to artist of current track as string'`;
+    track=`osascript -e 'tell application "iTunes" to name of current track as string'`;
+    echo "$artist:  $track";
 }
