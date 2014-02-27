@@ -105,3 +105,20 @@ currentsong () {
     track=`osascript -e 'tell application "iTunes" to name of current track as string'`;
     echo `printf "[${Gre}$artist${NC}] - ${Blu}$track ${NC}"`;
 }
+
+# Shorthand controls alias
+# ######################## #
+alias status="iTunes status";
+alias play="iTunes play";
+alias pause="iTunes pause";
+alias next="iTunes next";
+alias prev="iTunes prev";
+alias mute="iTunes mute";
+alias mute="iTunes mute";
+alias unmute="iTunes unmute";
+alias stop="iTunes stop";
+alias volup="iTunes vol up";
+alias voldown="iTunes vol down";
+alias setvol="iTunes vol $1";
+alias stop="iTunes stop";
+alias songquit="iTunes quit";
