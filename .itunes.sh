@@ -1,11 +1,18 @@
 #!/bin/sh
 #
-####################################
+# ################################ #
 # iTunes Command Line Control v1.0
 # adapted by Júlio Corradi
 # created 2001.11.08
 # thanks to David Schlosnagle
-####################################
+# ################################ #
+# Now I'm using Twitter CLI to
+# share current track
+# https://github.com/sferik/t
+# Don't worry, if you dont want to
+# add this CLI it won't will break
+# your terminal ;)
+# ################################ #
 
 function iTunes () {
     if [[ $1 ]]; then
@@ -67,6 +74,18 @@ function iTunes () {
             osascript -e "tell application \"iTunes\" to set sound volume to $newvol";
         ;;
 
+        "share"    ) state=`osascript -e 'tell application "iTunes" to player state as string'`;
+            if [ $state = "playing" ]; then
+                if [[ $(t) ]]; then
+                    artist=`osascript -e 'tell application "iTunes" to artist of current track as string'`;
+                    track=`osascript -e 'tell application "iTunes" to name of current track as string'`;
+                    currenttrack="[$artist] - $track";
+
+                    t update "#NowPlaying $currenttrack";
+                fi 
+            fi
+        ;;
+
         "stop"    ) echo "Stopping iTunes.";
             osascript -e 'tell application "iTunes" to stop';
         ;;
@@ -96,6 +115,7 @@ showHelp () {
     echo "vol up   = Increase iTunes' volume by 10%";
     echo "vol down = Increase iTunes' volume by 10%";
     echo "vol #    = Set iTunes' volume to # [0-100]";
+    echo "share    = Share iTunes.";
     echo "stop     = Stop iTunes.";
     echo "exit     = Exit iTunes.";
 }
@@ -120,5 +140,6 @@ alias stop="iTunes stop";
 alias volup="iTunes vol up";
 alias voldown="iTunes vol down";
 alias setvol="iTunes vol $1";
+alias sharetrack="iTunes share";
 alias stop="iTunes stop";
 alias songquit="iTunes quit";
