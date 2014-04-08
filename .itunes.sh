@@ -3,7 +3,7 @@
 # ################################ #
 # iTunes Command Line Control v1.0
 # adapted by Júlio Corradi
-# created 2001.11.08
+# created 2014.02.15
 # thanks to David Schlosnagle
 # ################################ #
 # Now I'm using Twitter CLI to
