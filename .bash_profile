@@ -462,7 +462,8 @@ bind 'set completion-ignore-case on'
 
 # PS1 colored with username, machine name, count, timestamp, branch name and git status
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-PS1='$(__git_ps1 "[${Yel}%s${NC}${Red}$(__git_dirty)${NC}] ")'"${Cya}\w${NC}"' \n\$ '
+# PS1='$(__git_ps1 "[${Yel}%s${NC}${Red}${NC}] ")'"${Cya}\w${NC}"' \n\$ '
+PS1=''"${Cya}$USERNAME${NS}"' '"${Gre}@ \w${NC}"' $(__git_ps1 "(${Red}%s${NC}${Red}${NC}) ") \n\$ '
 
 # Grep e ls color
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
