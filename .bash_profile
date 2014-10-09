@@ -23,6 +23,13 @@ source "$HOME/.git-prompt.sh"
 source "$HOME/.nvm/nvm.sh"
 source "$HOME/.itunes.sh"
 
+# Set git autocompletion and PS1 integration
+# curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
+    . /usr/local/git/contrib/completion/git-completion.bash;
+fi
+
 # If not running interactively, don't do anything
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [ -z "$PS1" ] && return
@@ -54,6 +61,17 @@ Blu='\e[0;34m';   BBlu='\e[1;34m';   UBlu='\e[4;34m';   IBlu='\e[0;94m';   BIBlu
 Cya='\e[0;36m';   BCya='\e[1;36m';   UCya='\e[4;36m';   ICya='\e[0;96m';   BICya='\e[1;96m';   On_Cya='\e[46m';   On_ICya='\e[0;106m';
 Red='\e[0;31m';   BRed='\e[1;31m';   URed='\e[4;31m';   IRed='\e[0;91m';   BIRed='\e[1;91m';   On_Red='\e[41m';   On_IRed='\e[0;101m';
 
+function __show_colors {
+    printf "${Yel}Yel${NC}\n";
+    printf "${Pur}Pur${NC}\n";
+    printf "${Bla}Bla${NC}\n";
+    printf "${Gre}Gre${NC}\n";
+    printf "${Whi}Whi${NC}\n";
+    printf "${Blu}Blu${NC}\n";
+    printf "${Cya}Cya${NC}\n";
+    printf "${Red}Red${NC}\n";
+}
+
 # No Color
 NC='\e[0m'
 
@@ -64,28 +82,6 @@ ALERT=${BWhi}${On_Red};
 
 # Delimiter line
 DIVIDER=`printf %81s |tr " " "="`;
-
-# Number of CPUs
-NCPU=$(sysctl hw.ncpu | awk '{print $2}');
-
-# Small load
-SLOAD=$(( 100*${NCPU} ));
-
-# Medium load
-MLOAD=$(( 200*${NCPU} ));
-
-# Xlarge load
-XLOAD=$(( 400*${NCPU} ));
-
-# Test user type:
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ ${USER} == "root" ]]; then
-    SU=${Red};  # User is root.
-elif [[ ${USER} != $(logname) ]]; then
-    SU=${BRed}; # User is not login user.
-else
-    SU=${BCya}; # User is normal (well ... most of us are).
-fi
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -125,17 +121,11 @@ alias projects='cd $HOME/Projetos';
 
 # Overrides
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias clear='clear && ls';
-alias mkdir='mkdir -p';
-alias grep='grep -n';
 alias ls='ls -Ghpla';
-alias df='df -kTh';
-alias du='du -kh';
 alias rm='rm -i';
 alias cp='cp -i';
 alias mv='mv -i';
 alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc';
-alias g='git';
 
 # Network
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -147,7 +137,6 @@ alias ip='dig +short myip.opendns.com @resolver1.opendns.com';
 alias h='history';
 alias c='clear';
 alias o='open';
-alias o.='o .';
 alias x='echo "Bye!"; exit;';
 alias quit=x;
 alias q=x;
@@ -192,7 +181,7 @@ alias iphone='open -a iPhone\ Simulator';
 alias photoshop='open -a Adobe\ Photoshop\ CS6';
 
 # Editors
-alias sublime='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl';
+alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl';
 alias subl=sublime;
 
 # Browsers
@@ -224,111 +213,61 @@ alias devmodeon='defaults write com.apple.dashboard devmode YES && killall Dock'
 
 # Extras
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alias reload='source ~/.bash_profile && clear';
 alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
 alias gitconfig='subl $HOME/.gitconfig';
-alias reload='source ~/.bash_profile && dscacheutil -flushcache';
 alias bashrc='subl $HOME/.bashrc';
 alias httpdvhosts='subl /private/etc/apache2/extra/httpd-vhosts.conf';
 alias vhosts=httpdvhosts;
 alias httpdconf='subl /etc/apache2/httpd.conf';
 alias httpdconfig=httpdconf;
 alias bash_profile='subl $HOME/.bash_profile';
-alias profile=bash_profile;
+alias profile=bash_profile;ls
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
-# COMMONS
-#
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Ask a question
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# @usage: if __ask "Kill process $pid <$pname> with signal $sig?"; then ... fi
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function __ask() {
-    printf "${Red}$DIVIDER${NC}\n";
-    printf "${Whi}$@${NC} (y/n) ";
-    read answer;
-    case "$answer" in
-        *[Yy]) return 0 ;;
-        *) return 1 ;;
-    esac
-}
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # UTILS
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Hi!
+# Dates
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function hi () {
-    CURRENTBRANCH=__git_branch;
-    BRANCH=$CURRENTBRANCH;
-
-    printf "\n[${Gre}Hi!${NC}] ${Whi}What would you like to do?${NC}\n" \
-    && printf "${Red}$DIVIDER${NC}\n" \
-    && printf "\n[${Gre}Git${NC}] \n" \
-    && printf "${Yel}1. ${Whi}Deploy branch${NC}\n" \
-    && printf "${Yel}2. ${Whi}List branches${NC}\n" \
-    && printf "\n[${Gre}Project${NC}] \n" \
-    && printf "${Yel}3. ${Whi}Add current folder in sublime${NC}\n" \
-    && printf "${Yel}x. ${Whi}Exit${NC}\n";
-    read opt;
-
-    case $opt in
-        1)
-            if [[ -d .git ]]; then
-                case CURRENTBRANCH in
-                    hml)
-                        git pull origin hml && git push origin hml
-                    ;;
-                    develop)
-                        git add . \
-                        && git commit -am 'Fancy deploy via Hi!' \
-                        && git update && git checkout hml \
-                        && git merge develop && git update \
-                        && git checkout develop;
-                    ;;
-                    *)
-                        git add . \
-                        && git commit -am 'Fancy deploy via Hi!' \
-                        && git update \
-                        && git branch-deploy;
-                    ;;
-                esac
-            else
-                __hi_git_error_message;
-            fi
-        ;;
-        2)
-            if [[ -d .git ]]; then
-                git branch -a;
-                hi;
-            else
-                __hi_git_error_message;
-            fi 
-        ;;
-        3)
-            subl -a .;
-        ;;
-        *)
-            if [[ $opt == 'exit' || $opt == 'EXIT' || $opt == 'x' || $opt == 'X' ]]; then
-                printf "${Red}$DIVIDER${NC}\n" \
-                && echo 'Ok, bye!';
-            else
-                clear;
-                printf "${Red}$DIVIDER${NC}\n" \
-                && printf "${Pur}                               Invalid option${NC}\n" \
-                && printf "${Red}$DIVIDER${NC}\n";
-                hi;
-            fi
-        ;;
-    esac
+function __cur_year () {
+    CUR_YEAR="$(date +'%Y')";
+    echo "$CUR_YEAR";
 }
 
-function __hi_git_error_message () {
-    echo "You're not in a git repository";
-    hi;
+function __cur_month () {
+    CUR_MONTH="$(date +'%m')";
+
+    case $CUR_MONTH in
+        01 ) MONTH_PATH="$CUR_MONTH janeiro"
+            ;;
+        02 ) MONTH_PATH="$CUR_MONTH fevereiro"
+            ;;
+        03 ) MONTH_PATH="$CUR_MONTH março"
+            ;;
+        04 ) MONTH_PATH="$CUR_MONTH abril"
+            ;;
+        05 ) MONTH_PATH="$CUR_MONTH maio"
+            ;;
+        06 ) MONTH_PATH="$CUR_MONTH junho"
+            ;;
+        07 ) MONTH_PATH="$CUR_MONTH julho"
+            ;;
+        08 ) MONTH_PATH="$CUR_MONTH agosto"
+            ;;
+        09 ) MONTH_PATH="$CUR_MONTH setembro"
+            ;;
+        10 ) MONTH_PATH="$CUR_MONTH outubro"
+            ;;
+        11 ) MONTH_PATH="$CUR_MONTH novembro"
+            ;;
+        12 ) MONTH_PATH="$CUR_MONTH dezembro"
+            ;;
+    esac
+
+    echo "$MONTH_PATH";
 }
 
 # Uncompress files
@@ -354,26 +293,6 @@ function extract() {
     fi
 }
 
-# Launch file on localhost
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function localhost() {
-        LOCALHOST="http://$(iplocal||'localhost')";
-        DIRECTORY=$(pwd);
-        PORT='^[0-9]+$';
-        if [[ $1 =~ $PORT ]]; then
-        # Launch a local web server from specific port
-                open "http://localhost:$1";
-        elif [ `echo $DIRECTORY | grep -o "$WORKSPACE.*"` ]; then
-        # Launch a local web server from workspace
-                AMBIENT=`echo "$DIRECTORY" | sed 's,'"$WORKSPACE"','"$LOCALHOST"','`;
-                open "$AMBIENT/$1";
-        else
-        # Launch a local web server from a directory if isn't workspace folder
-                python -m SimpleHTTPServer 8080 &> /dev/null &
-                open http://localhost:8080/;
-        fi
-}
-
 # Show the project tree
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function tree() {
@@ -386,39 +305,11 @@ function mkd() {
     mkdir -p "$@" && cd "$_";
 }
 
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # GIT
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Build a hotfix branch
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function hotfix () {
-    HOTFIX="hotfix-$1"
-    if [ $HOTFIX != "hotfix-" ]; then
-        if __ask 'Do you really want to create a $HOTFIX branch?'; then
-            echo "# Generating hotfix based on master" \
-            && printf "${Red}$DIVIDER${NC}\n" \
-            && git checkout master \
-            && echo "# Your branch will be named as $HOTIFX" \
-            && printf "${Red}$DIVIDER${NC}\n" \
-            && git checkout -b $HOTFIX \
-            && git push origin $HOTFIX \
-            && git checkout master \
-            && echo "# Tracking your $HOTIFX" \
-            && printf "${Red}$DIVIDER${NC}\n" \
-            && git checkout --track -B $HOTFIX origin/$HOTFIX;
-        else
-            echo 'Ok, bye!';
-        fi
-    else
-        echo "# You have to name your hotfix" \
-        && printf "${Red}$DIVIDER${NC}\n"
-    fi
-}
-
-
 # Status
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function __git_dirty() {
@@ -436,13 +327,6 @@ function __git_state() {
 function __git_branch() {
     git rev-parse --abbrev-ref HEAD;
 }
-
-# Set git autocompletion and PS1 integration
-# curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
-    . /usr/local/git/contrib/completion/git-completion.bash;
-fi
 
 # show git status on PS1
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -478,24 +362,4 @@ export GIT_EDITOR='vim'
 
 # Load rvm
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
-# PROCESS/SYSTEM RELATED FUNCTIONS:
-#
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Get current host related info.
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function ii() {
-    printf "You are logged on ${BRed}$HOST\n"
-    printf "\n${BRed}Additionnal information:\n$NC"; uname -a
-    printf "\n${BRed}Diskspace:\n$NC" ; df2 / $HOME
-    printf "\n${BRed}Current date:\n$NC"; date
-    printf "\n${BRed}Machine stats:\n$NC" ; uptime
-    printf "\n${BRed}Memory stats:\n$NC" ; free
-    printf "\n${BRed}Local IP Address:\n$NC" ; ip
-    printf "\n${BRed}Lan IP Address:\n$NC" ; iplocal
-    printf "\n${BRed}Users logged on:\n$NC"; w -hs | cut -d " " -f1 | sort | uniq
-    printf "\n${BRed}Open connections:\n$NC"; netstat -pan --inet;
-}
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
