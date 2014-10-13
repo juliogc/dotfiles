@@ -20,14 +20,13 @@ WORKSPACE=$HOME/Sites;
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # This makes sub sourcing work, so can move large chunks to their own file.
 source "$HOME/.git-prompt.sh"
-source "$HOME/.nvm/nvm.sh"
 source "$HOME/.itunes.sh"
 
 # Set git autocompletion and PS1 integration
 # curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
-    . /usr/local/git/contrib/completion/git-completion.bash;
+if [ -f /Users/juliocorradi/.git-completion.bash ]; then
+    . /Users/juliocorradi/.git-completion.bash;
 fi
 
 # If not running interactively, don't do anything
@@ -127,11 +126,6 @@ alias cp='cp -i';
 alias mv='mv -i';
 alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc';
 
-# Network
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias iplocal="echo `ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1' | sed "1 d"`";
-alias ip='dig +short myip.opendns.com @resolver1.opendns.com';
-
 # Help
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias h='history';
@@ -222,8 +216,7 @@ alias vhosts=httpdvhosts;
 alias httpdconf='subl /etc/apache2/httpd.conf';
 alias httpdconfig=httpdconf;
 alias bash_profile='subl $HOME/.bash_profile';
-alias profile=bash_profile;ls
-
+alias profile=bash_profile;
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -347,7 +340,7 @@ bind 'set completion-ignore-case on'
 # PS1 colored with username, machine name, count, timestamp, branch name and git status
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # PS1='$(__git_ps1 "[${Yel}%s${NC}${Red}${NC}] ")'"${Cya}\w${NC}"' \n\$ '
-PS1=''"${Cya}$USERNAME${NS}"' '"${Gre}@ \w${NC}"' $(__git_ps1 "(${Red}%s${NC}${Red}${NC}) ") \n\$ '
+PS1=''"${Cya}$USER${NS}"' '"${Gre}@ \w${NC}"' $(__git_ps1 "(${Red}%s${NC}${Red}${NC}) ") \n\$ '
 
 # Grep e ls color
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
