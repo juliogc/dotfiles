@@ -3,7 +3,7 @@
 # ################################ #
 # iTunes Command Line Control v1.0
 # adapted by Júlio Corradi
-# created 2014.02.15
+# created 2001.11.08
 # thanks to David Schlosnagle
 # ################################ #
 # Now I'm using Twitter CLI to
@@ -128,18 +128,18 @@ currentsong () {
 
 # Shorthand controls alias
 # ######################## #
-alias status="iTunes status";
-alias play="iTunes play";
-alias pause="iTunes pause";
-alias next="iTunes next";
-alias prev="iTunes prev";
-alias mute="iTunes mute";
-alias mute="iTunes mute";
-alias unmute="iTunes unmute";
-alias stop="iTunes stop";
-alias volup="iTunes vol up";
-alias voldown="iTunes vol down";
-alias setvol="iTunes vol $1";
-alias sharetrack="iTunes share";
-alias stop="iTunes stop";
-alias songquit="iTunes quit";
+alias itunes.status="iTunes status";
+alias itunes.play="iTunes play";
+alias itunes.pause="iTunes pause";
+alias itunes.next="iTunes next";
+alias itunes.prev="iTunes prev";
+alias itunes.mute="iTunes mute";
+alias itunes.mute="iTunes mute";
+alias itunes.unmute="iTunes unmute";
+alias itunes.stop="iTunes stop";
+alias itunes.volup="iTunes vol up";
+alias itunes.voldown="iTunes vol down";
+alias itunes.setvol="iTunes vol $1";
+alias itunes.sharetrack="iTunes share";
+alias itunes.stop="iTunes stop";
+alias itunes.songquit="iTunes quit";
