@@ -21,6 +21,7 @@ WORKSPACE=$HOME/Sites;
 # This makes sub sourcing work, so can move large chunks to their own file.
 source "$HOME/.git-prompt.sh"
 source "$HOME/.itunes.sh"
+source "$HOME/.rdio.sh"
 
 # Set git autocompletion and PS1 integration
 # curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
@@ -167,27 +168,26 @@ alias missioncontrol='open -a Mission\ Control';
 alias launchpad='open -a Launchpad';
 alias chess='open -a Chess';
 alias xcode='open -a Xcode';
-alias iphone='open -a iPhone\ Simulator';
+alias ios='open -a iOS\ Simulator';
 
 # Other applications
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Adobe
-alias photoshop='open -a Adobe\ Photoshop\ CS6';
+alias photoshop='open -a Adobe\ Photoshop\ CC\ 2014';
 
 # Editors
 alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl';
 alias subl=sublime;
+alias sublime.preferences='cd $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/'
 
 # Browsers
-alias firefox='open -a Firefox';
+# alias firefox='open -a Firefox';
+# alias chrome='open -a Google\ Chrome';
 alias canary='open -a Google\ Chrome\ Canary';
-alias chrome='open -a Google\ Chrome';
-alias opera='open -a Opera';
 
 # Others
-alias pomodoro='open -a focus\ booster';
-alias virtualbox='open -a VirtualBox';
-alias skype='open -a Skype';
+# alias pomodoro='open -a focus\ booster';
+# alias virtualbox='open -a VirtualBox';
 
 # Native commands
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -208,15 +208,15 @@ alias devmodeon='defaults write com.apple.dashboard devmode YES && killall Dock'
 # Extras
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias reload='source ~/.bash_profile && clear';
-alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
-alias gitconfig='subl $HOME/.gitconfig';
-alias bashrc='subl $HOME/.bashrc';
-alias httpdvhosts='subl /private/etc/apache2/extra/httpd-vhosts.conf';
-alias vhosts=httpdvhosts;
-alias httpdconf='subl /etc/apache2/httpd.conf';
-alias httpdconfig=httpdconf;
+alias cleanupds="sudo find . -type f -name '*.DS_Store' -ls -delete"
 alias bash_profile='subl $HOME/.bash_profile';
 alias profile=bash_profile;
+alias bashrc='subl $HOME/.bashrc';
+alias gitconfig='subl $HOME/.gitconfig';
+alias vhosts='subl /private/etc/apache2/extra/httpd-vhosts.conf';
+alias httpdconf='subl /etc/apache2/httpd.conf';
+alias hosts='subl /etc/hosts/';
+alias www="cd $WORKSPACE";
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -340,7 +340,7 @@ bind 'set completion-ignore-case on'
 # PS1 colored with username, machine name, count, timestamp, branch name and git status
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # PS1='$(__git_ps1 "[${Yel}%s${NC}${Red}${NC}] ")'"${Cya}\w${NC}"' \n\$ '
-PS1=''"${Cya}$USER${NS}"' '"${Gre}@ \w${NC}"' $(__git_ps1 "(${Red}%s${NC}${Red}${NC}) ") \n\$ '
+PS1=''"${Cya}$USER${NS}"' '"${Gre}@ \w${NC}"' $(__git_ps1 "(${Yel}%s${NC}) ") \n\$ '
 
 # Grep e ls color
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
