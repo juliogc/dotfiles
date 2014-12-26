@@ -5,9 +5,12 @@
 # created by Júlio Corradi
 # created in 2014.10.23
 # ################################ #
-# Requires Twitter CLI to
+# Now I'm using Twitter CLI to
 # share current track
 # https://github.com/sferik/t
+# Don't worry, if you dont want to
+# add this CLI it won't will break
+# your terminal ;)
 # ################################ #
 
 function Rdio () {
@@ -19,6 +22,10 @@ function Rdio () {
     fi
 
     case $opt in
+        "open" ) echo "Opening Rdio.";
+            open -a Rdio;
+        ;;
+
         "status" ) state=`osascript -e 'tell application "Rdio" to player state as string'`;
             echo "Rdio is currently $state.";
             if [ $state = "playing" ]; then
@@ -26,27 +33,27 @@ function Rdio () {
             fi
         ;;
 
-        "play"    ) echo "Playing Rdio.";
+        "play" ) echo "Playing Rdio.";
             osascript -e 'tell application "Rdio" to play';
             currentsong;
         ;;
 
-        "pause"    ) echo "Pausing Rdio.";
+        "pause" ) echo "Pausing Rdio.";
             osascript -e 'tell application "Rdio" to pause';
             currentsong;
         ;;
 
-        "next"    ) echo "Going to next track." ;
+        "next" ) echo "Going to next track." ;
             osascript -e 'tell application "Rdio" to next track';
             currentsong;
         ;;
 
-        "prev"    ) echo "Going to previous track.";
+        "prev" ) echo "Going to previous track.";
             osascript -e 'tell application "Rdio" to previous track';
             currentsong;
         ;;
 
-        "mute"    ) echo "Muting Rdio volume level.";
+        "mute" ) echo "Muting Rdio volume level.";
             osascript -e 'tell application "Rdio" to set mute to true';
         ;;
 
@@ -54,7 +61,7 @@ function Rdio () {
             osascript -e 'tell application "Rdio" to set mute to false';
         ;;
 
-        "vol"    ) echo "Changing Rdio volume level.";
+        "vol" ) echo "Changing Rdio volume level.";
             vol=`osascript -e 'tell application "Rdio" to sound volume as integer'`;
             if [ $2 = "up" ]; then
                 newvol=$(( vol+10 ));
@@ -70,7 +77,7 @@ function Rdio () {
             osascript -e "tell application \"Rdio\" to set sound volume to $newvol";
         ;;
 
-        "share"    ) state=`osascript -e 'tell application "Rdio" to player state as string'`;
+        "share" ) state=`osascript -e 'tell application "Rdio" to player state as string'`;
             if [ $state = "playing" ]; then
                 if [[ $(t) ]]; then
                     artist=`osascript -e 'tell application "Rdio" to artist of current track as string'`;
@@ -82,13 +89,13 @@ function Rdio () {
             fi
         ;;
 
-        "stop"    ) echo "Stopping Rdio.";
+        "stop" ) echo "Stopping Rdio.";
             osascript -e 'tell application "Rdio" to stop';
         ;;
             
-        "exit"    ) echo "Exiting Rdio.";
-            osascript -e 'tell application "Rdio" to exit';
-            exit 1 ;;
+        "quit" ) echo "Exiting Rdio.";
+            osascript -e 'tell application "Rdio" to quit';
+        ;;
 
         "help" | * ) echo "help:";
             showHelp;
@@ -102,6 +109,7 @@ showHelp () {
     printf "${Red}$DIVIDER${NC}\n";
     echo;
     echo "status   = Shows Rdio' status, current artist and track.";
+    echo "open     = Opens Rdio.";
     echo "play     = Start playing Rdio.";
     echo "pause    = Pause Rdio.";
     echo "next     = Go to the next track.";
@@ -113,7 +121,7 @@ showHelp () {
     echo "vol #    = Set Rdio' volume to # [0-100]";
     echo "share    = Share Rdio.";
     echo "stop     = Stop Rdio.";
-    echo "exit     = Exit Rdio.";
+    echo "quit     = Quit Rdio.";
 }
 
 currentsong () {
