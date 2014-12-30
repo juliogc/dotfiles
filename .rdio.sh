@@ -79,12 +79,12 @@ function Rdio () {
 
         "share" ) state=`osascript -e 'tell application "Rdio" to player state as string'`;
             if [ $state = "playing" ]; then
-                if [[ $(t) ]]; then
+                if [[ -z "$t" ]]; then
                     artist=`osascript -e 'tell application "Rdio" to artist of current track as string'`;
                     track=`osascript -e 'tell application "Rdio" to name of current track as string'`;
-                    currenttrack="[$artist] - $track";
+                    currenttrack="$artist - $track";
 
-                    t update "#NowPlaying $currenttrack";
+                    t update "♫ #NowPlaying $currenttrack";
                 fi 
             fi
         ;;
@@ -127,7 +127,7 @@ showHelp () {
 currentsong () {
     artist=`osascript -e 'tell application "Rdio" to artist of current track as string'`;
     track=`osascript -e 'tell application "Rdio" to name of current track as string'`;
-    echo `printf "[${Gre}$artist${NC}] - ${Blu}$track ${NC}"`;
+    echo `printf "♫ ${Gre}$artist${NC} - ${Blu}$track ${NC}"`;
 }
 
 # Shorthand controls alias
