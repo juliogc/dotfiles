@@ -11,6 +11,19 @@ WORKSPACE=$HOME/Sites;
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
+# IMPORTS
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+source "$HOME/.nvm/nvm.sh"
+source "$HOME/.itunes.sh"
+source "$HOME/.rdio.sh"
+
+if [[ -f "$HOME/.plugin-maker.sh" ]]; then
+    . "$HOME/.plugin-maker.sh";
+fi
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
 # AID
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -20,15 +33,6 @@ WORKSPACE=$HOME/Sites;
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # This makes sub sourcing work, so can move large chunks to their own file.
 source "$HOME/.git-prompt.sh"
-source "$HOME/.itunes.sh"
-source "$HOME/.rdio.sh"
-
-# Set git autocompletion and PS1 integration
-# curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [ -f /Users/juliocorradi/.git-completion.bash ]; then
-    . /Users/juliocorradi/.git-completion.bash;
-fi
 
 # If not running interactively, don't do anything
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,15 +65,15 @@ Blu='\e[0;34m';   BBlu='\e[1;34m';   UBlu='\e[4;34m';   IBlu='\e[0;94m';   BIBlu
 Cya='\e[0;36m';   BCya='\e[1;36m';   UCya='\e[4;36m';   ICya='\e[0;96m';   BICya='\e[1;96m';   On_Cya='\e[46m';   On_ICya='\e[0;106m';
 Red='\e[0;31m';   BRed='\e[1;31m';   URed='\e[4;31m';   IRed='\e[0;91m';   BIRed='\e[1;91m';   On_Red='\e[41m';   On_IRed='\e[0;101m';
 
-function __show_colors {
-    printf "${Yel}Yel${NC}\n";
-    printf "${Pur}Pur${NC}\n";
-    printf "${Bla}Bla${NC}\n";
-    printf "${Gre}Gre${NC}\n";
-    printf "${Whi}Whi${NC}\n";
-    printf "${Blu}Blu${NC}\n";
-    printf "${Cya}Cya${NC}\n";
-    printf "${Red}Red${NC}\n";
+function __show_colors () {
+    printf "${Yel} Yel \n";
+    printf "${Pur} Pur \n";
+    printf "${Bla} Bla \n";
+    printf "${Gre} Gre \n";
+    printf "${Whi} Whi \n";
+    printf "${Blu} Blu \n";
+    printf "${Cya} Cya \n";
+    printf "${Red} Red \n";
 }
 
 # No Color
@@ -82,6 +86,28 @@ ALERT=${BWhi}${On_Red};
 
 # Delimiter line
 DIVIDER=`printf %81s |tr " " "="`;
+
+# Number of CPUs
+NCPU=$(sysctl hw.ncpu | awk '{print $2}');
+
+# Small load
+SLOAD=$(( 100*${NCPU} ));
+
+# Medium load
+MLOAD=$(( 200*${NCPU} ));
+
+# Xlarge load
+XLOAD=$(( 400*${NCPU} ));
+
+# Test user type:
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if [[ ${USER} == "root" ]]; then
+    SU=${Red};  # User is root.
+elif [[ ${USER} != $(logname) ]]; then
+    SU=${BRed}; # User is not login user.
+else
+    SU=${BCya}; # User is normal (well ... most of us are).
+fi
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -121,17 +147,28 @@ alias projects='cd $HOME/Projetos';
 
 # Overrides
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias ls='ls -Ghpla';
+alias cls='clear';
+alias mkdir='mkdir -p';
+alias grep='grep -n';
+alias ll='ls -Ghpla';
+alias df='df -kTh';
+alias du='du -kh';
 alias rm='rm -i';
 alias cp='cp -i';
 alias mv='mv -i';
 alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc';
+
+# Network
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alias iplocal="echo `ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1' | sed "1 d"`";
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com';
 
 # Help
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias h='history';
 alias c='clear';
 alias o='open';
+alias o.='o .';
 alias x='echo "Bye!"; exit;';
 alias quit=x;
 alias q=x;
@@ -173,21 +210,27 @@ alias ios='open -a iOS\ Simulator';
 # Other applications
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Adobe
-alias photoshop='open -a Adobe\ Photoshop\ CC\ 2014';
+alias photoshop='open -a Adobe\ Photoshop';
+alias illustrator='open -a Adobe\ Illustrator';
 
 # Editors
 alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl';
 alias subl=sublime;
-alias sublime.preferences='cd $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/'
+alias eclipse='open -a Eclipse';
 
 # Browsers
 # alias firefox='open -a Firefox';
-# alias chrome='open -a Google\ Chrome';
 alias canary='open -a Google\ Chrome\ Canary';
+alias chrome='open -a Google\ Chrome';
+alias firefox='open -a Firefox';
+
+# Shorthands
+alias py='python3.3';
 
 # Others
-# alias pomodoro='open -a focus\ booster';
-# alias virtualbox='open -a VirtualBox';
+alias pomodoro='open -a focus\ booster';
+alias virtualbox='open -a VirtualBox';
+alias skype='open -a Skype';
 
 # Native commands
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -207,22 +250,93 @@ alias devmodeon='defaults write com.apple.dashboard devmode YES && killall Dock'
 
 # Extras
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias reload='source ~/.bash_profile && clear';
+alias emptytrash="rm -rf /Users/juliocorradi/.Trash/*";
 alias cleanupds="sudo find . -type f -name '*.DS_Store' -ls -delete"
+alias gitconfig='subl $HOME/.gitconfig';
+alias reload='source ~/.bash_profile && clear';
+alias bashrc='subl $HOME/.bashrc';
+alias httpdvhosts='subl /private/etc/apache2/extra/httpd-vhosts.conf';
+alias vhosts='cd /private/etc/apache2/vhosts/';
+alias httpdconf='subl /etc/apache2/httpd.conf';
+alias httpdconfig=httpdconf;
+alias hosts='subl /etc/hosts';
 alias bash_profile='subl $HOME/.bash_profile';
 alias profile=bash_profile;
-alias bashrc='subl $HOME/.bashrc';
-alias gitconfig='subl $HOME/.gitconfig';
-alias vhosts='subl /private/etc/apache2/extra/httpd-vhosts.conf';
-alias httpdconf='subl /etc/apache2/httpd.conf';
-alias hosts='subl /etc/hosts/';
+
+# Work
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias www="cd $WORKSPACE";
+alias tag-manager='www && cd tag-manager/';
+alias template-cache='www && cd template-cache/templatecache-local/'
+alias template-cache.run='template-cache && sh run.sh'
+alias tm='www && __tm-panel-cd';
+alias tm.update='__tm-panel-update';
+alias tm.plugins='www && cd tm-plugins/';
+alias insercao='www && cd insercao/trunk/';
+alias insercao.ads='insercao && cd adsGenerator/';
+alias insercao.richmedia='insercao && cd richmedia_2014/homolog/';
+alias prod='www && cd Prod/';
+alias prod.tm='prod && cd jsuol/tm/';
+alias prod.tm.modules='prod.tm && cd modules/';
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # UTILS
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# TM Panel
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function __tm-panel-update () {
+    CUR_PATH=$(pwd);
+    cd "/Users/juliocorradi/Sites/tm-panel/";
+
+    for dir in `ls -l | grep tm-panel | awk {'print $9'}`; do
+        cd $dir;
+        printf "${Red}$DIVIDER${NC}\n";
+        printf " Updating project [${Yel}$dir${NC}] ${Gre}@${NC} [${Cya}`pwd`${NC}] \n";
+        printf "${Red}$DIVIDER${NC}\n";
+        git checkout master;
+        git fetch -p && git fetch --all && git pull origin master;
+        printf " \n";
+        cd ..;
+    done
+
+    cd "$CUR_PATH";
+}
+
+function __tm-panel-cd () {
+    cd "/Users/juliocorradi/Sites/tm-panel/";
+
+    for dir in `ls -l | grep tm-panel | awk {'print $9'}`; do
+        if [[ $dir =~ ^tm-panel-($1)?\/?$ ]]; then
+            printf "Getting in $dir \n";
+            cd $dir;
+        fi
+    done
+}
+
+# Google Drive
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function drive () {
+    CUR_DIR=$(pwd);
+    MONTH_PATH=$(__cur_month);
+    YEAR_PATH=$(__cur_year);
+    cd "/Users/juliocorradi/Google Drive/Empresa/Financeiro/$YEAR_PATH/$MONTH_PATH/Planilha de horas";
+    open .;
+    cd "$CUR_DIR";
+}
+
+# Timesheet
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function __time_sheet () {
+    MONTH_PATH=$(__cur_month);
+    MONTH_EXTEND=$(__cur_month_extend);
+    YEAR_PATH=$(__cur_year);
+    open "/Users/juliocorradi/Google Drive/Empresa/Financeiro/$YEAR_PATH/$MONTH_PATH/Planilha de horas/julio-corradi_planilha-horas-extra_$MONTH_EXTEND-$YEAR_PATH.xls";
+}
+alias timesheet=__time_sheet;
+
 # Dates
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function __cur_year () {
@@ -263,9 +377,73 @@ function __cur_month () {
     echo "$MONTH_PATH";
 }
 
+function __cur_month_extend () {
+    CUR_MONTH="$(date +'%m')";
+
+    case $CUR_MONTH in
+        01 ) MONTH_PATH="janeiro"
+            ;;
+        02 ) MONTH_PATH="fevereiro"
+            ;;
+        03 ) MONTH_PATH="março"
+            ;;
+        04 ) MONTH_PATH="abril"
+            ;;
+        05 ) MONTH_PATH="maio"
+            ;;
+        06 ) MONTH_PATH="junho"
+            ;;
+        07 ) MONTH_PATH="julho"
+            ;;
+        08 ) MONTH_PATH="agosto"
+            ;;
+        09 ) MONTH_PATH="setembro"
+            ;;
+        10 ) MONTH_PATH="outubro"
+            ;;
+        11 ) MONTH_PATH="novembro"
+            ;;
+        12 ) MONTH_PATH="dezembro"
+            ;;
+    esac
+
+    echo "$MONTH_PATH";
+}
+
+# Transfer
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function __transfer () {
+    tmpfile=$( mktemp -t transferXXX );
+    curl --progress-bar --upload-file $1 https://transfer.sh/$(basename $1) >> $tmpfile;
+    cat $tmpfile;
+    rm -f $tmpfile;
+}
+alias transfer=__transfer
+
+# Tweet
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function tweet {
+    MESSAGE="$1";
+    printf "${Gre}Running${NC} t update ${Red}$MESSAGE${NC} \n";
+    t update "$MESSAGE";
+}
+
+# Compress files
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function z () {
+    zip -r "$1".zip "$1"/ -x "*.DS_Store";
+}
+
+# Count files
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function count_files () {
+    FILES=`ls ./ | grep -v ^l | wc -l | awk '{print $1}'`;
+    printf "[${Gre}INFO${NC}] This directory has $FILES files.${NC}\n";
+}
+
 # Uncompress files
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function extract() {
+function extract () {
     if [ -f $1 ] ; then
         case $1 in
             *.tar.bz2) tar xvjf $1   ;;
@@ -298,6 +476,7 @@ function mkd() {
     mkdir -p "$@" && cd "$_";
 }
 
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # GIT
@@ -321,6 +500,13 @@ function __git_branch() {
     git rev-parse --abbrev-ref HEAD;
 }
 
+# Set git autocompletion and PS1 integration
+# curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if [ -f /Users/juliocorradi/.git-completion.bash ]; then
+    . /Users/juliocorradi/.git-completion.bash;
+fi
+
 # show git status on PS1
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export GIT_PS1_SHOWUPSTREAM=auto;
@@ -339,8 +525,7 @@ bind 'set completion-ignore-case on'
 
 # PS1 colored with username, machine name, count, timestamp, branch name and git status
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# PS1='$(__git_ps1 "[${Yel}%s${NC}${Red}${NC}] ")'"${Cya}\w${NC}"' \n\$ '
-PS1=''"${Cya}$USER${NS}"' '"${Gre}@ \w${NC}"' $(__git_ps1 "(${Yel}%s${NC}) ") \n\$ '
+PS1=''"${Cya}$USER${NS}"' '"${Gre}@ \w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n\$ '
 
 # Grep e ls color
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -348,11 +533,34 @@ export GREP_OPTIONS="--color=auto"
 export GREP_COLOR="4;33"
 export CLICOLOR="auto"
 
-# Open directory with Sublime Text
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export EDITOR='subl -w'
-export GIT_EDITOR='vim'
-
 # Load rvm
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# PROCESS/SYSTEM RELATED FUNCTIONS:
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Get current host related info.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function ii() {
+    printf "You are logged on ${BRed}$HOST\n"
+    printf "\n${BRed}Additionnal information:\n$NC"; uname -a
+    printf "\n${BRed}Diskspace:\n$NC" ; df2 / $HOME
+    printf "\n${BRed}Current date:\n$NC"; date
+    printf "\n${BRed}Machine stats:\n$NC" ; uptime
+    printf "\n${BRed}Memory stats:\n$NC" ; free
+    printf "\n${BRed}Local IP Address:\n$NC" ; ip
+    printf "\n${BRed}Lan IP Address:\n$NC" ; iplocal
+    printf "\n${BRed}Users logged on:\n$NC"; w -hs | cut -d " " -f1 | sort | uniq
+    printf "\n${BRed}Open connections:\n$NC"; netstat -pan --inet;
+}
+
+export PATH="/usr/local/ffmpeg/bin:$PATH";
+export PATH="/usr/local/phantomjs/bin:$PATH";
+export PATH="/usr/local/mysql/bin:$PATH";
+export JAVA_HOME=$(/usr/libexec/java_home);
+export M2_HOME="/usr/local/maven";
+export M2=$M2_HOME/bin;
+export PATH="/usr/local/heroku/bin:/usr/local/mongodb/bin:$M2:$PATH";
