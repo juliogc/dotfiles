@@ -17,7 +17,7 @@ function Rdio () {
     if [[ $1 ]]; then
         opt=$1;
     else
-        showHelp;
+        __rdio_showHelp;
         read opt;
     fi
 
@@ -29,28 +29,28 @@ function Rdio () {
         "status" ) state=`osascript -e 'tell application "Rdio" to player state as string'`;
             echo "Rdio is currently $state.";
             if [ $state = "playing" ]; then
-                currentsong;
+                __rdio_currentsong;
             fi
         ;;
 
         "play" ) echo "Playing Rdio.";
             osascript -e 'tell application "Rdio" to play';
-            currentsong;
+            __rdio_currentsong;
         ;;
 
         "pause" ) echo "Pausing Rdio.";
             osascript -e 'tell application "Rdio" to pause';
-            currentsong;
+            __rdio_currentsong;
         ;;
 
         "next" ) echo "Going to next track." ;
             osascript -e 'tell application "Rdio" to next track';
-            currentsong;
+            __rdio_currentsong;
         ;;
 
         "prev" ) echo "Going to previous track.";
             osascript -e 'tell application "Rdio" to previous track';
-            currentsong;
+            __rdio_currentsong;
         ;;
 
         "mute" ) echo "Muting Rdio volume level.";
@@ -85,25 +85,25 @@ function Rdio () {
                     currenttrack="$artist - $track";
 
                     t update "♫ #NowPlaying $currenttrack";
-                fi 
+                fi
             fi
         ;;
 
         "stop" ) echo "Stopping Rdio.";
             osascript -e 'tell application "Rdio" to stop';
         ;;
-            
+
         "quit" ) echo "Exiting Rdio.";
-            osascript -e 'tell application "Rdio" to quit';
+            killall Rdio;
         ;;
 
         "help" | * ) echo "help:";
-            showHelp;
+            __rdio_showHelp;
         ;;
     esac
 }
 
-showHelp () {
+__rdio_showHelp () {
     printf "${Red}$DIVIDER${NC}\n";
     printf "[${Gre}Rdio${NC}] ${Whi}Command Line Interface${NC}\n";
     printf "${Red}$DIVIDER${NC}\n";
@@ -124,7 +124,7 @@ showHelp () {
     echo "quit     = Quit Rdio.";
 }
 
-currentsong () {
+__rdio_currentsong () {
     artist=`osascript -e 'tell application "Rdio" to artist of current track as string'`;
     track=`osascript -e 'tell application "Rdio" to name of current track as string'`;
     echo `printf "♫ ${Gre}$artist${NC} - ${Blu}$track ${NC}"`;
@@ -132,18 +132,20 @@ currentsong () {
 
 # Shorthand controls alias
 # ######################## #
-alias status="Rdio status";
-alias play="Rdio play";
-alias pause="Rdio pause";
-alias next="Rdio next";
-alias prev="Rdio prev";
-alias mute="Rdio mute";
-alias mute="Rdio mute";
-alias unmute="Rdio unmute";
-alias stop="Rdio stop";
-alias volup="Rdio vol up";
-alias voldown="Rdio vol down";
-alias setvol="Rdio vol $1";
-alias sharetrack="Rdio share";
-alias stop="Rdio stop";
-alias songquit="Rdio quit";
+alias rdio="Rdio";
+alias rdio.open="Rdio open";
+alias rdio.status="Rdio status";
+alias rdio.play="Rdio play";
+alias rdio.pause="Rdio pause";
+alias rdio.next="Rdio next";
+alias rdio.prev="Rdio prev";
+alias rdio.mute="Rdio mute";
+alias rdio.mute="Rdio mute";
+alias rdio.unmute="Rdio unmute";
+alias rdio.stop="Rdio stop";
+alias rdio.volup="Rdio vol up";
+alias rdio.voldown="Rdio vol down";
+alias rdio.setvol="Rdio vol $1";
+alias rdio.sharetrack="Rdio share";
+alias rdio.stop="Rdio stop";
+alias rdio.quit="Rdio quit";

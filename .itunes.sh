@@ -18,39 +18,43 @@ function iTunes () {
     if [[ $1 ]]; then
         opt=$1;
     else
-        showHelp;
+        __itunes_showHelp;
         read opt;
     fi
 
     case $opt in
+        "open" ) echo "Opening iTunes.";
+            open -a iTunes;
+        ;;
+
         "status" ) state=`osascript -e 'tell application "iTunes" to player state as string'`;
             echo "iTunes is currently $state.";
             if [ $state = "playing" ]; then
-                currentsong;
+                __itunes_currentsong;
             fi
         ;;
 
-        "play"    ) echo "Playing iTunes.";
+        "play" ) echo "Playing iTunes.";
             osascript -e 'tell application "iTunes" to play';
-            currentsong;
+            __itunes_currentsong;
         ;;
 
-        "pause"    ) echo "Pausing iTunes.";
+        "pause" ) echo "Pausing iTunes.";
             osascript -e 'tell application "iTunes" to pause';
-            currentsong;
+            __itunes_currentsong;
         ;;
 
-        "next"    ) echo "Going to next track." ;
+        "next" ) echo "Going to next track." ;
             osascript -e 'tell application "iTunes" to next track';
-            currentsong;
+            __itunes_currentsong;
         ;;
 
-        "prev"    ) echo "Going to previous track.";
+        "prev" ) echo "Going to previous track.";
             osascript -e 'tell application "iTunes" to previous track';
-            currentsong;
+            __itunes_currentsong;
         ;;
 
-        "mute"    ) echo "Muting iTunes volume level.";
+        "mute" ) echo "Muting iTunes volume level.";
             osascript -e 'tell application "iTunes" to set mute to true';
         ;;
 
@@ -58,7 +62,7 @@ function iTunes () {
             osascript -e 'tell application "iTunes" to set mute to false';
         ;;
 
-        "vol"    ) echo "Changing iTunes volume level.";
+        "vol" ) echo "Changing iTunes volume level.";
             vol=`osascript -e 'tell application "iTunes" to sound volume as integer'`;
             if [ $2 = "up" ]; then
                 newvol=$(( vol+10 ));
@@ -74,38 +78,39 @@ function iTunes () {
             osascript -e "tell application \"iTunes\" to set sound volume to $newvol";
         ;;
 
-        "share"    ) state=`osascript -e 'tell application "iTunes" to player state as string'`;
+        "share" ) state=`osascript -e 'tell application "iTunes" to player state as string'`;
             if [ $state = "playing" ]; then
-                if [[ $(t) ]]; then
+                if [[ -z "$t" ]]; then
                     artist=`osascript -e 'tell application "iTunes" to artist of current track as string'`;
                     track=`osascript -e 'tell application "iTunes" to name of current track as string'`;
-                    currenttrack="[$artist] - $track";
+                    currenttrack="$artist - $track";
 
-                    t update "#NowPlaying $currenttrack";
-                fi 
+                    t update "♫ #NowPlaying $currenttrack";
+                fi
             fi
         ;;
 
-        "stop"    ) echo "Stopping iTunes.";
+        "stop" ) echo "Stopping iTunes.";
             osascript -e 'tell application "iTunes" to stop';
         ;;
-            
-        "exit"    ) echo "Exiting iTunes.";
-            osascript -e 'tell application "iTunes" to exit';
-            exit 1 ;;
+
+        "quit" ) echo "Exiting iTunes.";
+            killall iTunes;
+        ;;
 
         "help" | * ) echo "help:";
-            showHelp;
+            __itunes_showHelp;
         ;;
     esac
 }
 
-showHelp () {
+__itunes_showHelp () {
     printf "${Red}$DIVIDER${NC}\n";
     printf "[${Gre}iTunes${NC}] ${Whi}Command Line Interface${NC}\n";
     printf "${Red}$DIVIDER${NC}\n";
     echo;
     echo "status   = Shows iTunes' status, current artist and track.";
+    echo "open     = Opens iTunes.";
     echo "play     = Start playing iTunes.";
     echo "pause    = Pause iTunes.";
     echo "next     = Go to the next track.";
@@ -117,17 +122,19 @@ showHelp () {
     echo "vol #    = Set iTunes' volume to # [0-100]";
     echo "share    = Share iTunes.";
     echo "stop     = Stop iTunes.";
-    echo "exit     = Exit iTunes.";
+    echo "quit     = Quit iTunes.";
 }
 
-currentsong () {
+__itunes_currentsong () {
     artist=`osascript -e 'tell application "iTunes" to artist of current track as string'`;
     track=`osascript -e 'tell application "iTunes" to name of current track as string'`;
-    echo `printf "[${Gre}$artist${NC}] - ${Blu}$track ${NC}"`;
+    echo `printf "♫ ${Gre}$artist${NC} - ${Blu}$track ${NC}"`;
 }
 
 # Shorthand controls alias
 # ######################## #
+alias itunes="iTunes";
+alias itunes.open="iTunes open";
 alias itunes.status="iTunes status";
 alias itunes.play="iTunes play";
 alias itunes.pause="iTunes pause";
@@ -142,4 +149,4 @@ alias itunes.voldown="iTunes vol down";
 alias itunes.setvol="iTunes vol $1";
 alias itunes.sharetrack="iTunes share";
 alias itunes.stop="iTunes stop";
-alias itunes.songquit="iTunes quit";
+alias itunes.quit="iTunes quit";
