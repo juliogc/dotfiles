@@ -285,6 +285,29 @@ alias prod.tm.modules='prod.tm && cd modules/';
 # UTILS
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Recursive GIT Update for projects dir
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function __recursive_git_update () {
+    OLD_PATH=$(pwd);
+    NEXT_PATH="$1";
+
+    cd "$NEXT_PATH";
+
+    for DIR in `ls -l | awk {'print $9'}`; do
+        cd $DIR;
+        printf "${Red}$DIVIDER${NC}\n";
+        printf " Updating project [${Yel}$DIR${NC}] ${Gre}@${NC} [${Cya}`pwd`${NC}] \n";
+        printf "${Red}$DIVIDER${NC}\n";
+        git checkout master;
+        git fetch -p && git fetch --all && git pull origin master;
+        printf " \n";
+        cd ..;
+    done
+
+    cd "$OLD_PATH";
+}
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # TM Panel
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function __tm-panel-update () {
