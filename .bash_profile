@@ -16,11 +16,6 @@ WORKSPACE=$HOME/Sites;
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 source "$HOME/.nvm/nvm.sh"
 source "$HOME/.itunes.sh"
-source "$HOME/.rdio.sh"
-
-if [[ -f "$HOME/.plugin-maker.sh" ]]; then
-    . "$HOME/.plugin-maker.sh";
-fi
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -216,21 +211,10 @@ alias illustrator='open -a Adobe\ Illustrator';
 # Editors
 alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl';
 alias subl=sublime;
-alias eclipse='open -a Eclipse';
 
 # Browsers
 # alias firefox='open -a Firefox';
-alias canary='open -a Google\ Chrome\ Canary';
 alias chrome='open -a Google\ Chrome';
-alias firefox='open -a Firefox';
-
-# Shorthands
-alias py='python3.3';
-
-# Others
-alias pomodoro='open -a focus\ booster';
-alias virtualbox='open -a VirtualBox';
-alias skype='open -a Skype';
 
 # Native commands
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -250,7 +234,7 @@ alias devmodeon='defaults write com.apple.dashboard devmode YES && killall Dock'
 
 # Extras
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias emptytrash="rm -rf /Users/juliocorradi/.Trash/*";
+alias emptytrash="rm -rf /Users/$USER/.Trash/*";
 alias cleanupds="sudo find . -type f -name '*.DS_Store' -ls -delete"
 alias gitconfig='subl $HOME/.gitconfig';
 alias reload='source ~/.bash_profile && clear';
@@ -266,86 +250,19 @@ alias profile=bash_profile;
 # Work
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias www="cd $WORKSPACE";
-alias tag-manager='www && cd tag-manager/';
-alias template-cache='www && cd template-cache/templatecache-local/'
-alias template-cache.run='template-cache && sh run.sh'
-alias tm='www && __tm-panel-cd';
-alias tm.update='__tm-panel-update';
-alias tm.plugins='www && cd tm-plugins/';
-alias insercao='www && cd insercao/trunk/';
-alias insercao.ads='insercao && cd adsGenerator/';
-alias insercao.richmedia='insercao && cd richmedia_2014/homolog/';
-alias prod='www && cd Prod/';
-alias prod.tm='prod && cd jsuol/tm/';
-alias prod.tm.modules='prod.tm && cd modules/';
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # UTILS
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Recursive GIT Update for projects dir
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function __recursive_git_update () {
-    OLD_PATH=$(pwd);
-    NEXT_PATH="$1";
-
-    cd "$NEXT_PATH";
-
-    for DIR in `ls -l | awk {'print $9'}`; do
-        cd $DIR;
-        printf "${Red}$DIVIDER${NC}\n";
-        printf " Updating project [${Yel}$DIR${NC}] ${Gre}@${NC} [${Cya}`pwd`${NC}] \n";
-        printf "${Red}$DIVIDER${NC}\n";
-        git checkout master;
-        git fetch -p && git fetch --all && git pull origin master;
-        printf " \n";
-        cd ..;
-    done
-
-    cd "$OLD_PATH";
-}
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# TM Panel
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function __tm-panel-update () {
-    CUR_PATH=$(pwd);
-    cd "/Users/juliocorradi/Sites/tm-panel/";
-
-    for dir in `ls -l | grep tm-panel | awk {'print $9'}`; do
-        cd $dir;
-        printf "${Red}$DIVIDER${NC}\n";
-        printf " Updating project [${Yel}$dir${NC}] ${Gre}@${NC} [${Cya}`pwd`${NC}] \n";
-        printf "${Red}$DIVIDER${NC}\n";
-        git checkout master;
-        git fetch -p && git fetch --all && git pull origin master;
-        printf " \n";
-        cd ..;
-    done
-
-    cd "$CUR_PATH";
-}
-
-function __tm-panel-cd () {
-    cd "/Users/juliocorradi/Sites/tm-panel/";
-
-    for dir in `ls -l | grep tm-panel | awk {'print $9'}`; do
-        if [[ $dir =~ ^tm-panel-($1)?\/?$ ]]; then
-            printf "Getting in $dir \n";
-            cd $dir;
-        fi
-    done
-}
-
 # Google Drive
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function drive () {
     CUR_DIR=$(pwd);
     MONTH_PATH=$(__cur_month);
     YEAR_PATH=$(__cur_year);
-    cd "/Users/juliocorradi/Google Drive/Empresa/Financeiro/$YEAR_PATH/$MONTH_PATH/Planilha de horas";
+    cd "/Users/$USER/Google Drive/Empresa/Financeiro/$YEAR_PATH/$MONTH_PATH/Planilha de horas";
     open .;
     cd "$CUR_DIR";
 }
@@ -356,7 +273,7 @@ function __time_sheet () {
     MONTH_PATH=$(__cur_month);
     MONTH_EXTEND=$(__cur_month_extend);
     YEAR_PATH=$(__cur_year);
-    open "/Users/juliocorradi/Google Drive/Empresa/Financeiro/$YEAR_PATH/$MONTH_PATH/Planilha de horas/julio-corradi_planilha-horas-extra_$MONTH_EXTEND-$YEAR_PATH.xls";
+    open "/Users/$USER/Google Drive/Empresa/Financeiro/$YEAR_PATH/$MONTH_PATH/Planilha de horas/julio-corradi_planilha-horas-extra_$MONTH_EXTEND-$YEAR_PATH.xls";
 }
 alias timesheet=__time_sheet;
 
@@ -526,8 +443,8 @@ function __git_branch() {
 # Set git autocompletion and PS1 integration
 # curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [ -f /Users/juliocorradi/.git-completion.bash ]; then
-    . /Users/juliocorradi/.git-completion.bash;
+if [ -f /Users/$USER/.git-completion.bash ]; then
+    . /Users/$USER/.git-completion.bash;
 fi
 
 # show git status on PS1
@@ -536,6 +453,10 @@ export GIT_PS1_SHOWUPSTREAM=auto;
 export GIT_PS1_SHOWDIRTYSTATE=true;
 export GIT_PS1_SHOWSTASHSTATE=true;
 export GIT_PS1_SHOWTRACKEDFILES=true;
+
+# GITK
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alias gitk='/Users/$USER/gitk';
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -548,14 +469,24 @@ bind 'set completion-ignore-case on'
 
 # PS1 colored with username, machine name, count, timestamp, branch name and git status
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-PS1=''"${Cya}$USER${NS}"' '"${Gre}@ \w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n\$ '
-# PS1='┌─ [ '"${Cya}$USER${NS}"' '"${BWhi}@ ${NC}"''"${Cya}\h${NC}"' ] '"${Gre}\w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n└─• ';
+# PS1=''"${Cya}$USER${NS}"' '"${Gre}@ \w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n\$ '
+PS1='┌─ [ '"${Cya}$USER${NS}"' '"${BWhi}@ ${NC}"''"${Cya}\h${NC}"' ] '"${Gre}\w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n└─• ';
 
 # Grep e ls color
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export GREP_OPTIONS="--color=auto"
 export GREP_COLOR="4;33"
 export CLICOLOR="auto"
+
+# Application exports
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# export PATH="/usr/local/ffmpeg/bin:$PATH";
+# export PATH="/usr/local/phantomjs/bin:$PATH";
+# export PATH="/usr/local/mysql/bin:$PATH";
+# export JAVA_HOME=$(/usr/libexec/java_home);
+# export M2_HOME="/usr/local/maven";
+# export M2=$M2_HOME/bin;
+# export PATH="/usr/local/heroku/bin:/usr/local/mongodb/bin:$M2:$PATH";
 
 # Load rvm
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -580,11 +511,3 @@ function ii() {
     printf "\n${BRed}Users logged on:\n$NC"; w -hs | cut -d " " -f1 | sort | uniq
     printf "\n${BRed}Open connections:\n$NC"; netstat -pan --inet;
 }
-
-export PATH="/usr/local/ffmpeg/bin:$PATH";
-export PATH="/usr/local/phantomjs/bin:$PATH";
-export PATH="/usr/local/mysql/bin:$PATH";
-export JAVA_HOME=$(/usr/libexec/java_home);
-export M2_HOME="/usr/local/maven";
-export M2=$M2_HOME/bin;
-export PATH="/usr/local/heroku/bin:/usr/local/mongodb/bin:$M2:$PATH";
