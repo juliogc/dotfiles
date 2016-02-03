@@ -1,6 +1,9 @@
 [user]
     email = jgcorradi@gmail.com
     name = Julio Gori Corradi
+    
+[credential]
+    username = juliogc
 
 [alias]
     undopush = push -f origin HEAD^:master
