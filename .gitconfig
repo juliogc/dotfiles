@@ -4,7 +4,7 @@
 
 [alias]
     undopush = push -f origin HEAD^:master
-    undomerge = reset --hard HEAD@{1}
+    undocommit = reset --hard HEAD@{1} # undomerge too
     unchanged = git update-index --assume-unchanged
     # lazy alias
     a = add .
