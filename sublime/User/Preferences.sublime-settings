@@ -1,0 +1,18 @@
+{
+    "close_windows_when_empty": false,
+    "color_scheme": "Packages/Theme - Spacegray/base16-ocean.monokai.tmTheme",
+    "copy_with_empty_selection": false,
+    "default_line_ending": "unix",
+    "font_size": 9,
+    "highlight_line": true,
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
+    "show_encoding": true,
+    "show_line_endings": true,
+    "tab_size": 4,
+    "theme": "Spacegray Eighties.sublime-theme",
+    "translate_tabs_to_spaces": true,
+    "trim_trailing_white_space_on_save": true
+}
