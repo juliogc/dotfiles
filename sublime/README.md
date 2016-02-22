@@ -1,4 +1,4 @@
-## Plugins ##
+### Plugins
 
 - AutoFileName
 - BracketHighLighter
@@ -10,7 +10,7 @@
 - SidebarEnhancements
 - Theme - Spacegray
 
-## User Settings ##
+### User Settings
 ``` json
 {
     "close_windows_when_empty": false,
