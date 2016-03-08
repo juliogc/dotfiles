@@ -27,6 +27,8 @@
 
 [core]
     whitespace = space-before-tab,indent-with-non-tab,trailing-space
+    excludesfile = /Users/juliocorradi/.gitignore_global
+    editor = vim
 
 [color]
     branch = auto
@@ -34,7 +36,8 @@
     interactive = auto
     status = auto
     ui = auto
-    [apply]
+
+[apply]
     # Detect whitespace errors when applying a patch
     whitespace = fix
 
