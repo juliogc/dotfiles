@@ -374,11 +374,11 @@ function z () {
     zip -r "$1".zip "$1"/ -x "*.DS_Store";
 }
 
-# Count files
+# Count items
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function count_files () {
+function count_items () {
     FILES=`ls ./ | grep -v ^l | wc -l | awk '{print $1}'`;
-    printf "[${Gre}INFO${NC}] This directory has $FILES files.${NC}\n";
+    printf "[${Gre}INFO${NC}] This directory has $FILES items.${NC}\n";
 }
 
 # Uncompress files
