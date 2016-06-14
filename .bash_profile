@@ -64,15 +64,17 @@ Whi='\e[0;37m';   BWhi='\e[1;37m';   UWhi='\e[4;37m';   IWhi='\e[0;97m';   BIWhi
 NC='\e[0m'
 
 function __show_colors () {
-    printf " Regular  Bold  Underline  High Intensity  BoldHigh Intens..  Background  High Intensity Bgs \n\n";
-    printf " ${Bla}Bla      ${BBla}BBla  ${UBla}UBla${NC}       ${IBla}IBla${NC}            ${BIBla}BIBla${NC}              ${On_Bla}On_Bla${NC}      ${On_IBla}On_IBla${NC} \n";
-    printf " ${Red}Red      ${BRed}BRed  ${URed}URed${NC}       ${IRed}IRed${NC}            ${BIRed}BIRed${NC}              ${On_Red}On_Red${NC}      ${On_IRed}On_IRed${NC} \n";
-    printf " ${Gre}Gre      ${BGre}BGre  ${UGre}UGre${NC}       ${IGre}IGre${NC}            ${BIGre}BIGre${NC}              ${On_Gre}On_Gre${NC}      ${On_IGre}On_IGre${NC} \n";
-    printf " ${Yel}Yel      ${BYel}BYel  ${UYel}UYel${NC}       ${IYel}IYel${NC}            ${BIYel}BIYel${NC}              ${On_Yel}On_Yel${NC}      ${On_IYel}On_IYel${NC} \n";
-    printf " ${Blu}Blu      ${BBlu}BBlu  ${UBlu}UBlu${NC}       ${IBlu}IBlu${NC}            ${BIBlu}BIBlu${NC}              ${On_Blu}On_Blu${NC}      ${On_IBlu}On_IBlu${NC} \n";
-    printf " ${Pur}Pur      ${BPur}BPur  ${UPur}UPur${NC}       ${IPur}IPur${NC}            ${BIPur}BIPur${NC}              ${On_Pur}On_Pur${NC}      ${On_IPur}On_IPur${NC} \n";
-    printf " ${Cya}Cya      ${BCya}BCya  ${UCya}UCya${NC}       ${ICya}ICya${NC}            ${BICya}BICya${NC}              ${On_Cya}On_Cya${NC}      ${On_ICya}On_ICya${NC} \n";
-    printf " ${Whi}Whi      ${BWhi}BWhi  ${UWhi}UWhi${NC}       ${IWhi}IWhi${NC}            ${BIWhi}BIWhi${NC}              ${On_Whi}On_Whi${NC}      ${On_IWhi}On_IWhi${NC} \n";
+    printf ""%134s"\n" | tr " " "-";
+    printf "|  Color  |  Regular  |  Bold  |  Underline  |  High Intensity  |  Bold High Intensity  |  Background  |  High Intensity Background  |\n";
+    printf ""%134s"\n" | tr " " "-";
+    printf "  Black     ${Bla}Bla         ${BBla}BBla     ${UBla}UBla${NC}          ${IBla}IBla${NC}               ${BIBla}BIBla${NC}                    ${On_Bla}On_Bla${NC}         ${On_IBla}On_IBla${NC} \n";
+    printf "    Red     ${Red}Red         ${BRed}BRed     ${URed}URed${NC}          ${IRed}IRed${NC}               ${BIRed}BIRed${NC}                    ${On_Red}On_Red${NC}         ${On_IRed}On_IRed${NC} \n";
+    printf "  Green     ${Gre}Gre         ${BGre}BGre     ${UGre}UGre${NC}          ${IGre}IGre${NC}               ${BIGre}BIGre${NC}                    ${On_Gre}On_Gre${NC}         ${On_IGre}On_IGre${NC} \n";
+    printf " Yellow     ${Yel}Yel         ${BYel}BYel     ${UYel}UYel${NC}          ${IYel}IYel${NC}               ${BIYel}BIYel${NC}                    ${On_Yel}On_Yel${NC}         ${On_IYel}On_IYel${NC} \n";
+    printf "   Blue     ${Blu}Blu         ${BBlu}BBlu     ${UBlu}UBlu${NC}          ${IBlu}IBlu${NC}               ${BIBlu}BIBlu${NC}                    ${On_Blu}On_Blu${NC}         ${On_IBlu}On_IBlu${NC} \n";
+    printf " Purple     ${Pur}Pur         ${BPur}BPur     ${UPur}UPur${NC}          ${IPur}IPur${NC}               ${BIPur}BIPur${NC}                    ${On_Pur}On_Pur${NC}         ${On_IPur}On_IPur${NC} \n";
+    printf "   Cyan     ${Cya}Cya         ${BCya}BCya     ${UCya}UCya${NC}          ${ICya}ICya${NC}               ${BICya}BICya${NC}                    ${On_Cya}On_Cya${NC}         ${On_ICya}On_ICya${NC} \n";
+    printf "  White     ${Whi}Whi         ${BWhi}BWhi     ${UWhi}UWhi${NC}          ${IWhi}IWhi${NC}               ${BIWhi}BIWhi${NC}                    ${On_Whi}On_Whi${NC}         ${On_IWhi}On_IWhi${NC} \n";
 }
 
 # HELP
