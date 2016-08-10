@@ -25,18 +25,22 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'valloric/youcompleteme'
-Plugin 'ternjs/tern_for_vim'
-
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'ctrlpvim/ctrlp.vim'
 "  end
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call vundle#end()
 filetype plugin indent on
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+autocmd VimEnter * NERDTree
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
-"  Helpers 
+"  Helpers
 "
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "  Reload .vimrc
@@ -61,13 +65,15 @@ endif
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
-"  Defaults 
+"  Defaults
 "
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+set autochdir "Update vim pwd from the current file location       
+
 set mouse=a "allow all controls to mouse
 
-set wildmenu                      "autocomplete
-set wildmode=list:longest,full    "show all files including hidden ones on tab + tab
+set wildmenu                   "autocomplete
+set wildmode=list:longest,full "show all files including hidden ones on tab + tab
 
 syntax enable
 colorscheme monokai
@@ -78,9 +84,9 @@ set ffs=unix,dos,mac
 
 set autoread
 
-set ai      "auto indent
-set si      "smart indent
-set wrap    "wrap lines
+set ai   "auto indent
+set si   "smart indent
+set wrap "wrap lines
 
 set showmode
 set showmatch
