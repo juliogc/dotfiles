@@ -25,11 +25,11 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'terryma/vim-multiple-cursors'
 "  end
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call vundle#end()
@@ -100,6 +100,12 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+" Folding lines
+set foldenable
+set foldmethod=indent
+" set foldlevelstart=10
+" set foldnestmax=10
+
 set noswapfile
 set nobackup
 set nowb
@@ -115,6 +121,10 @@ set splitright
 "  Mappings
 "
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"  Remap Space fold toggle lines
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <space> za
+
 "  Remap ctrl+w+<LETTER> to ctrl+<LETTER>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <C-J> <C-W><C-J>
