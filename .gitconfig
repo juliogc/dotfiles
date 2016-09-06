@@ -13,7 +13,7 @@
 [user]
     email = jgcorradi@gmail.com
     name = Julio Gori Corradi
-    
+
 [credential]
     username = juliogc
 
@@ -22,20 +22,21 @@
     undocommit = reset --hard HEAD@{1} # undo merges too
     unchanged = git update-index --assume-unchanged
     # lazy alias
-    a = add .
+    a = add --all .
     b = branch
-    bd = !git b -d
-    bn = "!f() { git checkout -b $1 && git push origin $1; }; f"
     bs = !git b -a
     c = checkout
     change = "!f() { INITIAL='[';BRANCH=$(git rev-parse --abbrev-ref HEAD);FINAL='] ';USER_MESSAGE=$1;MESSAGE=$INITIAL$BRANCH$FINAL$USER_MESSAGE; git add . && git commit -am \"$MESSAGE\"; }; f"
     cmt = commit -am
-    f = !git c master && git fetch -p && git fetch --all && git update
+    f = !git fetch -p && git fetch --all && git update
     lg = log --graph  --pretty=format:'%C(bold red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset' --abbrev-commit --date=relative
+    # Requies track alias
+    newbranch = "!f() { git checkout -b $1 && git push origin $1 && git track $1; }; f"
     purge = !"git branch -d $(git branch --merged master | grep -v -e '*' -e 'master')"
     st = status
     track = "!f() { git checkout --track -B $1 origin/$1; }; f"
     update = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git st && git pull origin $BRANCH && git push origin $BRANCH; }; f"
+    deploy = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout master && git fetch --all -p && git pull origin master && git merge $BRANCH && git push origin master; }; f"
 
 [core]
     whitespace = space-before-tab,indent-with-non-tab,trailing-space
@@ -65,6 +66,6 @@
 
 # [http]
 #     sslVerify = false
-    
+
 # [url "https://"]
 #     insteadOf = git://
