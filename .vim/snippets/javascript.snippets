@@ -1,0 +1,184 @@
+# addEventListener
+snippet addEventListener
+	addEventListener('${1:event}', function (${2:event}) {
+		${0:// body...}
+	});
+
+# alert
+snippet al
+	alert(${1:message});${0}
+
+# appendChild
+snippet appendChild
+	appendChild(${1:element});${0}
+
+# classList.add
+snippet classList.add
+	classList.add('${1:className}');${0}
+
+# classList.remove
+snippet classList.remove
+	classList.remove('${1:className}');${0}
+
+# classList.toogle
+snippet classList.toggle
+	classList.toggle('${1:className}');${0}
+
+# clearInterval
+snippet clearInterval
+	clearInterval(${1:interval});${0}
+
+# clearTimeout
+snippet clearTimeout
+	clearTimeout(${1:timeout});${0}
+
+# cloneNode
+snippet cloneNode
+	cloneNode(${1:true});${0}
+
+# console.debug
+snippet cd
+	console.debug(${1:message});${0}
+
+# console.dir
+snippet cdi
+	console.dir(${1:message});${0}
+
+# console.error
+snippet ce
+	console.error(${1:message});${0}
+
+# console.info
+	console.info(${1:message});${0}
+
+# console.log
+snippet cl
+	console.log(${1:message});${0}
+
+# console.table
+snippet ctb
+	console.table(${1:message});${0}
+
+# console.trace
+snippet ct
+	console.trace(${1:message});${0}
+
+# console.warn
+snippet cw
+	console.warn(${1:warn});${0}
+
+# createElement
+snippet createElement
+	createElement(${1:element});${0}
+
+# document
+snippet document
+	document.
+
+# for
+snippet for.regular
+	for (var i = 0; i < ${1:Things}.length; i++) {
+		${0: // body...}
+	}
+
+# for reversed
+snippet for.reversed
+	for (var i = ${1:Things}.length - 1; i >= 0; i--) {
+		${0:// body...}
+	}
+
+# forEach
+snippet forEach
+	forEach(function (${1:item}, ${2:index}) {
+		${0:// body...}
+	});
+
+# function (named)
+snippet function.named
+	function ${1:funcName} (${2:argument}) {
+		${0:// body...}
+	}
+
+# function (anon)
+snippet function.anon
+	function (${1:argument}) {
+		${0:// body...}
+	};
+
+# getElementById
+snippet getElementById
+	getElementById('${1:id}');${0}
+
+# getElementByClassName
+snippet getElementByClassName
+	getElementByClassName('${1:id}');${0}
+
+# getElementByTagName
+snippet getElementByTagName
+	getElementByTagName('${1:id}');${0}
+
+# immediately invoked function
+snippet ii
+	(function () {
+		${0:// body...}
+	})();
+
+# innerHTML
+snippet innerHTML
+	innerHTML = ${1:'${2:content}'}
+
+# inserBefore
+snippet insertBefore
+	insertBefore(${1:newElement}, ${2:element.firstChild});
+
+# length
+snippet length
+	length
+
+# module.exports
+snippet me
+	module.exports = ${1};
+
+# querySelector
+snippet querySelector
+	querySelector(${1:'${selector}'});${0}
+
+# querySelectorAll
+snippet querySelectorAll
+	querySelectorAll(${1:'${selector}'});${0}
+
+# removeAttribute
+snippet removeAttribute
+	removeAttribute(${1:'${2:attr}'});${0}
+
+# removeChild
+snippet removeChild
+	removeChild(${1:element}});${0}
+
+# require
+snippet require
+	require('${1:package}');${0}
+
+# setAttribute
+snippet setAttribute
+	setAttribute(${1:'${2:attr}'}, ${3:'${4:value}'});${0}
+
+# setInterval
+snippet setInterval
+	setInterval(function () {
+		${0:// body...}
+	}, ${1:millis});
+
+# setTimeout
+snippet setTimeout
+	setTimeout(function () {
+		${0:// body...}
+	}, ${1:millis});
+
+# user strict
+snippet us
+	'use strict';
+
+# window
+snippet window
+	window.
