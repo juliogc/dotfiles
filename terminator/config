@@ -1,34 +1,39 @@
 [global_config]
   inactive_color_offset = 1.0
+  suppress_multiple_term_dialog = True
 [keybindings]
-  cycle_prev = <Primary>bracketleft
-  cycle_next = <Primary>bracketright
-  close_window = <Primary><Shift>q
-  next_tab = <Primary>Page_Down
-  split_horiz = <Primary><Shift>d
-  prev_tab = <Primary>Page_Up
   close_term = <Primary>w
-  split_vert = <Primary>d
+  close_window = <Primary><Shift>q
+  cycle_next = <Primary>bracketright
+  cycle_prev = <Primary>bracketleft
+  group_all = None
+  group_all_toggle = <Super>g
+  group_tab = None
+  group_tab_toggle = <Primary><Super>t
   new_tab = <Primary>t
-  reset_clear = <Primary><Shift>k
+  next_tab = <Primary>Page_Down
   paste = <Primary>v
-[profiles]
-  [[default]]
-    palette = "#2d2d2d:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#d3d0c8:#747369:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#f2f0ec"
-    copy_on_selection = True
-    background_darkness = 0.85
-    background_type = transparent
-    background_image = None
-    font = Monospace 12
-    background_color = "#222222"
-    scrollback_infinite = True
+  prev_tab = <Primary>Page_Up
+  reset_clear = <Primary><Shift>k
+  split_horiz = <Primary><Shift>d
+  split_vert = <Primary>d
 [layouts]
   [[default]]
     [[[child1]]]
-      type = Terminal
       parent = window0
       profile = default
+      type = Terminal
     [[[window0]]]
-      type = Window
       parent = ""
+      type = Window
 [plugins]
+[profiles]
+  [[default]]
+    background_color = "#222222"
+    background_darkness = 0.87
+    background_image = None
+    background_type = transparent
+    copy_on_selection = True
+    font = Monospace 12
+    palette = "#2d2d2d:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#d3d0c8:#747369:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#f2f0ec"
+    scrollback_infinite = True
