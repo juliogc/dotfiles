@@ -9,29 +9,18 @@
 # @see http://effectif.com/git/config
 WORKSPACE=$HOME/Sites;
 
+# If not running interactively, don't do anything
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
-# IMPORTS
-#
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-source "$HOME/.nvm/nvm.sh"
-source "$HOME/.itunes.sh"
+[ -z "$PS1" ] && return
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # AID
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# See the current branch in your prompt
-# download the file, rename to .git-prompt.sh and "chmod +x" it
-# curl -OL https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
+# Enable autocomplete when using sudo prefix
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# This makes sub sourcing work, so can move large chunks to their own file.
-source "$HOME/.git-prompt.sh"
-
-# If not running interactively, don't do anything
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[ -z "$PS1" ] && return
+complete -cf sudo
 
 # Don't want coredumps.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,6 +29,47 @@ ulimit -S -c 0
 set -o notify
 set -o noclobber
 set -o ignoreeof
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# IMPORTS
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Git Prompt
+#
+# See the current branch in your prompt
+# download the file, rename to .git-prompt.sh and "chmod +x" it
+# curl -OL https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
+#
+# This makes sub sourcing work, so can move large chunks to their own file.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if [[ -f "$HOME/.git-prompt.sh" ]]; then
+    source "$HOME/.git-prompt.sh"
+fi;
+
+# NPM Autocomplete 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if [[ -f "$HOME/.npm-autocomplete.sh" ]]; then
+    source "$HOME/.npm-autocomplete.sh";
+fi;
+
+# NodeJS Version Manager
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if [[ -f "$HOME/.nvm/nvm.sh" ]]; then
+    source "$HOME/.nvm/nvm.sh";
+fi;
+
+# iTunes CLI
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if [[ -f "$HOME/.itunes.sh" ]]; then
+    source "$HOME/.itunes.sh"
+fi;
+
+# Spotify CLI
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if [[ -f "$HOME/.spotify.sh" ]]; then
+    source "$HOME/.spotify.sh"
+fi;
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -377,11 +407,11 @@ function z () {
     zip -r "$1".zip "$1"/ -x "*.DS_Store";
 }
 
-# Count items
+# Count files
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function count_items () {
+function count_files () {
     FILES=`ls ./ | grep -v ^l | wc -l | awk '{print $1}'`;
-    printf "[${Gre}INFO${NC}] This directory has $FILES items.${NC}\n";
+    printf "[${Gre}INFO${NC}] This directory has $FILES files.${NC}\n";
 }
 
 # Uncompress files
@@ -483,9 +513,7 @@ export CLICOLOR="auto"
 
 # Application exports
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# export PATH="/usr/local/ffmpeg/bin:$PATH";
-# export PATH="/usr/local/phantomjs/bin:$PATH";
-# export PATH="/usr/local/mysql/bin:$PATH";
+export PATH="/usr/local/mysql/bin:$PATH";
 # export JAVA_HOME=$(/usr/libexec/java_home);
 # export M2_HOME="/usr/local/maven";
 # export M2=$M2_HOME/bin;
