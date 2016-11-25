@@ -34,6 +34,8 @@
     newbranch = "!f() { git checkout -b $1 && git push origin $1 && git track $1; }; f"
     purge = !"git branch -d $(git branch --merged master | grep -v -e '*' -e 'master')"
     st = status
+    show-files = "!f() { git show --name-only --pretty=\"%C(bold green)%B\" }; f"
+    list-commits = !git shortlog -s -n
     track = "!f() { git checkout --track -B $1 origin/$1; }; f"
     update = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git st && git pull origin $BRANCH && git push origin $BRANCH; }; f"
     deploy = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git checkout master && git fetch --all -p && git pull origin master && git merge $BRANCH && git push origin master; }; f"
