@@ -473,7 +473,8 @@ function __git_branch() {
     git rev-parse --abbrev-ref HEAD;
 }
 
-# Set git autocompletion and PS1 integration
+# Set git autocompletion and 
+integration
 # curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if [ -f /Users/$USER/.git-completion.bash ]; then
@@ -503,7 +504,8 @@ bind 'set completion-ignore-case on'
 # PS1 colored with username, machine name, count, timestamp, branch name and git status
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # PS1=''"${Cya}$USER${NS}"' '"${Gre}@ \w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n\$ '
-PS1='┌─ [ '"${Cya}$USER${NS}"' '"${BWhi}@ ${NC}"''"${Cya}\h${NC}"' ] '"${Gre}\w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n└─• ';
+# PS1='┌─ [ '"${Cya}$USER${NS}"' '"${BWhi}@ ${NC}"''"${Cya}\h${NC}"' ] '"${Gre}\w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n└─• ';
+PS1="\`if [ \$? = 0 ]; then printf \${Gre}\(\ノ\^\∇\^\)\${NC}; else printf \${Red}\(\╯\°\□\°\）\╯\︵ \┻\━\┻\${NC}; fi;\` ${Cya}\u ${BRed}@ ${Cya}\h ${Gre}\w${Yel}\`__git_ps1\`${NC}\n\$ ";
 
 # Grep e ls color
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
