@@ -505,7 +505,7 @@ bind 'set completion-ignore-case on'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # PS1=''"${Cya}$USER${NS}"' '"${Gre}@ \w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n\$ '
 # PS1='┌─ [ '"${Cya}$USER${NS}"' '"${BWhi}@ ${NC}"''"${Cya}\h${NC}"' ] '"${Gre}\w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n└─• ';
-PS1="\`if [ \$? = 0 ]; then printf \${Gre}\(\ノ\^\∇\^\)\${NC}; else printf \${Red}\(\╯\°\□\°\）\╯\︵ \┻\━\┻\${NC}; fi;\` ${Cya}\u ${BRed}@ ${Cya}\h ${Gre}\w${Yel}\`__git_ps1\`${NC}\n\$ ";
+PS1="\`if [ \$? = 0 ]; then printf \${Gre}\(\ノ\^\∇\^\)\${NC}; else echo \[\e[31m\]\(\╯\°\□\°\）\╯\︵ \┻\━\┻\[\e[0m\]; fi;\` ${Cya}\u ${BRed}@ ${Cya}\h ${Gre}\w${Yel}\`__git_ps1\`${NC}\n\$ ";
 
 # Grep e ls color
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
