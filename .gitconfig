@@ -1,14 +1,16 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# HELPER LIST
+#  ~/.gitconfig
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# REVERT BY RANGE
-#
-# @description Revert to previous commits range
-# @variable X = range to revert
+#  HELPERS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# git revert HEAD~X..HEAD
+#  Revert by range
+#
+#  @description Revert to previous commits range
+#  @variable X = range to revert
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  $ git revert HEAD~X..HEAD
 
 [user]
     email = jgcorradi@gmail.com
@@ -34,7 +36,7 @@
     newbranch = "!f() { git checkout -b $1 && git push origin $1 && git track $1; }; f"
     purge = !"git branch -d $(git branch --merged master | grep -v -e '*' -e 'master')"
     st = status
-    show-files = "!f() { git show --name-only --pretty=\"%C(bold green)%B\" }; f"
+    show-files = "!f() { git show --name-only --pretty=\"%C(bold green)%B\" | sed \"/^$/d\" | tail -n +2; }; f"
     list-commits = !git shortlog -s -n
     track = "!f() { git checkout --track -B $1 origin/$1; }; f"
     update = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git st && git pull origin $BRANCH && git push origin $BRANCH; }; f"
