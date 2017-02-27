@@ -72,8 +72,8 @@ def send_mail(send_from, send_to, subject, text, files=[], server='localhost', p
 	smtp.quit();
 	
 if __name__ == '__main__':
-	FROM = raw_input('FROM: ') or 'adrian.miranda@ppivot.com.br';
-	TO = raw_input('TO: ') or 'adrian.miranda@ppivot.com.br';
+	FROM = raw_input('FROM: ') or 'dummy@mail.com';
+	TO = raw_input('TO: ') or 'dummy@mail.com';
 	SUBJECT = raw_input('SUBJECT: ') or 'Just a email from Python script';
 	MESSAGE = raw_input('MESSAGE: ') or "Success! You're awesome, mate!";
 	FILES = raw_input('ATTACH: ');
