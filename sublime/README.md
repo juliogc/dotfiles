@@ -8,7 +8,7 @@
 - javascript-sublime-snippets
 - PlainTasks
 - SidebarEnhancements
-- Theme - Spacegray
+- Agila Theme
 
 ### User Settings
 ``` json
@@ -21,6 +21,11 @@
     "show_encoding": true,
     "tab_size": 4,
     "translate_tabs_to_spaces": true,
-    "trim_trailing_white_space_on_save": true
+    "trim_trailing_white_space_on_save": true,
+    "theme": "Agila Monokai.sublime-theme",
+    "color_scheme": "Packages/Agila Theme/Agila Monokai Extended.tmTheme",
+    "theme_agila_sidebar_mini": true,
+    "theme_agila_sidebar_light_icons": true,
+    "theme_agila_compact_tab": true
 }
 ```
