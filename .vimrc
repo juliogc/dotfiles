@@ -30,6 +30,8 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 "  end
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call vundle#end()
@@ -76,7 +78,7 @@ set wildmenu                   "autocomplete
 set wildmode=list:longest,full "show all files including hidden ones on tab + tab
 
 syntax enable
-colorscheme monokai
+colorscheme monokai.gnome
 
 set magic
 set encoding=utf8
@@ -143,8 +145,8 @@ let g:NERDTreeWinSize=45
 let g:NERDTreeShowHidden=1
 let g:NERDTreeShowLineNumbers=1
 let g:nerdtree_tabs_focus_on_files=1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
 nnoremap <F2> :NERDTreeToggle<enter>
 nnoremap <F3> :NERDTreeFocusToggle<enter>
 
@@ -176,3 +178,15 @@ let g:nerdtree_tabs_synchronize_focus=1
 let g:nerdtree_tabs_focus_on_files=0
 let g:nerdtree_tabs_startup_cd=1
 let g:nerdtree_tabs_autofind=0
+
+"  Airline
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:airline_theme='base16_monokai'
+let g:airline_left_sep='>'
+let g:airline_right_sep='<'
+
+"  Airline Extensions
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
