@@ -76,17 +76,6 @@ ALERT=${BWhi}${On_Red};
 # Delimiter line
 DIVIDER=`printf %81s |tr " " "="`;
 
-# Number of CPUs
-NCPU=$(sysctl hw.ncpu | awk '{print $2}');
-
-# Small load
-SLOAD=$(( 100*${NCPU} ));
-
-# Medium load
-MLOAD=$(( 200*${NCPU} ));
-
-# Xlarge load
-XLOAD=$(( 400*${NCPU} ));
 
 # Test user type:
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
