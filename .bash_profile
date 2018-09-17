@@ -34,49 +34,6 @@ set -o ignoreeof
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# IMPORTS
-#
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Git Prompt
-#
-# See the current branch in your prompt
-# download the file, rename to .git-prompt.sh and "chmod +x" it
-# curl -OL https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
-#
-# This makes sub sourcing work, so can move large chunks to their own file.
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ -f "$HOME/.git-prompt.sh" ]]; then
-    source "$HOME/.git-prompt.sh"
-fi;
-
-# NPM Autocomplete
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ -f "$HOME/.npm-autocomplete.sh" ]]; then
-    source "$HOME/.npm-autocomplete.sh";
-fi;
-
-# NodeJS Version Manager
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ -f "$HOME/.nvm/nvm.sh" ]]; then
-    source "$HOME/.nvm/nvm.sh";
-    source "$HOME/.nvm/bash_completion";
-fi;
-
-# iTunes CLI
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ -f "$HOME/.itunes.sh" ]]; then
-    source "$HOME/.itunes.sh"
-fi;
-
-# Spotify CLI
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ -f "$HOME/.spotify.sh" ]]; then
-    source "$HOME/.spotify.sh"
-fi;
-
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
 # HUMANIZE
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -139,7 +96,7 @@ elif [[ ${USER} != $(logname) ]]; then
     SU=${BRed}; # User is not login user.
 else
     SU=${BCya}; # User is normal (well ... most of us are).
-fi
+fi;
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -169,26 +126,21 @@ alias ..................='cd ../../../../../../../../../../../../../../../../../
 alias ...................='cd ../../../../../../../../../../../../../../../../../../';
 alias ....................='cd ../../../../../../../../../../../../../../../../../../../';
 alias .....................='cd ../../../../../../../../../../../../../../../../../../../../';
-alias apps='cd /Applications';
 alias desk='cd $HOME/Desktop';
 alias docs='cd $HOME/Documents';
 alias pics='cd $HOME/Pictures';
 alias movs='cd $HOME/Movies';
 alias musics='cd $HOME/Music';
 alias downloads='cd $HOME/Downloads';
-alias projects='cd $HOME/Projetos';
 
 # Overrides
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias cls='clear';
-alias mkdir='mkdir -p';
-alias ll='ls -Ghpla';
+alias ll='ls -hpla --group-directories-first';
 alias df='df -kTh';
 alias du='du -kh';
 alias rm='rm -i';
 alias cp='cp -i';
 alias mv='mv -i';
-alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc';
 
 # Network
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -200,23 +152,10 @@ alias ip='dig +short myip.opendns.com @resolver1.opendns.com';
 alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl';
 alias subl=sublime;
 
-# Browsers
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias chrome='open -a Google\ Chrome';
-
 # Extras
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias emptytrash="rm -rf /Users/$USER/.Trash/*";
 alias cleanupds="sudo find . -type f -name '*.DS_Store' -ls -delete"
-alias gitconfig='subl $HOME/.gitconfig';
 alias reload='source ~/.bash_profile && clear';
-alias httpdvhosts='subl /private/etc/apache2/extra/httpd-vhosts.conf';
-alias vhosts='cd /private/etc/apache2/vhosts/';
-alias httpdconfig='subl /etc/apache2/httpd.conf';
-alias httpdconf=httpdconfig;
-alias hosts='subl /etc/hosts';
-alias bash_profile='subl $HOME/.bash_profile';
-alias profile=bash_profile;
 
 # Work
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -228,14 +167,6 @@ alias www="cd $WORKSPACE";
 # UTILS
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Tweet
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function tweet {
-    MESSAGE="$1";
-    printf "${Gre}Running${NC} t update ${Red}$MESSAGE${NC} \n";
-    t update "$MESSAGE";
-}
-
 # Compress files
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function z () {
@@ -323,9 +254,6 @@ export GIT_PS1_SHOWDIRTYSTATE=true;
 export GIT_PS1_SHOWSTASHSTATE=true;
 export GIT_PS1_SHOWTRACKEDFILES=true;
 
-# GITK
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias gitk='/Users/$USER/gitk';
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -342,17 +270,6 @@ bind 'set completion-ignore-case on'
 # PS1='┌─ [ '"${Cya}$USER${NS}"' '"${BWhi}@ ${NC}"''"${Cya}\h${NC}"' ] '"${Gre}\w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n└─• ';
 PS1="\`if [ \$? = 0 ]; then printf \${Gre}\(\ノ\^\∇\^\)\${NC}; else echo \[\e[31m\]\(\╯\°\□\°\）\╯\︵ \┻\━\┻\[\e[0m\]; fi;\` ${Cya}\u ${BRed}@ ${Cya}\h ${Gre}\w${Yel}\`__git_ps1\`${NC}\n\$ ";
 
-# Grep e ls color
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export GREP_OPTIONS="--color=auto"
-export GREP_COLOR="4;33"
-export CLICOLOR="auto"
-
-# Application exports
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export PATH="/usr/local/mysql/bin:$PATH";
-# export PATH="/usr/local/heroku/bin:/usr/local/mongodb/bin:$M2:$PATH";
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -364,12 +281,12 @@ export PATH="/usr/local/mysql/bin:$PATH";
 function ii() {
     printf "You are logged on ${BRed}$HOST\n"
     printf "\n${BRed}Additionnal information:\n$NC"; uname -a
-    printf "\n${BRed}Diskspace:\n$NC" ; df2 / $HOME
+    printf "\n${BRed}Diskspace:\n$NC"; df -h / $HOME
     printf "\n${BRed}Current date:\n$NC"; date
-    printf "\n${BRed}Machine stats:\n$NC" ; uptime
-    printf "\n${BRed}Memory stats:\n$NC" ; free
-    printf "\n${BRed}Local IP Address:\n$NC" ; ip
-    printf "\n${BRed}Lan IP Address:\n$NC" ; iplocal
-    printf "\n${BRed}Users logged on:\n$NC"; w -h | cut -d " " -f1 | sort | uniq
+    printf "\n${BRed}Machine stats:\n$NC"; uptime
+    printf "\n${BRed}Memory stats:\n$NC"; free
+    printf "\n${BRed}Local IP Address:\n$NC"; ip
+    printf "\n${BRed}Lan IP Address:\n$NC"; iplocal
+    printf "\n${BRed}Users logged on:\n$NC"; whoami
     printf "\n${BRed}Open connections:\n$NC"; netstat -pan --inet;
 }
