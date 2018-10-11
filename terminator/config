@@ -33,9 +33,9 @@
   [[default]]
     background_color = "#222222"
     background_darkness = 0.87
-    background_image = None
-    background_type = transparent
     copy_on_selection = True
+    cursor_color = "#aaaaaa"
     font = Monospace 12
+    login_shell = True
     palette = "#2d2d2d:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#d3d0c8:#747369:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#f2f0ec"
     scrollback_infinite = True
