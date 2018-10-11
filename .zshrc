@@ -38,12 +38,14 @@ eval "$(rbenv init -)"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Import plugins
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-zplug "~/.zsh/*.zsh", from:local
+# zplug "~/.zsh/*.zsh", from:local
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "denysdovhan/spaceship-prompt", from:github, use:spaceship.zsh, as:theme
+zplug "juliogc/dotfiles", from:github, use:./.zsh/aliases.zsh
+zplug "juliogc/dotfiles", from:github, use:./.zsh/exports.zsh
+zplug "juliogc/dotfiles", from:github, use:./.zsh/utils.zsh
 zplug "juliogc/emoji-cli", from:github, use:emoji-cli.plugin.zsh
 zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/zsh-syntax-highlighting", from:oh-my-zsh
 zplug "plugins/zsh_reload", from:oh-my-zsh
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
 zplug "zsh-users/zsh-autosuggestions", from:github, use:zsh-autosuggestions.zsh
@@ -63,5 +65,3 @@ fi
 zplug load
 
 EMOJI_CLI_FILTER=$EMOJI_CLI_FILTER:fzy
-# zle -N emoji::cli
-# bindkey "$EMOJI_CLI_KEYBIND" emoji::cli
