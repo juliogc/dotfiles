@@ -9,4 +9,4 @@ export SPACESHIP_DIR_TRUNC=0;
 
 # Dev env
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export SCUB_DATABASE_PASSWORD=1234;
+export DEV_PASS=1234;
