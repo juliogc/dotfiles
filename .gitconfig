@@ -13,7 +13,7 @@
 #  $ git revert HEAD~X..HEAD
 
 [user]
-    email = jgcorradi@gmail.com
+    email = jcorradi.5a@bionexo.com
     name = Julio Gori Corradi
 
 [credential]
@@ -44,7 +44,6 @@
 
 [core]
     whitespace = space-before-tab,indent-with-non-tab,trailing-space
-    excludesfile = /Users/juliocorradi/.gitignore_global
     editor = vim
 
 [color]
@@ -68,8 +67,5 @@
     remote = origin
     merge = refs/heads/master
 
-# [http]
-#     sslVerify = false
-
-# [url "https://"]
-#     insteadOf = git://
+[pager]
+	branch = false
