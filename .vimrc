@@ -25,6 +25,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+" Plugin 'ryanoasis/vim-devicons'
+" Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
@@ -39,6 +41,7 @@ filetype plugin indent on
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 autocmd VimEnter * NERDTree
+autocmd VimEnter * NERDTreeFocusToggle
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
@@ -70,7 +73,9 @@ endif
 "  Defaults
 "
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-set autochdir "Update vim pwd from the current file location       
+set encoding=UTF-8
+
+set autochdir "Update vim pwd from the current file location
 
 set mouse=a "allow all controls to mouse
 
@@ -101,12 +106,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-
-" Folding lines
-set foldenable
-set foldmethod=indent
-" set foldlevelstart=10
-" set foldnestmax=10
 
 set noswapfile
 set nobackup
@@ -144,25 +143,13 @@ nnoremap <C-H> <C-W><C-H>
 let g:NERDTreeWinSize=45
 let g:NERDTreeShowHidden=1
 let g:NERDTreeShowLineNumbers=1
+let g:NERDTreeWinPos='right'
 let g:nerdtree_tabs_focus_on_files=1
-" let g:NERDTreeDirArrowExpandable = '▸'
-" let g:NERDTreeDirArrowCollapsible = '▾'
+
+"  Keymap
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <F2> :NERDTreeToggle<enter>
 nnoremap <F3> :NERDTreeFocusToggle<enter>
-
-"  Git
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-\ }
 
 "  Tabs
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -179,13 +166,33 @@ let g:nerdtree_tabs_focus_on_files=0
 let g:nerdtree_tabs_startup_cd=1
 let g:nerdtree_tabs_autofind=0
 
+"  Git
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+\ }
+
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"
 "  Airline
+"
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"  Default
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:airline_theme='base16_monokai'
 let g:airline_left_sep='>'
 let g:airline_right_sep='<'
 
-"  Airline Extensions
+"  Extensions
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
