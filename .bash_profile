@@ -13,25 +13,6 @@ WORKSPACE=$HOME/Sites;
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [ -z "$PS1" ] && return
 
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
-# AID
-#
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Enable autocomplete when using sudo prefix
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-complete -cf sudo
-
-# Don't want coredumps.
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ulimit -S -c 0
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-set -o notify
-set -o noclobber
-set -o ignoreeof
-
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # HUMANIZE
@@ -76,7 +57,6 @@ ALERT=${BWhi}${On_Red};
 # Delimiter line
 DIVIDER=`printf %81s |tr " " "="`;
 
-
 # Test user type:
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if [[ ${USER} == "root" ]]; then
@@ -86,7 +66,6 @@ elif [[ ${USER} != $(logname) ]]; then
 else
     SU=${BCya}; # User is normal (well ... most of us are).
 fi;
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -124,7 +103,7 @@ alias downloads='cd $HOME/Downloads';
 
 # Overrides
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias ll='ls -hpla --group-directories-first';
+alias ll='ls -hpla --group-directories-first --color';
 alias df='df -kTh';
 alias du='du -kh';
 alias rm='rm -i';
@@ -136,11 +115,6 @@ alias mv='mv -i';
 alias iplocal="echo `ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1' | sed "1 d"`";
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com';
 
-# Editors
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl';
-alias subl=sublime;
-
 # Extras
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias cleanupds="sudo find . -type f -name '*.DS_Store' -ls -delete"
@@ -149,7 +123,6 @@ alias reload='source ~/.bash_profile && clear';
 # Work
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias www="cd $WORKSPACE";
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -204,7 +177,6 @@ function mkd() {
     mkdir -p "$@" && cd "$_";
 }
 
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # GIT
@@ -235,14 +207,12 @@ function __git_branch() {
     git rev-parse --abbrev-ref HEAD;
 }
 
-
 # show git status on PS1
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export GIT_PS1_SHOWUPSTREAM=auto;
 export GIT_PS1_SHOWDIRTYSTATE=true;
 export GIT_PS1_SHOWSTASHSTATE=true;
 export GIT_PS1_SHOWTRACKEDFILES=true;
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -258,7 +228,6 @@ bind 'set completion-ignore-case on'
 # PS1=''"${Cya}$USER${NS}"' '"${Gre}@ \w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n\$ '
 # PS1='┌─ [ '"${Cya}$USER${NS}"' '"${BWhi}@ ${NC}"''"${Cya}\h${NC}"' ] '"${Gre}\w${NC}"' $(__git_ps1 "(${Yel}%s${NC}${Red}${NC}) ") \n└─• ';
 PS1="\`if [ \$? = 0 ]; then printf \${Gre}\(\ノ\^\∇\^\)\${NC}; else echo \[\e[31m\]\(\╯\°\□\°\）\╯\︵ \┻\━\┻\[\e[0m\]; fi;\` ${Cya}\u ${BRed}@ ${Cya}\h ${Gre}\w${Yel}\`__git_ps1\`${NC}\n\$ ";
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -279,3 +248,17 @@ function ii() {
     printf "\n${BRed}Users logged on:\n$NC"; whoami
     printf "\n${BRed}Open connections:\n$NC"; netstat -pan --inet;
 }
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# BIONEXO:
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Local exports
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export SCUB_DATABASE_PASSWORD=1234;
+
