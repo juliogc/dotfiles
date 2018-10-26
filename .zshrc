@@ -5,7 +5,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Exports
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export ZSH="/home/jcorradi/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 export ZPLUG_DIR="$HOME/.zplug"
 export NVM_DIR="$HOME/.nvm"
 export RBENV_DIR="$HOME/.rbenv"
@@ -43,7 +43,7 @@ zplug "denysdovhan/spaceship-prompt", from:github, use:spaceship.zsh, as:theme
 zplug "juliogc/dotfiles", from:github, use:./.zsh/aliases.zsh
 zplug "juliogc/dotfiles", from:github, use:./.zsh/exports.zsh
 zplug "juliogc/dotfiles", from:github, use:./.zsh/utils.zsh
-zplug "juliogc/f945c45d4395dbb1a02e4e1cf12d2ef0", from:gist, use:dev.sh
+zplug "juliogc/f945c45d4395dbb1a02e4e1cf12d2ef0", from:gist, use:dev.sh, defer:2
 zplug "juliogc/emoji-cli", from:github, use:emoji-cli.plugin.zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/zsh_reload", from:oh-my-zsh
@@ -63,4 +63,12 @@ fi
 # Source plugins and add commands to $PATH
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 zplug load
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# Keybindings
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bindkey \^U backward-kill-line
 
