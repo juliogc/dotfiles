@@ -43,7 +43,6 @@ zplug "denysdovhan/spaceship-prompt", from:github, use:spaceship.zsh, as:theme
 zplug "juliogc/dotfiles", from:github, use:./.zsh/aliases.zsh
 zplug "juliogc/dotfiles", from:github, use:./.zsh/exports.zsh
 zplug "juliogc/dotfiles", from:github, use:./.zsh/utils.zsh
-zplug "juliogc/f945c45d4395dbb1a02e4e1cf12d2ef0", from:gist, use:dev.sh, defer:2
 zplug "juliogc/emoji-cli", from:github, use:emoji-cli.plugin.zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/zsh_reload", from:oh-my-zsh
