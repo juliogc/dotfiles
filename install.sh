@@ -11,7 +11,9 @@ sudo apt update;
 [ ! -x "$(command -v curl)" ] && sudo apt install curl -y;
 [ ! -x "$(command -v zplug)" ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh;
 [ ! -x "$(command -v rbenv)" ] && git clone https://github.com/rbenv/rbenv.git ~/.rbenv;
-[ ! -d "$(rbenv root)"/plugins/ruby-build ] && git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+[ ! -d "$(rbenv root)"/plugins/ruby-build ] && \
+    git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build && \
+    sudo apt install build-essential -y;
 [ ! -x "$(command -v fzy)" ] && sudo apt install fzy -y;
 
 #  Set ZSH as default Shell
