@@ -13,7 +13,7 @@ sudo apt update;
 [ ! -x "$(command -v rbenv)" ] && git clone https://github.com/rbenv/rbenv.git ~/.rbenv;
 [ ! -d "$(rbenv root)"/plugins/ruby-build ] && \
     git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build && \
-    sudo apt install build-essential -y;
+    sudo apt install build-essential libssl-dev libreadline-dev zlib1g-dev -y;
 [ ! -x "$(command -v fzy)" ] && sudo apt install fzy -y;
 
 #  Set ZSH as default Shell
