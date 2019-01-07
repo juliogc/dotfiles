@@ -10,7 +10,15 @@ sudo apt update;
 [ ! -x "$(command -v zsh)" ] && sudo apt install zsh -y;
 [ ! -x "$(command -v curl)" ] && sudo apt install curl -y;
 [ ! -x "$(command -v zplug)" ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh;
-chsh -s /usr/bin/zsh;
+[ ! -x "$(command -v rbenv)" ] && git clone https://github.com/rbenv/rbenv.git ~/.rbenv;
+[ ! -d "$(rbenv root)"/plugins/ruby-build ] && git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+
+
+#  Set ZSH as default Shell
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+echo "Setting ZSH as default shell. Prepare to insert your password in 5 seconds!!!"
+sleep 5;
+chsh -s $(which zsh);
 
 
 #  Export variables
