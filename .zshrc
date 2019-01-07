@@ -40,14 +40,17 @@ eval "$(rbenv init -)"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "denysdovhan/spaceship-prompt", from:github, use:spaceship.zsh, as:theme
+zplug "fcambus/ansiweather", as:command
 zplug "juliogc/dotfiles", from:github, use:./.zsh/aliases.zsh
 zplug "juliogc/dotfiles", from:github, use:./.zsh/exports.zsh
 zplug "juliogc/dotfiles", from:github, use:./.zsh/utils.zsh
 zplug "juliogc/emoji-cli", from:github, use:emoji-cli.plugin.zsh
+zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/zsh_reload", from:oh-my-zsh
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
 zplug "zsh-users/zsh-autosuggestions", from:github, use:zsh-autosuggestions.zsh
+zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2 # <- Must be last import
 
 # Install plugins if there are plugins that have not been installed
@@ -62,7 +65,7 @@ fi
 # Source plugins and add commands to $PATH
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 zplug load
-
+autoload -U compinit && compinit
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
