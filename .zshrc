@@ -38,6 +38,7 @@ eval "$(rbenv init -)"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Import plugins
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+zplug "robbyrussell/oh-my-zsh", as:plugin, use:"lib/*.zsh"
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "denysdovhan/spaceship-prompt", from:github, use:spaceship.zsh, as:theme
 zplug "fcambus/ansiweather", as:command
