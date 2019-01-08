@@ -10,6 +10,7 @@ sudo apt update;
 [ ! -x "$(command -v zsh)" ] && sudo apt install zsh -y;
 [ ! -x "$(command -v curl)" ] && sudo apt install curl -y;
 [ ! -x "$(command -v zplug)" ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh;
+[ ! -x "$(command -v nvm)" ] $$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash;
 [ ! -x "$(command -v rbenv)" ] && git clone https://github.com/rbenv/rbenv.git ~/.rbenv;
 [ ! -d "$(rbenv root)"/plugins/ruby-build ] && \
     git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build && \
