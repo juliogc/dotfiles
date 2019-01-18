@@ -42,9 +42,7 @@ zplug "robbyrussell/oh-my-zsh", as:plugin, use:"lib/*.zsh"
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "denysdovhan/spaceship-prompt", from:github, use:spaceship.zsh, as:theme
 zplug "fcambus/ansiweather", as:command
-zplug "juliogc/dotfiles", from:github, use:./.zsh/aliases.zsh
-zplug "juliogc/dotfiles", from:github, use:./.zsh/exports.zsh
-zplug "juliogc/dotfiles", from:github, use:./.zsh/utils.zsh
+zplug "juliogc/dotfiles", from:github, use:".zsh/*.zsh", defer:1
 zplug "juliogc/emoji-cli", from:github, use:emoji-cli.plugin.zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
