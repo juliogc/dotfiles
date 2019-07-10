@@ -25,8 +25,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-"Plugin 'ryanoasis/vim-devicons'
-"Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
@@ -38,6 +38,7 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'Yggdroot/indentLine'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-commentary'
+Plugin 'ekalinin/Dockerfile.vim'
 "  end
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call vundle#end()
@@ -78,6 +79,7 @@ endif
 "
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set encoding=UTF-8
+set guifont=*
 
 set autochdir "Update vim pwd from the current file location
 
@@ -97,20 +99,20 @@ set autoread
 
 set ai   "auto indent
 set si   "smart indent
-set wrap "wrap lines
+set nowrap "don't wrap lines
 
 set showmode
 set showmatch
 set ruler
 set number
 set cursorline
-" set cursorcolumn
+set cursorcolumn
 set showcmd
 set showmatch
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 
 set noswapfile
