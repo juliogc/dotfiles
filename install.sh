@@ -8,6 +8,7 @@
 sudo apt update;
 sudo apt install libyaml-dev libxml2-dev libssl1.0-dev libreadline-dev zlib1g zlib1g-dev libbison-dev libxslt1-dev libxml2-dev -y;
 [ ! -x "$(command -v git)" ] && sudo apt install git -y;
+[ ! -x "$(command -v vim)" ] && sudo apt install vim -y;
 [ ! -x "$(command -v zsh)" ] && sudo apt install zsh -y;
 [ ! -x "$(command -v curl)" ] && sudo apt install curl -y;
 [ ! -x "$(command -v zplug)" ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh;
