@@ -34,3 +34,7 @@ alias www="cd $WORKSPACE";
 # Weather
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias forecast='curl -s wttr.in/~Sao\ Paulo\?Q\&0';
+
+# Development stack
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+alias dev-stack='docker-compose -f ~/Sites/dev-stack/docker-compose.yml'
