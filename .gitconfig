@@ -67,5 +67,9 @@
     remote = origin
     merge = refs/heads/master
 
+[remote "origin"]
+	push = HEAD
+
 [pager]
 	branch = false
+
