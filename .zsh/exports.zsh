@@ -13,3 +13,7 @@ export SPACESHIP_TIME_FORMAT="%T"
 # AWS CLI
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export AWS_PROFILE=local
+
+# Localstack
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export SERVICES=sns,sqs,dynamodb
