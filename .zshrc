@@ -5,10 +5,11 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Exports
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export ZSH="$HOME/.oh-my-zsh"
 export ZPLUG_DIR="$HOME/.zplug"
 export NVM_DIR="$HOME/.nvm"
 export RBENV_DIR="$HOME/.rbenv"
+export ZSH="$ZPLUG_DIR/repos/robbyrussell/oh-my-zsh"
+export ZSH_CACHE_DIR="$ZSH/cache"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Imports
