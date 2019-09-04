@@ -35,12 +35,13 @@ zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/kubectl", from:oh-my-zsh
 zplug "plugins/zsh_reload", from:oh-my-zsh
+zplug "b4b4r07/enhancd", use:init.sh
+zplug "b4b4r07/emoji-cli", from:github, use:emoji-cli.plugin.zsh
 zplug "creationix/nvm", from:github, use:"nvm.sh"
 zplug "creationix/nvm", from:github, use:"bash_completion"
-zplug "b4b4r07/enhancd", use:init.sh
 zplug "denysdovhan/spaceship-prompt", from:github, use:spaceship.zsh, as:theme
 zplug "juliogc/dotfiles", from:github, use:".zsh/*.zsh", defer:1
-zplug "juliogc/emoji-cli", from:github, use:emoji-cli.plugin.zsh
+zplug "mrowa44/emojify", from:github, as:command, rename-to:emojify
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
 zplug "zsh-users/zsh-autosuggestions", from:github, use:zsh-autosuggestions.zsh
 zplug "zsh-users/zsh-completions"
