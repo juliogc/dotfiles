@@ -10,3 +10,6 @@ export SPACESHIP_TIME_SHOW=true
 export SPACESHIP_USER_SHOW=true
 export SPACESHIP_TIME_FORMAT="%T"
 
+# AWS CLI
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export AWS_PROFILE=local
