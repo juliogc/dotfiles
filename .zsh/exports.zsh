@@ -10,3 +10,14 @@ export SPACESHIP_TIME_SHOW=true
 export SPACESHIP_USER_SHOW=true
 export SPACESHIP_TIME_FORMAT="%T"
 
+# AWS CLI
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export AWS_PROFILE=local
+
+# Localstack
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export SERVICES=sns,sqs,dynamodb
+
+# User local binaries
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export PATH="$PATH:/home/`whoami`/.local/bin"
