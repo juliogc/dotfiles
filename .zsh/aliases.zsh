@@ -25,7 +25,7 @@ alias mv='mv -i';
 # Network
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias iplocal="echo `ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1' | sed "1 d"`";
-alias ip='dig +short myip.opendns.com @resolver1.opendns.com';
+alias ippublic='dig +short myip.opendns.com @resolver1.opendns.com';
 
 # Work
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
