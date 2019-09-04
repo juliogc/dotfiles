@@ -17,3 +17,7 @@ export AWS_PROFILE=local
 # Localstack
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export SERVICES=sns,sqs,dynamodb
+
+# User local binaries
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export PATH="$PATH:/home/`whoami`/.local/bin"
