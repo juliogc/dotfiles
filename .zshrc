@@ -6,8 +6,6 @@
 # Exports
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export ZPLUG_DIR="$HOME/.zplug"
-export NVM_DIR="$HOME/.nvm"
-export RBENV_DIR="$HOME/.rbenv"
 export ZSH="$ZPLUG_DIR/repos/robbyrussell/oh-my-zsh"
 export ZSH_CACHE_DIR="$ZSH/cache"
 
@@ -17,11 +15,6 @@ export ZSH_CACHE_DIR="$ZSH/cache"
 # zplug
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [ -s "$ZPLUG_DIR/init.zsh" ] && \. "$ZPLUG_DIR/init.zsh"
-
-# rbenv
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[ -d "$RBENV_DIR/bin" ] && export PATH="$RBENV_DIR/bin:$PATH"
-eval "$(rbenv init -)"
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -36,10 +29,10 @@ zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/kubectl", from:oh-my-zsh
 zplug "plugins/zsh_reload", from:oh-my-zsh
+zplug "asdf-vm/asdf", from:github, use:"asdf.sh"
+zplug "asdf-vm/asdf", from:github, use:"completions/asdf.bash", defer:1
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "b4b4r07/emoji-cli", from:github, use:emoji-cli.plugin.zsh
-zplug "creationix/nvm", from:github, use:"nvm.sh"
-zplug "creationix/nvm", from:github, use:"bash_completion"
 zplug "denysdovhan/spaceship-prompt", from:github, use:spaceship.zsh, as:theme
 zplug "juliogc/dotfiles", from:github, use:".zsh/*.zsh", defer:1
 zplug "mrowa44/emojify", from:github, as:command, rename-to:emojify

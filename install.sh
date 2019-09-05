@@ -3,28 +3,32 @@
 #  install.sh
 #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  Install dependencies
+#  Install apt dependencies
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 sudo apt update;
-sudo apt install libyaml-dev libxml2-dev libssl1.0-dev libreadline-dev zlib1g zlib1g-dev libbison-dev libxslt1-dev libxml2-dev -y;
+sudo apt install -y \
+    build-essential \
+    libssl-dev libssl1.0-dev \
+    libyaml-dev libxml2-dev libbison-dev libxslt1-dev libreadline-dev \
+    zlib1g zlib1g-dev;
+
+
+#  Install shell packages
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [ ! -x "$(command -v git)" ] && sudo apt install git -y;
 [ ! -x "$(command -v vim)" ] && sudo apt install vim -y;
 [ ! -x "$(command -v zsh)" ] && sudo apt install zsh -y;
 [ ! -x "$(command -v curl)" ] && sudo apt install curl -y;
+[ ! -x "$(command -v vim)" ] && sudo apt install vim -y;
 [ ! -x "$(command -v zplug)" ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh;
-[ ! -x "$(command -v nvm)" ] && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash;
-[ ! -x "$(command -v rbenv)" ] && git clone https://github.com/rbenv/rbenv.git ~/.rbenv;
-[ ! -d "$(rbenv root)"/plugins/ruby-build ] && \
-    git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build && \
-    sudo apt install build-essential libssl-dev libreadline-dev zlib1g-dev -y;
 [ ! -x "$(command -v fzy)" ] && sudo apt install fzy -y;
+
 
 #  Set ZSH as default Shell
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo "Setting ZSH as default shell. Prepare to insert your password in 5 seconds!!!"
 sleep 5;
 chsh -s $(which zsh);
-
 
 #  Export variables
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -58,7 +62,7 @@ TERMINATOR=$HOME/.config/terminator;
 [ ! -f $TERMINATOR/config ] && ln -s $DOTFILES/terminator/config $TERMINATOR/config;
 
 
-#  Install Vundle
+#  [VIM] Install Vundle
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [ ! -d $HOME/.vim/bundle/Vundle.vim ] && git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim;
 vim +PluginInstall +qall;
