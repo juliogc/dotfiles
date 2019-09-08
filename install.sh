@@ -10,6 +10,7 @@ sudo apt install -y \
     build-essential \
     libssl-dev libssl1.0-dev \
     libyaml-dev libxml2-dev libbison-dev libxslt1-dev libreadline-dev \
+    libpq-dev \
     zlib1g zlib1g-dev;
 
 
