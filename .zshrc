@@ -35,6 +35,7 @@ zplug "b4b4r07/enhancd", use:init.sh
 zplug "b4b4r07/emoji-cli", from:github, use:emoji-cli.plugin.zsh
 zplug "denysdovhan/spaceship-prompt", from:github, use:spaceship.zsh, as:theme
 zplug "juliogc/dotfiles", from:github, use:".zsh/*.zsh", defer:1
+zplug "lukechilds/zsh-better-npm-completion", defer:2
 zplug "mrowa44/emojify", from:github, as:command, rename-to:emojify
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
 zplug "zsh-users/zsh-autosuggestions", from:github, use:zsh-autosuggestions.zsh
