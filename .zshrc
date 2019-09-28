@@ -25,6 +25,7 @@ export ZSH_CACHE_DIR="$ZSH/cache"
 # Import plugins
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 zplug "robbyrussell/oh-my-zsh", as:plugin, use:"lib/*.zsh"
+zplug "plugins/docker-compose", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/kubectl", from:oh-my-zsh
