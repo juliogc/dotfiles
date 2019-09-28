@@ -71,5 +71,3 @@
 [pager]
 	branch = false
 
-[remote "origin"]
-	push = HEAD
