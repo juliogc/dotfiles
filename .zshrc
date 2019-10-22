@@ -24,12 +24,14 @@ export ZSH_CACHE_DIR="$ZSH/cache"
 # Import plugins
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 zplug "robbyrussell/oh-my-zsh", as:plugin, use:"lib/*.zsh"
+zplug "plugins/bundler", from:oh-my-zsh
 zplug "plugins/docker-compose", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/docker-compose", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/kubectl", from:oh-my-zsh
+zplug "plugins/rails", from:oh-my-zsh
 zplug "plugins/zsh_reload", from:oh-my-zsh
 zplug "asdf-vm/asdf", from:github, use:"asdf.sh"
 zplug "asdf-vm/asdf", from:github, use:"completions/asdf.bash", defer:1
@@ -64,4 +66,3 @@ autoload -U compinit && compinit
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bindkey \^U backward-kill-line
-
