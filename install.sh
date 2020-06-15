@@ -26,12 +26,6 @@ sudo apt install -y \
 [ ! -x "$(command -v fzy)" ] && sudo apt install fzy -y;
 
 
-#  Set ZSH as default Shell
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-echo "Setting ZSH as default shell. Prepare to insert your password in 5 seconds!!!"
-sleep 5;
-chsh -s $(which zsh);
-
 #  Export variables
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 SITES=$HOME/Sites;
@@ -68,3 +62,10 @@ TERMINATOR=$HOME/.config/terminator;
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [ ! -d $HOME/.vim/bundle/Vundle.vim ] && git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim;
 vim +PluginInstall +qall;
+
+
+#  Set ZSH as default Shell
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+echo "Setting ZSH as default shell. Prepare to insert your password in 5 seconds!!!"
+sleep 5;
+chsh -s $(which zsh);
