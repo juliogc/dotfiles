@@ -41,7 +41,7 @@ TERMINATOR=$HOME/.config/terminator;
 
 #  Clone dotfiles
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[! -d $DOTFILES ] && git clone https://github.com/juliogc/dotfiles $DOTFILES;
+[ ! -d $DOTFILES ] && git clone https://github.com/juliogc/dotfiles $DOTFILES;
 
 
 #  Create symlinks
