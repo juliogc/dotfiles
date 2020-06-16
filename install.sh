@@ -3,6 +3,13 @@
 #  install.sh
 #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  Export variables
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SITES=$HOME/Sites;
+DOTFILES=$SITES/dotfiles;
+TERMINATOR=$HOME/.config/terminator;
+
+
 #  Install apt dependencies
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 sudo apt update;
@@ -17,6 +24,7 @@ sudo apt install -y \
 
 #  Install shell packages
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[ ! -x "$(command -v htop)" ] && sudo apt install htop -y;
 [ ! -x "$(command -v git)" ] && sudo apt install git -y;
 [ ! -x "$(command -v vim)" ] && sudo apt install vim -y;
 [ ! -x "$(command -v zsh)" ] && sudo apt install zsh -y;
@@ -26,11 +34,22 @@ sudo apt install -y \
 [ ! -x "$(command -v fzy)" ] && sudo apt install fzy -y;
 
 
-#  Export variables
+#  Install containers stack
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-SITES=$HOME/Sites;
-DOTFILES=$SITES/dotfiles;
-TERMINATOR=$HOME/.config/terminator;
+[ ! -x "$(command -v docker)" ] && sudo apt install docker.io -y;
+sudo usermod -aG docker $USER;
+
+[ ! -x "$(command -v kubectl)" ] && sudo snap install kubectl --channel=1.15/stable --classic;
+
+
+#  Install AWS CLI
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cd $HOME/Desktop;
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip";
+unzip awscliv2.zip;
+sudo ./aws/install;
+rm -r ./awscliv2.zip ./aws;
+cd $HOME;
 
 
 #  Create directories arch
