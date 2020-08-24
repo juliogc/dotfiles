@@ -23,3 +23,9 @@ export SERVICES=sns,sqs,dynamodb
 # User local binaries
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export PATH="$PATH:/home/`whoami`/.local/bin"
+
+# GO Lang exports
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export GOPATH=$(go env GOPATH)
+export GOPKG=$GOPATH/bin
+PATH=$PATH:$GOPKG
