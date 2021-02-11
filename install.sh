@@ -15,7 +15,7 @@ TERMINATOR=$HOME/.config/terminator;
 sudo apt update;
 sudo apt install -y \
     build-essential \
-    libssl-dev libssl1.0-dev \
+    libssl-dev \
     libyaml-dev libxml2-dev libbison-dev libxslt1-dev libreadline-dev \
     libpq-dev \
     zlib1g zlib1g-dev \
