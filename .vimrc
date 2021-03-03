@@ -176,7 +176,7 @@ let g:nerdtree_tabs_autofind=0
 
 "  Git
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:NERDTreeIndicatorMapCustom = {
+let g:iNERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
@@ -216,3 +216,9 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 nnoremap <C-_> :Commentary<enter>
 vnoremap <C-_> :Commentary<enter>
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"
+"  SnipMate
+"
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:snipMate = { 'snippet_version' : 1 }
