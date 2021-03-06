@@ -20,8 +20,7 @@ sudo apt install -y \
     libpq-dev \
     zlib1g zlib1g-dev \
     gawk \
-    apt-transport-https ca-certificates gnupg
-    terminator;
+    apt-transport-https ca-certificates gnupg;
 
 
 #  Install base packages
@@ -33,6 +32,7 @@ sudo apt install -y \
 [ ! -x "$(command -v zsh)" ] && sudo apt install zsh -y;
 [ ! -x "$(command -v zplug)" ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh;
 [ ! -x "$(command -v fzy)" ] && sudo apt install fzy -y;
+[ ! -x "$(command -v terminator)" ] && sudo apt install terminator -y;
 
 
 #  Docker
