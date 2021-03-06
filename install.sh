@@ -57,6 +57,10 @@ echo "Checking terminator installation";
 echo "=================================================";
 [ ! -x "$(command -v terminator)" ] && sudo apt install terminator -y;
 
+echo "Checking imwheel installation";
+echo "=================================================";
+[ ! -x "$(command -v imwheel)" ] && sudo apt install imwheel -y;
+
 
 #  Docker
 #  [ ! -x "$(command -v docker)" ] && sudo apt install docker.io -y;
