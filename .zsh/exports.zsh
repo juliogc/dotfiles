@@ -29,3 +29,8 @@ export PATH="$PATH:/home/`whoami`/.local/bin"
 export GOPATH=$(go env GOPATH)
 export GOPKG=$GOPATH/bin
 PATH=$PATH:$GOPKG
+
+# Java HOME exports
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[ -d $HOME/.asdf/plugins/java ] && . $HOME/.asdf/plugins/java/set-java-home.zsh
+
