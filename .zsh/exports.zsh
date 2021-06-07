@@ -11,6 +11,7 @@ export SPACESHIP_USER_SHOW=true
 export SPACESHIP_TIME_FORMAT="%T"
 export SPACESHIP_KUBECTL_SHOW=true
 export SPACESHIP_KUBECTL_VERSION_SHOW=false
+[ ! -z "$WSL_DISTRO_NAME" ] && export SPACESHIP_BATTERY_SHOW=false
 
 # AWS CLI
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
