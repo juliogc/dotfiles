@@ -6,7 +6,7 @@
 # Exports
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export ZPLUG_DIR="$HOME/.zplug"
-export ZSH="$ZPLUG_DIR/repos/robbyrussell/oh-my-zsh"
+export ZSH="$ZPLUG_DIR/repos/ohmyzsh/ohmyzsh"
 export ZSH_CACHE_DIR="$ZSH/cache"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -23,9 +23,8 @@ export ZSH_CACHE_DIR="$ZSH/cache"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Import plugins
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-zplug "robbyrussell/oh-my-zsh", as:plugin, use:"lib/*.zsh"
+zplug "ohmyzsh/ohmyzsh", as:plugin, use:"lib/*.zsh"
 zplug "plugins/bundler", from:oh-my-zsh
-zplug "plugins/docker-compose", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/docker-compose", from:oh-my-zsh
@@ -39,6 +38,7 @@ zplug "b4b4r07/enhancd", from:github, use:init.sh
 zplug "b4b4r07/emoji-cli", from:github, use:emoji-cli.plugin.zsh
 zplug "denysdovhan/spaceship-prompt", from:github, use:spaceship.zsh, as:theme
 zplug "juliogc/dotfiles", from:github, use:".zsh/*.zsh", defer:1
+zplug "juliogc/dotfiles", from:github, use:".spotify.sh", defer:1
 zplug "lukechilds/zsh-better-npm-completion", defer:2
 zplug "mrowa44/emojify", from:github, as:command, rename-to:emojify
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
@@ -58,7 +58,7 @@ fi
 # Source plugins and add commands to $PATH
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 zplug load
-autoload -U compinit && compinit
+autoload -U compinit && compinit -u
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -66,3 +66,9 @@ autoload -U compinit && compinit
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bindkey \^U backward-kill-line
+
+# Fix alt + left/right navigation on MacOS
+if [[ `uname` == "Darwin" ]]; then
+  bindkey "\e\e[D" backward-word
+  bindkey "\e\e[C" forward-word
+fi;
