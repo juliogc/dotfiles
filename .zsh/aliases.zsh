@@ -17,7 +17,8 @@ alias downloads='cd $HOME/Downloads';
 
 # Overrides
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alias ll='ls -hpla --color --group-directories-first';
+alias ls='lsd --group-dirs first';
+alias ll='ls -hla';
 alias rm='rm -i';
 alias cp='cp -i';
 alias mv='mv -i';
