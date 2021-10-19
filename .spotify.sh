@@ -83,15 +83,15 @@ function Spotify () {
 
         "vol" ) echo "Changing Spotify volume level.";
             vol=`osascript -e 'tell application "Spotify" to sound volume as integer'`;
-            if [ $2 = "up" ]; then
+            if [[ $2 = "up" ]]; then
                 newvol=$(( vol+10 ));
             fi
 
-            if [ $2 = "down" ]; then
+            if [[ $2 = "down" ]]; then
                 newvol=$(( vol-10 ));
             fi
 
-            if [ $2 -gt 0 ]; then
+            if [[ $2 -gt 0 ]]; then
                 newvol=$2;
             fi
             osascript -e "tell application \"Spotify\" to set sound volume to $newvol";
