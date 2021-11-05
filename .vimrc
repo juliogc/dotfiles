@@ -44,8 +44,8 @@ call vundle#end()
 filetype plugin indent on
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-autocmd VimEnter * NERDTree
-autocmd VimEnter * NERDTreeFocusToggle
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * NERDTreeFocusToggle
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
