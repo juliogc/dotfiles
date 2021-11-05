@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-#  install.sh
+#  install-mac.sh
 #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  Variables
@@ -10,7 +10,6 @@ ZSH=$HOME/.ohmyzsh;
 ZSH_CUSTOM=$ZSH/custom;
 DOTFILES=$ZSH_CUSTOM/plugins/dotfiles;
 SITES=$HOME/Sites;
-TERMINATOR=$HOME/.config/terminator;
 
 #  Colors
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -54,165 +53,152 @@ else
   __display_warn "$SITES already exists";
 fi;
 
-if [[ ! -d $TERMINATOR ]]
-then
-  mkdir -p $TERMINATOR;
-  __display_message "$TERMINATOR created";
-else
-  __display_warn "$TERMINATOR already exists";
-fi;
-
-#  apt dependencies
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-sudo apt update;
-sudo apt install -y \
-    build-essential \
-    libssl-dev \
-    libyaml-dev libxml2-dev libbison-dev libxslt1-dev libreadline-dev \
-    libpq-dev \
-    zlib1g zlib1g-dev \
-    gawk \
-    apt-transport-https ca-certificates gnupg;
-
-
-#  Install base packages
+#
+#  Homebrew
+#
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ ! -x "$(command -v curl)" ]]
+__display_header "Installing Homebrew"
+if [[ ! -x "$(command -v brew)" ]];
 then
-  sudo apt install curl -y;
-  __display_message "curl installed";
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)";
+  printf "${BGre}! Homebrew installed\n${NC}";
 else
-  __display_warn "curl already installed";
+  __display_warn "Homebrew already installed";
+fi
+
+#  Homebrew Formulaes
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+__display_header "Installing Formulaes"
+if [[ ! -x "$(command -v emojify)" ]];
+then
+  brew install emojify;
+  __display_message "emojify installed";
+else
+  __display_warn "emojify already installed";
 fi;
 
-if [[ ! -x "$(command -v htop)" ]]
+if [[ ! -x "$(command -v fzy)" ]];
 then
-  sudo apt install htop -y;
-  __display_message "htop installed";
-else
-  __display_warn "htop already installed";
-fi;
-
-if [[ ! -x "$(command -v git)" ]]
-then
-  sudo apt install git -y;
-  __display_message "git installed";
-else
-  __display_warn "git already installed";
-fi;
-
-if [[ ! -x "$(command -v vim)" ]]
-then
-  sudo apt install vim -y;
-  __display_message "vim installed";
-else
-  __display_warn "vim already installed";
-fi;
-
-if [[ ! -x "$(command -v zsh)" ]]
-then
-  sudo apt install zsh -y;
-  __display_message "zsh installed";
-else
-  __display_warn "zsh already installed";
-fi;
-
-if [[ ! -x "$(command -v fzy)" ]]
-then
-  sudo apt install fzy -y;
+  brew install fzy;
   __display_message "fzy installed";
 else
   __display_warn "fzy already installed";
 fi;
 
-if [[ ! -x "$(command -v terminator)" ]]
+if [[ ! -x "$(command -v gawk)" ]];
 then
-  sudo apt install terminator -y;
-  __display_message "terminator installed";
+  brew install gawk;
+  __display_message "gawk installed";
 else
-  __display_warn "terminator already installed";
+  __display_warn "gawk already installed";
 fi;
 
-if [[ ! -x "$(command -v imwheel)" ]]
+if [[ ! -x "$(command -v htop)" ]];
 then
-  sudo apt install imwheel -y;
-  __display_message "imwheel installed";
+  brew install htop;
+  __display_message "htop installed";
 else
-  __display_warn "imwheel already installed";
+  __display_warn "htop already installed";
 fi;
 
-#  Docker
+if [[ ! -x "$(command -v kubectx)" ]];
+then
+  brew install kubectx;
+  __display_message "kubectx installed";
+else
+  __display_warn "kubectx already installed";
+fi;
+
+if [[ ! -x "$(command -v tig)" ]];
+then
+  brew install tig;
+  __display_message "tig installed";
+else
+  __display_warn "tig already installed";
+fi;
+
+if [[ ! -x "$(command -v watch)" ]];
+then
+  brew install watch;
+  __display_message "watch installed";
+else
+  __display_warn "watch already installed";
+fi;
+
+#  Homebrew Casks
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ ! -x "$(command -v docker)" ]];
+__display_header "Installing Casks";
+brew list appcleaner 2> /dev/null;
+if [[ $? -eq 0 ]];
 then
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg;
-
-  echo \
-    "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null;
-
-  sudo apt-get update;
-  sudo apt-get install docker-ce docker-ce-cli containerd.io;
-  sudo usermod -aG docker $USER;
-
-  __display_message "docker installed";
+  __display_warn "appcleaner already installed\n";
 else
-  __display_warn "docker already installed";
+  brew install appcleaner;
+  __display_message "appcleaner installed\n";
 fi;
 
-#  Docker compose
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ ! -x "$(command -v docker-compose)" ]];
+brew list dbeaver-community 2> /dev/null;
+if [[ $? -eq 0 ]];
 then
-  sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose;
-  sudo chmod +x /usr/local/bin/docker-compose;
-
-  __display_message "docker-compose installed";
+  __display_warn "dbeaver-community already installed\n";
 else
-  __display_warn "docker-compose already installed";
+  brew install dbeaver-community;
+  __display_message "dbeaver-community installed\n";
 fi;
 
-#  Kubernetes kubectl
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ ! -x "$(command -v kubectl)" ]]
+brew list docker 2> /dev/null;
+if [[ $? -eq 0 ]];
 then
-  sudo snap install kubectl --classic;
-
-  __display_message "kubectl installed";
+  __display_warn "docker already installed\n";
 else
-  __display_warn "kubectl already installed";
+  brew install docker;
+  __display_message "docker installed\n";
 fi;
 
-#  AWS CLI
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [ ! -x "$(command -v aws)" ];
+brew list flutter 2> /dev/null;
+if [[ $? -eq 0 ]];
 then
-  cd $HOME/Desktop;
-  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip";
-  unzip awscliv2.zip;
-  sudo ./aws/install;
-  rm -r ./awscliv2.zip ./aws;
-  cd $OLDPWD;
-
-  __display_message "aws installed";
+  __display_warn "flutter already installed\n";
 else
-  __display_warn "aws already installed";
+  brew install flutter;
+  __display_message "flutter installed\n";
 fi;
 
-#  Google Chrome
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [ ! -x "$(command -v google-chrome)" ];
+brew list intellij-idea-ce 2> /dev/null;
+if [[ $? -eq 0 ]];
 then
-  CHROME_PACK="google-chrome-stable_current_amd64.deb";
-  cd $HOME/Desktop;
-  wget "https://dl.google.com/linux/direct/$CHROME_PACK"
-  sudo dpkg -i "./$CHROME_PACK"
-  rm "./$CHROME_PACK"
-  cd $OLDPWD;
-
-  __display_message "google-chrome installed";
+  __display_warn "intellij-idea-ce already installed\n";
 else
-  __display_warn "google-chrome already installed";
+  brew install intellij-idea-ce;
+  __display_message "intellij-idea-ce installed\n";
+fi;
+
+brew list memory-cleaner 2> /dev/null;
+if [[ $? -eq 0 ]];
+then
+  __display_warn "memory-cleaner already installed\n";
+else
+  brew install memory-cleaner;
+  __display_message "memory-cleaner installed\n";
+fi;
+
+brew list rar 2> /dev/null;
+if [[ $? -eq 0 ]];
+then
+  __display_warn "rar already installed\n";
+else
+  brew install rar;
+  __display_message "rar installed\n";
+fi;
+
+brew list rectangle 2> /dev/null;
+if [[ $? -eq 0 ]];
+then
+  __display_warn "rectangle already installed\n";
+else
+  brew install rectangle;
+  __display_message "rectangle installed\n";
 fi;
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -404,8 +390,3 @@ then
 else
   __display_warn "vundle already installed";
 fi;
-
-#  Set ZSH as default Shell
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-__display_message "Done!!";
-__display_warn "Please, run the command \"chsh -s \$(which zsh)\" to set ZSH as default shell and restart the machine!";
