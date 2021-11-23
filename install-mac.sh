@@ -70,136 +70,52 @@ fi
 #  Homebrew Formulaes
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 __display_header "Installing Formulaes"
-if [[ ! -x "$(command -v emojify)" ]];
-then
-  brew install emojify;
-  __display_message "emojify installed";
-else
-  __display_warn "emojify already installed";
-fi;
 
-if [[ ! -x "$(command -v fzy)" ]];
-then
-  brew install fzy;
-  __display_message "fzy installed";
-else
-  __display_warn "fzy already installed";
-fi;
+formulaes=(
+  emojify
+  fzy
+  gawk
+  htop
+  kubectx
+  tig
+  watch
+);
 
-if [[ ! -x "$(command -v gawk)" ]];
-then
-  brew install gawk;
-  __display_message "gawk installed";
-else
-  __display_warn "gawk already installed";
-fi;
-
-if [[ ! -x "$(command -v htop)" ]];
-then
-  brew install htop;
-  __display_message "htop installed";
-else
-  __display_warn "htop already installed";
-fi;
-
-if [[ ! -x "$(command -v kubectx)" ]];
-then
-  brew install kubectx;
-  __display_message "kubectx installed";
-else
-  __display_warn "kubectx already installed";
-fi;
-
-if [[ ! -x "$(command -v tig)" ]];
-then
-  brew install tig;
-  __display_message "tig installed";
-else
-  __display_warn "tig already installed";
-fi;
-
-if [[ ! -x "$(command -v watch)" ]];
-then
-  brew install watch;
-  __display_message "watch installed";
-else
-  __display_warn "watch already installed";
-fi;
+for formulae in $formulaes; do
+  if [[ ! -x "$(command -v $formulae)" ]];
+  then
+    brew install $formulae;
+    __display_message "$formulae installed";
+  else
+    __display_warn "$formulae already installed";
+  fi;
+done;
 
 #  Homebrew Casks
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 __display_header "Installing Casks";
-brew list appcleaner 2> /dev/null;
-if [[ $? -eq 0 ]];
-then
-  __display_warn "appcleaner already installed\n";
-else
-  brew install appcleaner;
-  __display_message "appcleaner installed\n";
-fi;
 
-brew list dbeaver-community 2> /dev/null;
-if [[ $? -eq 0 ]];
-then
-  __display_warn "dbeaver-community already installed\n";
-else
-  brew install dbeaver-community;
-  __display_message "dbeaver-community installed\n";
-fi;
+casks=(
+  appcleaner
+  dbeaver-community
+  docker
+  flutter
+  intellij-idea-ce
+  memory-cleaner
+  rar
+  rectangle
+);
 
-brew list docker 2> /dev/null;
-if [[ $? -eq 0 ]];
-then
-  __display_warn "docker already installed\n";
-else
-  brew install docker;
-  __display_message "docker installed\n";
-fi;
-
-brew list flutter 2> /dev/null;
-if [[ $? -eq 0 ]];
-then
-  __display_warn "flutter already installed\n";
-else
-  brew install flutter;
-  __display_message "flutter installed\n";
-fi;
-
-brew list intellij-idea-ce 2> /dev/null;
-if [[ $? -eq 0 ]];
-then
-  __display_warn "intellij-idea-ce already installed\n";
-else
-  brew install intellij-idea-ce;
-  __display_message "intellij-idea-ce installed\n";
-fi;
-
-brew list memory-cleaner 2> /dev/null;
-if [[ $? -eq 0 ]];
-then
-  __display_warn "memory-cleaner already installed\n";
-else
-  brew install memory-cleaner;
-  __display_message "memory-cleaner installed\n";
-fi;
-
-brew list rar 2> /dev/null;
-if [[ $? -eq 0 ]];
-then
-  __display_warn "rar already installed\n";
-else
-  brew install rar;
-  __display_message "rar installed\n";
-fi;
-
-brew list rectangle 2> /dev/null;
-if [[ $? -eq 0 ]];
-then
-  __display_warn "rectangle already installed\n";
-else
-  brew install rectangle;
-  __display_message "rectangle installed\n";
-fi;
+for cask in $casks; do
+  brew list $cask 2> /dev/null;
+  if [[ $? -eq 0 ]];
+  then
+    __display_warn "$cask already installed\n";
+  else
+    brew install $cask;
+    __display_message "$cask installed\n";
+  fi;
+done;
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -231,21 +147,21 @@ fi;
 
 #  asdf plugins
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ ! `asdf plugin list | grep nodejs` =~ nodejs ]];
-then
-  asdf plugin add nodejs;
-  __display_message "nodejs installed";
-else
-  __display_warn "nodejs already installed";
-fi;
+asdf_plugins=(
+  nodejs
+  java
+  jq
+);
 
-if [[ ! `asdf plugin list | grep jq` =~ jq ]];
-then
-  asdf plugin add jq;
-  __display_message "jq installed";
-else
-  __display_warn "jq already installed";
-fi;
+for asdf_plugin in $asdf_plugins; do
+  if [[ ! `asdf plugin list | grep $asdf_plugin` =~ $asdf_plugin ]];
+  then
+    asdf plugin add $asdf_plugin;
+    __display_message "$asdf_plugin installed";
+  else
+    __display_warn "$asdf_plugin already installed";
+  fi;
+done;
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -330,29 +246,23 @@ fi;
 #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 __display_header "Create symlinks"
-if [[ ! -f $HOME/.zshrc ]]
-then
-  ln -s $DOTFILES/.zshrc $HOME/.zshrc;
-  __display_message ".zshrc created";
-else
-  __display_warn ".zshrc already exists";
-fi;
 
-if [[ ! -f $HOME/.gitignore ]];
-then
-  ln -s $DOTFILES/.gitignore $HOME/.gitignore;
-  __display_message ".gitignore created";
-else
-  __display_warn ".gitignore already exists";
-fi;
+symlinks=(
+  .zshrc
+  .gitignore
+  .gitconfig
+  .vimrc
+);
 
-if [[ ! -f $HOME/.gitconfig ]];
-then
-  ln -s $DOTFILES/.gitconfig $HOME/.gitconfig;
-  __display_message ".gitconfig created";
-else
-  __display_warn ".gitconfig already exists";
-fi;
+for symlink in $symlinks; do
+  if [[ ! -f $HOME/$symlink ]]
+  then
+    ln -s $DOTFILES/$symlink $HOME/$symlink;
+    __display_message "$symlink created";
+  else
+    __display_warn "$symlink already exists";
+  fi;
+done;
 
 if [[ ! -d $HOME/.vim ]];
 then
@@ -360,22 +270,6 @@ then
   __display_message ".vim created";
 else
   __display_warn ".vim already exists";
-fi;
-
-if [[ ! -f $HOME/.vimrc ]];
-then
-  ln -s $DOTFILES/.vimrc $HOME/.vimrc;
-  __display_message ".vimrc created";
-else
-  __display_warn ".vimrc already exists";
-fi;
-
-if [[ (! `uname` =~ [Dd]arwin) && (! -f $TERMINATOR/config) ]];
-then
-  ln -s $DOTFILES/terminator/config $TERMINATOR/config;
-  __display_message "terminator config created";
-else
-  __display_warn "terminator config already exists or it's not a Ubuntu OS";
 fi;
 
 #  [VIM] Install Vundle
