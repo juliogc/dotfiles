@@ -127,6 +127,14 @@ else
   __display_warn "watch already installed";
 fi;
 
+if [[ ! -x "$(command -v lsd)" ]];
+then
+  brew install lsd;
+  __display_message "lsd installed";
+else
+  __display_warn "lsd already installed";
+fi;
+
 #  Homebrew Casks
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 __display_header "Installing Casks";
