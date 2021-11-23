@@ -143,7 +143,7 @@ if [[ $? -eq 0 ]];
 then
   __display_warn "appcleaner already installed\n";
 else
-  brew install appcleaner;
+  brew install --cask appcleaner;
   __display_message "appcleaner installed\n";
 fi;
 
@@ -152,7 +152,7 @@ if [[ $? -eq 0 ]];
 then
   __display_warn "dbeaver-community already installed\n";
 else
-  brew install dbeaver-community;
+  brew install --cask dbeaver-community;
   __display_message "dbeaver-community installed\n";
 fi;
 
@@ -161,7 +161,7 @@ if [[ $? -eq 0 ]];
 then
   __display_warn "docker already installed\n";
 else
-  brew install docker;
+  brew install --cask docker;
   __display_message "docker installed\n";
 fi;
 
@@ -170,7 +170,7 @@ if [[ $? -eq 0 ]];
 then
   __display_warn "flutter already installed\n";
 else
-  brew install flutter;
+  brew install --cask flutter;
   __display_message "flutter installed\n";
 fi;
 
@@ -179,7 +179,7 @@ if [[ $? -eq 0 ]];
 then
   __display_warn "intellij-idea-ce already installed\n";
 else
-  brew install intellij-idea-ce;
+  brew install --cask intellij-idea-ce;
   __display_message "intellij-idea-ce installed\n";
 fi;
 
@@ -188,7 +188,7 @@ if [[ $? -eq 0 ]];
 then
   __display_warn "memory-cleaner already installed\n";
 else
-  brew install memory-cleaner;
+  brew install --cask memory-cleaner;
   __display_message "memory-cleaner installed\n";
 fi;
 
@@ -197,7 +197,7 @@ if [[ $? -eq 0 ]];
 then
   __display_warn "rar already installed\n";
 else
-  brew install rar;
+  brew install --cask rar;
   __display_message "rar installed\n";
 fi;
 
@@ -206,7 +206,7 @@ if [[ $? -eq 0 ]];
 then
   __display_warn "rectangle already installed\n";
 else
-  brew install rectangle;
+  brew install --cask rectangle;
   __display_message "rectangle installed\n";
 fi;
 
