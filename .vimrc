@@ -82,7 +82,7 @@ set guifont=*
 
 set autochdir "Update vim pwd from the current file location
 
-set mouse=a "allow all controls to mouse
+" set mouse=a "allow all controls to mouse
 
 set wildmenu                   "autocomplete
 set wildmode=list:longest,full "show all files including hidden ones on tab + tab
