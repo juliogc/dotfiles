@@ -25,7 +25,6 @@ plugins=(
   git
   kubectl
   zsh-autosuggestions
-  zsh-better-npm-completion
   zsh-completions
   zsh-syntax-highlighting
 )
@@ -45,3 +44,6 @@ if [[ `uname` == "Darwin" ]]; then
   bindkey "\e\e[D" backward-word
   bindkey "\e\e[C" forward-word
 fi;
+
+autoload -U compinit && compinit;
+
