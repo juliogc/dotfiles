@@ -87,14 +87,6 @@ else
   __display_warn "fzy already installed";
 fi;
 
-if [[ ! -x "$(command -v gawk)" ]];
-then
-  brew install gawk;
-  __display_message "gawk installed";
-else
-  __display_warn "gawk already installed";
-fi;
-
 if [[ ! -x "$(command -v htop)" ]];
 then
   brew install htop;
