@@ -28,7 +28,7 @@ export PATH="/usr/local/sbin:$PATH";
 
 # GO Lang exports
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ -d $HOME/.asdf/plugins/java ]]; then
+if [[ -d $HOME/.asdf/plugins/go ]]; then
   export GOPATH=$(go env GOPATH);
   export GOPKG=$GOPATH/bin;
   PATH=$PATH:$GOPKG;
