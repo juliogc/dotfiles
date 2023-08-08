@@ -145,31 +145,22 @@ fi;
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if [[ ! -x "$(command -v docker)" ]];
 then
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg;
+  sudo install -m 0755 -d /etc/apt/keyrings;
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg;
+  sudo chmod a+r /etc/apt/keyrings/docker.gpg;
 
   echo \
-    "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null;
+    "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
   sudo apt-get update;
-  sudo apt-get install docker-ce docker-ce-cli containerd.io;
+  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin;
   sudo usermod -aG docker $USER;
 
   __display_message "docker installed";
 else
   __display_warn "docker already installed";
-fi;
-
-#  Docker compose
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if [[ ! -x "$(command -v docker-compose)" ]];
-then
-  sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose;
-  sudo chmod +x /usr/local/bin/docker-compose;
-
-  __display_message "docker-compose installed";
-else
-  __display_warn "docker-compose already installed";
 fi;
 
 #  Kubernetes kubectl
