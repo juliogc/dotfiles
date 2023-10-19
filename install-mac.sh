@@ -166,15 +166,6 @@ else
   __display_message "flutter installed\n";
 fi;
 
-brew list intellij-idea-ce 2> /dev/null;
-if [[ $? -eq 0 ]];
-then
-  __display_warn "intellij-idea-ce already installed\n";
-else
-  brew install --cask intellij-idea-ce;
-  __display_message "intellij-idea-ce installed\n";
-fi;
-
 brew list memory-cleaner 2> /dev/null;
 if [[ $? -eq 0 ]];
 then
