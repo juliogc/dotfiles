@@ -13,7 +13,7 @@
 #  $ git revert HEAD~X..HEAD
 
 [user]
-  # email = jgcorradi@gmail.com
+  email = jgcorradi@gmail.com
   name = Julio Gori Corradi
 
 [credential]
