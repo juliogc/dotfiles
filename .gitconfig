@@ -13,7 +13,8 @@
 #  $ git revert HEAD~X..HEAD
 
 [user]
-  email = jgcorradi@gmail.com
+  # email = jgcorradi@gmail.com
+  email = julio.corradi@bhub.ai
   name = Julio Gori Corradi
 
 [credential]
@@ -26,7 +27,7 @@
   # lazy alias
   change = "!f() { INITIAL='[';BRANCH=$(git rev-parse --abbrev-ref HEAD);FINAL='] ';USER_MESSAGE=$1;MESSAGE=$INITIAL$BRANCH$FINAL$USER_MESSAGE; git add . && git commit -am \"$MESSAGE\"; }; f"
   lg = log --graph  --pretty=format:'%C(bold red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset' --abbrev-commit --date=relative
-  purge = !"git branch -d $(git branch --merged master | grep -v -e '*' -e 'master')"
+  purge = !"git branch -d $(git branch --merged main | grep -v -e '*' -e 'main')"
   show-files = "!f() { git show --name-only --pretty=\"%C(bold green)%B\" | sed \"/^$/d\" | tail -n +2; }; f"
   list-commits = !git shortlog -s -n
 

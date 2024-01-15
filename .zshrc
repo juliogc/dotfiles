@@ -47,3 +47,4 @@ fi;
 
 autoload -U compinit && compinit;
 
+PATH="/Users/juliocorradi/.bhub/bin:$PATH"
