@@ -16,6 +16,7 @@ ZSH_THEME="spaceship"
 #  plugins
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 plugins=(
+  aliases
   asdf
   command-not-found
   docker
