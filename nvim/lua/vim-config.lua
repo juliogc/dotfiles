@@ -11,3 +11,5 @@ vim.cmd("set cursorcolumn")
 
 vim.g.mapleader = " "
 
+vim.keymap.set("n", "<leader>bw", ":bw<CR>")
+
