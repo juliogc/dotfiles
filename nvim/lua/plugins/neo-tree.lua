@@ -26,6 +26,11 @@ return {
 			name = {
 				trailing_slash = false,
 			},
+			window = {
+				position = "left",
+				width = 35,
+				auto_expand_width = true,
+			},
 		})
 		vim.keymap.set("n", "<C-b>", ":Neotree filesystem toggle<CR>")
 		vim.keymap.set("n", "<F3>", ":Neotree filesystem focus<CR>")
