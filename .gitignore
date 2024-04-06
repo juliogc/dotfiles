@@ -46,6 +46,8 @@ ehthumbs.db
 Thumbs.db
 
 
-# VIM Bundles #
+# VIM/NeoVim #
 ###############
 .vim/bundle
+nvim/lazy-lock.json
+
