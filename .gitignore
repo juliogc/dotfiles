@@ -49,5 +49,4 @@ Thumbs.db
 # VIM/NeoVim #
 ###############
 .vim/bundle
-nvim/lazy-lock.json
 
