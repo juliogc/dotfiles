@@ -1,9 +1,9 @@
 return {
   "akinsho/bufferline.nvim",
-  version = "*",
   dependencies = "nvim-tree/nvim-web-devicons",
   config = function()
     vim.opt.termguicolors = true
+
     local bufferline = require("bufferline")
     bufferline.setup({
       options = {
@@ -15,8 +15,15 @@ return {
         indicator = {
           style = "underline",
         },
-        separator_style = "slant",
-        style_preset = bufferline.style_preset.default -- default|minimal,
+        separator_style = "thin",
+        style_preset = bufferline.style_preset.default, -- default|minimal
+        offsets = {
+          {
+            filetype = "neo-tree",
+            text = " ",
+            text_align = "center",
+          }
+        },
       },
     })
   end,
