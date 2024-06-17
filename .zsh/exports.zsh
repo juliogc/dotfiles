@@ -47,3 +47,13 @@ fi;
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [ -d $HOME/.docker ] && export PATH="$HOME/.docker/bin:$PATH";
 
+# FZF
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export FZF_DEFAULT_OPTS="--layout reverse
+  --border
+  --preview=\"bat --color=always --style=header,grid,changes {}\"
+  --bind shift-up:preview-page-up,shift-down:preview-page-down
+  --color=fg:-1,fg+:#cfc9c2,bg:-1,bg+:#24283b
+  --color=hl:#5f87af,hl+:#5fd7ff,info:#e0af68,marker:#9ece6a
+  --color=prompt:#f7768e,spinner:#bb9af7,pointer:#bb9af7,header:#b4f9f8
+  --color=border:#24283b,label:#cfc9c2,query:#cfc9c2"
