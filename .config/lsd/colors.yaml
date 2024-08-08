@@ -1,0 +1,24 @@
+user: 208
+group: 130
+permission:
+  read: dark_green
+  write: dark_yellow
+  exec: dark_red
+  exec-sticky: 5
+  no-access: 245
+date:
+  hour-old: 255
+  day-old: 246
+  older: 8
+size:
+  none: 2
+  small: 2
+  medium: 22
+  large: 1
+inode:
+  valid: 13
+  invalid: 245
+links:
+  valid: 13
+  invalid: 245
+tree-edge: 245
