@@ -1,0 +1,23 @@
+cursor-style = block
+font-family = "FiraCode Nerd Font Mono"
+font-size = "14"
+theme = tokyonight_night
+macos-option-as-alt = true
+macos-icon = xray
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = visible
+shell-integration-features = no-cursor
+unfocused-split-opacity = 0.5
+window-new-tab-position = end
+window-padding-balance = true
+window-padding-color = background
+
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
+mouse-hide-while-typing = true
+
+confirm-close-surface = false
+
+
+# keybind = global:ctrl+grave_accent=toggle_quick_terminal

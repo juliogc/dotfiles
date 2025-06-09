@@ -313,18 +313,6 @@ else
   __display_warn "dotfiles already installed";
 fi;
 
-#  oh-my-zsh themes
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-__display_header "Installing oh-my-zsh themes";
-if [[ ! -d "$ZSH_CUSTOM/themes/spaceship-prompt" ]];
-then
-  git clone git@github.com:spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
-  ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-  __display_message "zsh-syntax-highlighting installed";
-else
-  __display_warn "zsh-syntax-highlighting already installed";
-fi;
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 #  Create symlinks

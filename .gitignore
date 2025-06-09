@@ -47,6 +47,10 @@ Thumbs.db
 
 
 # VIM/NeoVim #
-###############
+##############
 .vim/bundle
 
+
+# ASDF #
+########
+.tool-versions

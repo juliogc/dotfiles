@@ -8,16 +8,6 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# Spaceship theme
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export SPACESHIP_DIR_TRUNC=0;
-export SPACESHIP_TIME_SHOW=true;
-export SPACESHIP_USER_SHOW=true;
-export SPACESHIP_TIME_FORMAT="%T";
-export SPACESHIP_KUBECTL_SHOW=true;
-export SPACESHIP_KUBECTL_VERSION_SHOW=false;
-# [ ! -z "$WSL_DISTRO_NAME" ] && export SPACESHIP_BATTERY_SHOW=false;
-
 # AWS CLI
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export AWS_PROFILE=local;
@@ -47,19 +37,38 @@ fi;
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [ -d $HOME/.docker ] && export PATH="$HOME/.docker/bin:$PATH";
 
+# enhancd
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ENHANCD_USE_ABBREV=true
+
 # FZF
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export FZF_DEFAULT_OPTS='--layout reverse
+export FZF_DEFAULT_OPTS="
+  --layout reverse
   --border
-  --preview="bat --style=header,grid,changes {}"
   --bind shift-up:preview-page-up,shift-down:preview-page-down
+  --bind=ctrl-z:ignore,btab:up,tab:down
   --color=fg:-1,fg+:#cfc9c2,bg:-1,bg+:#24283b,gutter:-1
   --color=hl:#5f87af,hl+:#5fd7ff,info:#e0af68,marker:#9ece6a
   --color=prompt:#f7768e,spinner:#bb9af7,pointer:#bb9af7,header:#b4f9f8
   --color=border:#24283b,label:#cfc9c2,query:#cfc9c2
-  --prompt="> "
-  --marker=">"
-  --pointer="◆"
-  --separator="─"
-  --scrollbar="│"'
+  --prompt='> '
+  --marker='>'
+  --pointer='◆'
+  --separator='─'
+  --scrollbar='│'
+  --info='right'
+  --height='40%'"
 
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+# zoxide
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export _ZO_EXCLUDE_DIRS=$HOME/**/node_modules
+export _ZO_FZF_OPTS="
+  ${FZF_DEFAULT_OPTS}
+  --preview='lsd --group-dirs first --color always --icon always --git -a --tree --depth 3 {2..}'
+"

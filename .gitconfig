@@ -24,16 +24,16 @@
   undopush = push -f origin HEAD^:master
   undocommit = reset --hard HEAD@{1} # undo merges too
   unchanged = git update-index --assume-unchanged
-  # lazy alias
-  change = "!f() { INITIAL='[';BRANCH=$(git rev-parse --abbrev-ref HEAD);FINAL='] ';USER_MESSAGE=$1;MESSAGE=$INITIAL$BRANCH$FINAL$USER_MESSAGE; git add . && git commit -am \"$MESSAGE\"; }; f"
   lg = log --graph  --pretty=format:'%C(bold red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset' --abbrev-commit --date=relative
-  purge = !"git branch -d $(git branch --merged main | grep -v -e '*' -e 'main')"
+  # purge = !"git branch -d $(git branch --merged main | grep -v -e '*' -e 'main')"
+  purge = !"git branch -d $(git branch | grep -v -e '*' -e 'main')"
   show-files = "!f() { git show --name-only --pretty=\"%C(bold green)%B\" | sed \"/^$/d\" | tail -n +2; }; f"
   list-commits = !git shortlog -s -n
 
 [core]
-  whitespace = space-before-tab,indent-with-non-tab,trailing-space
   editor = nvim
+	excludesfile = /Users/juliocorradi/.gitignore
+  whitespace = space-before-tab,indent-with-non-tab,trailing-space
 
 [color]
   branch = auto

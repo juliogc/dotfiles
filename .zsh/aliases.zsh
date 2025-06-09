@@ -19,6 +19,7 @@ alias downloads='cd $HOME/Downloads';
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias ls='lsd --group-dirs first';
 alias ll='ls -hlA';
+alias lt='ls -a --tree --depth 1';
 alias rm='rm -i';
 alias cp='cp -i';
 alias mv='mv -i';
