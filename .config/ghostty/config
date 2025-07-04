@@ -1,6 +1,6 @@
 cursor-style = block
 font-family = "FiraCode Nerd Font Mono"
-font-size = "14"
+font-size = "12"
 theme = tokyonight_night
 macos-option-as-alt = true
 macos-icon = xray
@@ -12,6 +12,7 @@ window-new-tab-position = end
 window-padding-balance = true
 window-padding-color = background
 
+app-notifications = no-clipboard-copy
 copy-on-select = clipboard
 clipboard-read = allow
 clipboard-write = allow
