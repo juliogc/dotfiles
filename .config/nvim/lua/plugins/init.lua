@@ -5,24 +5,42 @@ return {
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
+    lazy = false,
     config = function()
       require "configs.lspconfig"
     end,
   },
 
-  -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    dependencies = { 'OXY2DEV/markview.nvim' },
+    lazy = false,
+    opts = require "configs.treesitter",
+  },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  { import = "nvchad.blink.lazyspec" },
+
+  {
+    "saghen/blink.cmp",
+    import = "nvchad.blink.lazyspec",
+    dependencies = { "giuxtaposition/blink-cmp-copilot" },
+    opts = require "configs.blink",
+  },
+
+  {
+    "OXY2DEV/markview.nvim",
+    dependencies = {
+      "saghen/blink.cmp",
+    },
+  },
+
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    -- event = "BufReadPost",
+    opts = require "configs.copilot",
+  },
 }

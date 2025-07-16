@@ -1,11 +1,15 @@
+#  █▀▀ █░█ █▀█ █▀ ▀█▀ ▀█▀ █▄█ 
+#  █▄█ █▀█ █▄█ ▄█ ░█░ ░█░ ░█░ 
+#
+#  Ghostty Terminal Config 👻
+
+#  █░█ █▀ █▀▀ █▀█   █▀█ █▀█ █▀▀ █▀▀ █▀
+#  █▄█ ▄█ ██▄ █▀▄   █▀▀ █▀▄ ██▄ █▀░ ▄█
+
 cursor-style = block
 font-family = "FiraCode Nerd Font Mono"
 font-size = "12"
 theme = tokyonight_night
-macos-option-as-alt = true
-macos-icon = xray
-macos-titlebar-style = transparent
-macos-titlebar-proxy-icon = visible
 shell-integration-features = no-cursor
 unfocused-split-opacity = 0.5
 window-new-tab-position = end
@@ -21,4 +25,30 @@ mouse-hide-while-typing = true
 confirm-close-surface = false
 
 
+#  █▀▄▀█ ▄▀█ █▀▀ █▀█ █▀
+#  █░▀░█ █▀█ █▄▄ █▄█ ▄█
+
+macos-option-as-alt = true
+macos-icon = xray
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = visible
+
+
+#  █▄▀ █▀▀ █▄█ █▄▄ █ █▄░█ █▀▄ █ █▄░█ █▀▀ █▀
+#  █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ █ █░▀█ █▄█ ▄█
+
 # keybind = global:ctrl+grave_accent=toggle_quick_terminal
+keybind = ctrl+d=new_split:down
+keybind = ctrl+shift+d=new_split:right
+keybind = ctrl+w=close_surface
+keybind = ctrl+shift+[=goto_split:left
+keybind = ctrl+shift+]=goto_split:right
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:down
+keybind = ctrl+shift+k=goto_split:up
+keybind = ctrl+shift+l=goto_split:right
+keybind = ctrl+shift+up=resize_split:up,10
+keybind = ctrl+shift+down=resize_split:down,10
+keybind = ctrl+shift+left=resize_split:left,10
+keybind = ctrl+shift+right=resize_split:right,10
+
