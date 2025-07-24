@@ -6,6 +6,7 @@ local parsers = {
   "css",
   "javascript",
   "typescript",
+  "prisma",
   "markdown",
   "markdown_inline",
   "yaml",
@@ -15,7 +16,6 @@ if vim.fn.executable "tree-sitter" == 1 then
   vim.list_extend(parsers, {
     "latex",
     "typst",
-    "prisma",
   })
 end
 

@@ -15,7 +15,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = { 'OXY2DEV/markview.nvim' },
+    dependencies = { "OXY2DEV/markview.nvim" },
     lazy = false,
     opts = require "configs.treesitter",
   },
@@ -24,7 +24,7 @@ return {
 
   {
     "saghen/blink.cmp",
-    import = "nvchad.blink.lazyspec",
+    version = "1.*",
     dependencies = { "giuxtaposition/blink-cmp-copilot" },
     opts = require "configs.blink",
   },
@@ -34,6 +34,7 @@ return {
     dependencies = {
       "saghen/blink.cmp",
     },
+    opts = require "configs.markview",
   },
 
   {
@@ -43,4 +44,24 @@ return {
     -- event = "BufReadPost",
     opts = require "configs.copilot",
   },
+
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "zbirenbaum/copilot.lua",
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    cmd = {
+      "CodeCompanion",
+      "CodeCompanionActions",
+      "CodeCompanionChat",
+    },
+    lazy = false,
+    opt = true,
+  },
+
+  { "b0o/schemastore.nvim" },
+
+  { "aznhe21/actions-preview.nvim" },
 }

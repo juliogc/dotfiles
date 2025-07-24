@@ -9,17 +9,25 @@ map("i", "jk", "<ESC>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
+map("n", "<leader>lr", "<cmd> LspRestart <cr>", { desc = "LSP - Restart" })
+
 map("n", "<leader>ll", "<cmd> Lazy <cr>", { desc = "Lazy - Open" })
 map("n", "<leader>ls", "<cmd> Lazy sync <cr>", { desc = "Lazy - Sync" })
 map("n", "<leader>lx", "<cmd> Lazy clean <cr>", { desc = "Lazy - Clean" })
 map("n", "<leader>lu", "<cmd> Lazy update <cr>", { desc = "Lazy - Update" })
 
-map("i", "<Tab>", function()
-  local suggestion = require "copilot.suggestion"
-  if suggestion.is_visible() then
-    suggestion.accept()
-  else
-    -- fallback: use regular <Tab>
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", true)
-  end
-end, { desc = "Accept Copilot suggestion or fallback to Tab" })
+map("n", "<leader>ca", "<cmd> CodeCompanionActions <cr>", { desc = "CodeCompanion - Actions" })
+map("n", "<leader>cc", "<cmd> CodeCompanionChat Toggle <cr>", { desc = "CodeCompanion - Toggle chat" })
+
+map("n", "grr", require("telescope.builtin").lsp_references, { desc = "LSP References" })
+map({ "v", "n" }, "gra", require("actions-preview").code_actions, { desc = "LSP Code Actions" })
+
+-- map("i", "<Tab>", function()
+--   local suggestion = require "copilot.suggestion"
+--   if suggestion.is_visible() then
+--     suggestion.accept()
+--   else
+--     -- fallback: use regular <Tab>
+--     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", true)
+--   end
+-- end, { desc = "Accept Copilot suggestion or fallback to Tab" })
