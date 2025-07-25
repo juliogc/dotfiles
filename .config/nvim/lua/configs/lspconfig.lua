@@ -54,4 +54,4 @@ for name, opts in pairs(servers) do
   }, opts))
 end
 
--- read :h vim.lsp.config for changing options of lsp servers
+-- -- read :h vim.lsp.config for changing options of lsp servers

@@ -20,14 +20,21 @@ map("n", "<leader>ca", "<cmd> CodeCompanionActions <cr>", { desc = "CodeCompanio
 map("n", "<leader>cc", "<cmd> CodeCompanionChat Toggle <cr>", { desc = "CodeCompanion - Toggle chat" })
 
 map("n", "grr", require("telescope.builtin").lsp_references, { desc = "LSP References" })
-map({ "v", "n" }, "gra", require("actions-preview").code_actions, { desc = "LSP Code Actions" })
+-- map({ "v", "n" }, "gra", require("actions-preview").code_actions, { desc = "LSP Code Actions" })
 
--- map("i", "<Tab>", function()
---   local suggestion = require "copilot.suggestion"
---   if suggestion.is_visible() then
---     suggestion.accept()
---   else
---     -- fallback: use regular <Tab>
---     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", true)
---   end
--- end, { desc = "Accept Copilot suggestion or fallback to Tab" })
+map({ "v", "n" }, "gra", function()
+  local ok, actions_preview = pcall(require, "actions-preview")
+  if ok then
+    actions_preview.code_actions()
+  end
+end, { desc = "LSP Code Actions" })
+
+map("i", "<Tab>", function()
+  local ok, suggestion = pcall(require, "copilot.suggestion")
+  if ok and suggestion.is_visible() then
+    suggestion.accept()
+  else
+    -- fallback: use regular <Tab>
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", true)
+  end
+end, { desc = "Accept Copilot suggestion or fallback to Tab" })
