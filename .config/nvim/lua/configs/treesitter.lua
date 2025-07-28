@@ -9,6 +9,7 @@ local M = {
     "markdown",
     "markdown_inline",
     "yaml",
+    "rust",
   }
 }
 

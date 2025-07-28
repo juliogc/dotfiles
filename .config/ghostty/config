@@ -8,6 +8,10 @@
 
 cursor-style = block
 font-family = "FiraCode Nerd Font Mono"
+font-family-bold = "FiraCode Nerd Font Mono"
+font-family-italic = "FiraCode Nerd Font Mono"
+font-family-bold-italic = "FiraCode Nerd Font Mono"
+font-synthetic-style = bold-italic
 font-size = "12"
 theme = tokyonight_night
 shell-integration-features = no-cursor

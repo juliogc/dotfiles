@@ -48,7 +48,6 @@ return {
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
-      "zbirenbaum/copilot.lua",
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
@@ -58,10 +57,14 @@ return {
       "CodeCompanionChat",
     },
     lazy = false,
-    opt = true,
+    config = function()
+      require "configs.codecompanion"
+    end,
   },
 
   { "b0o/schemastore.nvim" },
 
   { "aznhe21/actions-preview.nvim" },
+
+  { "echasnovski/mini.diff", version = "*" },
 }

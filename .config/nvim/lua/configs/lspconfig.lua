@@ -43,15 +43,27 @@ local servers = {
     },
   },
   docker_compose_language_service = {},
+  rust_analyzer = {
+    settings = {
+      ["rust-analyzer"] = {
+        diagnostics = {
+          enable = false,
+        },
+      },
+    },
+  },
 }
 
 vim.lsp.enable(vim.tbl_keys(servers))
 
 for name, opts in pairs(servers) do
-  vim.lsp.config(name, vim.tbl_deep_extend("force", {
-    on_attach = nvconfig.on_attach,
-    capabilities = nvconfig.capabilities,
-  }, opts))
+  vim.lsp.config(
+    name,
+    vim.tbl_deep_extend("force", {
+      on_attach = nvconfig.on_attach,
+      capabilities = nvconfig.capabilities,
+    }, opts)
+  )
 end
 
 -- -- read :h vim.lsp.config for changing options of lsp servers
