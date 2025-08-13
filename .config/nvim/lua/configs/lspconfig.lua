@@ -53,6 +53,7 @@ local servers = {
     },
   },
   hyprls = {},
+  clangd = {},
 }
 
 vim.lsp.enable(vim.tbl_keys(servers))

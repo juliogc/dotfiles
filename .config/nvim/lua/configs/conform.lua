@@ -8,6 +8,11 @@ local options = {
     typescript = { "prettierd" },
     typescriptreact = { "prettierd" },
     prisma = { "prismals" },
+    c = { "clang-format" },
+    cpp = { "clang-format" },
+    objc = { "clang-format" },
+    objcpp = { "clang-format" },
+    cuda = { "clang-format" },
   },
 
   -- format_on_save = {

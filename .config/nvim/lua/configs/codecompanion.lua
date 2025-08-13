@@ -13,6 +13,35 @@ codecompanion.setup {
       enabled = true,
     },
   },
+  strategies = {
+    chat = {
+      adapter = "copilot",
+    },
+    inline = {
+      adapter = "copilot",
+    },
+    agent = {
+      adapter = "copilot",
+    },
+  },
+  adapters = {
+    copilot = function()
+      return require("codecompanion.adapters").extend("copilot", {
+        schema = {
+          model = {
+            default = "gpt-5",
+          },
+        },
+      })
+    end,
+    tavily = function()
+      return require("codecompanion.adapters").extend("tavily", {
+        env = {
+          api_key = "cmd:op read op://Personal/tavily.com/nvim --no-newline",
+        },
+      })
+    end,
+  },
   extensions = {
     mcphub = {
       callback = "mcphub.extensions.codecompanion",
@@ -25,6 +54,9 @@ codecompanion.setup {
         make_vars = true, -- Convert MCP resources to #variables for prompts
         make_slash_commands = true, -- Add MCP prompts as /slash commands
       },
+    },
+    history = {
+      enabled = true,
     },
   },
 }

@@ -18,6 +18,7 @@ map("n", "<leader>lu", "<cmd> Lazy update <cr>", { desc = "Lazy - Update" })
 
 map("n", "<leader>ca", "<cmd> CodeCompanionActions <cr>", { desc = "CodeCompanion - Actions" })
 map("n", "<leader>cc", "<cmd> CodeCompanionChat Toggle <cr>", { desc = "CodeCompanion - Toggle chat" })
+map("n", "<leader>ch", "<cmd> CodeCompanionHistory <cr>", { desc = "CodeCompanion - Chat history" })
 
 map("n", "grr", require("telescope.builtin").lsp_references, { desc = "LSP References" })
 -- map({ "v", "n" }, "gra", require("actions-preview").code_actions, { desc = "LSP Code Actions" })

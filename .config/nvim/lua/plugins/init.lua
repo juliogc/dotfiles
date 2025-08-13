@@ -50,6 +50,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "ravitemer/codecompanion-history.nvim",
     },
     cmd = {
       "CodeCompanion",
@@ -68,9 +69,7 @@ return {
       "nvim-lua/plenary.nvim",
     },
     build = "npm install -g mcp-hub@latest",
-    config = function()
-      require("mcphub").setup()
-    end,
+    config = require("configs.mcphub").setup,
   },
 
   { "b0o/schemastore.nvim" },
