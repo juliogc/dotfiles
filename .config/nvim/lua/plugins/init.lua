@@ -1,3 +1,6 @@
+-- █▀█ █░░ █░█ █▀▀ █ █▄░█ █▀
+-- █▀▀ █▄▄ █▄█ █▄█ █ █░▀█ ▄█
+
 return {
   {
     "stevearc/conform.nvim",
@@ -20,6 +23,12 @@ return {
     opts = require "configs.treesitter",
   },
 
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    opts = require "configs.nvimtree",
+  },
+
   { import = "nvchad.blink.lazyspec" },
 
   {
@@ -27,6 +36,18 @@ return {
     version = "1.*",
     dependencies = { "giuxtaposition/blink-cmp-copilot" },
     opts = require "configs.blink",
+  },
+
+  {
+    "Bekaboo/dropbar.nvim",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
+    },
+    event = { "BufReadPost", "BufNewFile" },
+    config = require("configs.dropbar").config,
   },
 
   {

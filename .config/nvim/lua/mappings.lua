@@ -1,3 +1,6 @@
+-- █▀▄▀█ ▄▀█ █▀█ █▀█ █ █▄░█ █▀▀ █▀
+-- █░▀░█ █▀█ █▀▀ █▀▀ █ █░▀█ █▄█ ▄█
+
 require "nvchad.mappings"
 
 -- add yours here
@@ -9,18 +12,25 @@ map("i", "jk", "<ESC>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
-map("n", "<leader>lr", "<cmd> LspRestart <cr>", { desc = "LSP - Restart" })
+-- LSP
+map("n", "<leader>lr", "<cmd> LspRestart <cr>", { desc = "LSP Restart" })
 
-map("n", "<leader>ll", "<cmd> Lazy <cr>", { desc = "Lazy - Open" })
-map("n", "<leader>ls", "<cmd> Lazy sync <cr>", { desc = "Lazy - Sync" })
-map("n", "<leader>lx", "<cmd> Lazy clean <cr>", { desc = "Lazy - Clean" })
-map("n", "<leader>lu", "<cmd> Lazy update <cr>", { desc = "Lazy - Update" })
+-- Lazy
+map("n", "<leader>ll", "<cmd> Lazy <cr>", { desc = "lazy open" })
+map("n", "<leader>ls", "<cmd> Lazy sync <cr>", { desc = "lazy sync" })
+map("n", "<leader>lx", "<cmd> Lazy clean <cr>", { desc = "lazy clean" })
+map("n", "<leader>lu", "<cmd> Lazy update <cr>", { desc = "lazy update" })
 
+-- CodeCompanion
 map("n", "<leader>ca", "<cmd> CodeCompanionActions <cr>", { desc = "CodeCompanion - Actions" })
 map("n", "<leader>cc", "<cmd> CodeCompanionChat Toggle <cr>", { desc = "CodeCompanion - Toggle chat" })
 map("n", "<leader>ch", "<cmd> CodeCompanionHistory <cr>", { desc = "CodeCompanion - Chat history" })
 
-map("n", "grr", require("telescope.builtin").lsp_references, { desc = "LSP References" })
+-- Telescope
+map("n", "grr", require("telescope.builtin").lsp_references, { desc = "telescope lsp references" })
+map("n", "<leader>ch", require("telescope.builtin").command_history, { desc = "telescope workspace symbols" })
+map("n", "<leader>fs", require("telescope.builtin").lsp_workspace_symbols, { desc = "telescope workspace symbols" })
+map("n", "<leader>ft", require("telescope.builtin").treesitter, { desc = "telescope treesitter" })
 -- map({ "v", "n" }, "gra", require("actions-preview").code_actions, { desc = "LSP Code Actions" })
 
 map({ "v", "n" }, "gra", function()

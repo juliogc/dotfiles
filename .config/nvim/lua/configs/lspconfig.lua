@@ -1,3 +1,6 @@
+-- █░░ █▀ █▀█ █▀▀ █▀█ █▄░█ █▀▀ █ █▀▀
+-- █▄▄ ▄█ █▀▀ █▄▄ █▄█ █░▀█ █▀░ █ █▄█
+
 local nvconfig = require "nvchad.configs.lspconfig"
 local schemastore = require "schemastore"
 

@@ -1,3 +1,6 @@
+-- █▄▄ █░░ █ █▄░█ █▄▀
+-- █▄█ █▄▄ █ █░▀█ █░█
+
 vim.api.nvim_create_autocmd("User", {
   pattern = "BlinkCmpMenuOpen",
   callback = function()

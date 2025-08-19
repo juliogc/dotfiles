@@ -1,3 +1,6 @@
+-- █▄░█ █░█ █▀▀ █░█ ▄▀█ █▀▄
+-- █░▀█ ▀▄▀ █▄▄ █▀█ █▀█ █▄▀
+--
 -- This file needs to have same structure as nvconfig.lua
 -- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
 -- Please read that file to know all available options :(
@@ -15,7 +18,7 @@ M.base46 = {
 }
 
 M.nvdash = {
-  load_on_startup = true,
+  load_on_startup = false,
   -- https://github.com/MaximilianLloyd/ascii.nvim/blob/master/lua/ascii/misc/skulls.lua#L26
   header = {
     "┌────────────────────────────────────────────────────────────┐",

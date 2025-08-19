@@ -1,3 +1,6 @@
+-- █▀▀ █▀█ █▀█ █ █░░ █▀█ ▀█▀
+-- █▄▄ █▄█ █▀▀ █ █▄▄ █▄█ ░█░
+
 local M = {
   suggestion = {
     enabled = not vim.g.ai_cmp,

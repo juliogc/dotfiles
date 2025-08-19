@@ -1,3 +1,6 @@
+-- █▀▄▀█ ▄▀█ █▀█ █▄▀ █░█ █ █▀▀ █░█░█
+-- █░▀░█ █▀█ █▀▄ █░█ ▀▄▀ █ ██▄ ▀▄▀▄▀
+
 local M = {
   preview = {
     filetypes = { "markdown", "codecompanion" },
