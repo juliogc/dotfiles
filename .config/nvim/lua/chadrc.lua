@@ -18,7 +18,7 @@ M.base46 = {
 }
 
 M.nvdash = {
-  load_on_startup = false,
+  load_on_startup = true,
   -- https://github.com/MaximilianLloyd/ascii.nvim/blob/master/lua/ascii/misc/skulls.lua#L26
   header = {
     "┌────────────────────────────────────────────────────────────┐",

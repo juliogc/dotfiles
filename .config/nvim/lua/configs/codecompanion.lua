@@ -28,23 +28,25 @@ codecompanion.setup {
     },
   },
   adapters = {
-    copilot = function()
-      return require("codecompanion.adapters").extend("copilot", {
-        schema = {
-          model = {
-            -- default = "gpt-5",
-            default = "claude-sonnet-4",
+    http = {
+      copilot = function()
+        return require("codecompanion.adapters").extend("copilot", {
+          schema = {
+            model = {
+              -- default = "gpt-5",
+              default = "claude-sonnet-4",
+            },
           },
-        },
-      })
-    end,
-    tavily = function()
-      return require("codecompanion.adapters").extend("tavily", {
-        env = {
-          api_key = "cmd:op read op://Personal/tavily.com/nvim --no-newline",
-        },
-      })
-    end,
+        })
+      end,
+      tavily = function()
+        return require("codecompanion.adapters").extend("tavily", {
+          env = {
+            api_key = "cmd:op read op://Personal/tavily.com/nvim --no-newline",
+          },
+        })
+      end,
+    },
   },
   extensions = {
     mcphub = {

@@ -24,11 +24,11 @@ map("n", "<leader>lu", "<cmd> Lazy update <cr>", { desc = "lazy update" })
 -- CodeCompanion
 map("n", "<leader>ca", "<cmd> CodeCompanionActions <cr>", { desc = "CodeCompanion - Actions" })
 map("n", "<leader>cc", "<cmd> CodeCompanionChat Toggle <cr>", { desc = "CodeCompanion - Toggle chat" })
-map("n", "<leader>ch", "<cmd> CodeCompanionHistory <cr>", { desc = "CodeCompanion - Chat history" })
+map("n", "<leader>cch", "<cmd> CodeCompanionHistory <cr>", { desc = "CodeCompanion - Chat history" })
 
 -- Telescope
 map("n", "grr", require("telescope.builtin").lsp_references, { desc = "telescope lsp references" })
-map("n", "<leader>ch", require("telescope.builtin").command_history, { desc = "telescope workspace symbols" })
+map("n", "<leader>ch", require("telescope.builtin").command_history, { desc = "telescope command history" })
 map("n", "<leader>fs", require("telescope.builtin").lsp_workspace_symbols, { desc = "telescope workspace symbols" })
 map("n", "<leader>ft", require("telescope.builtin").treesitter, { desc = "telescope treesitter" })
 -- map({ "v", "n" }, "gra", require("actions-preview").code_actions, { desc = "LSP Code Actions" })
