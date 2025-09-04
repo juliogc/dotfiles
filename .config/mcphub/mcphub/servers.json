@@ -1,0 +1,84 @@
+{
+  "mcpServers": {
+    "fetch": {
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "mcp/fetch"
+      ],
+      "autoApprove": [
+        "fetch"
+      ],
+      "command": "docker",
+      "disabled": false
+    },
+    "filesystem": {
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "--mount",
+        "type=bind,src=${ALLOWED_DIRECTORY},dst=/projects",
+        "mcp/filesystem",
+        "/projects"
+      ],
+      "autoApprove": [
+        "get_file_info",
+        "list_allowed_directories",
+        "list_directory",
+        "read_file",
+        "read_multiple_files",
+        "search_files"
+      ],
+      "command": "docker",
+      "disabled": false,
+      "env": {
+        "ALLOWED_DIRECTORY": "${HOME}/Sites"
+      }
+    },
+    "git": {
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "--mount",
+        "type=bind,src=${REPOSITORY_PATH},dst=/workspace",
+        "mcp/git"
+      ],
+      "command": "docker",
+      "disabled": false,
+      "env": {
+        "REPOSITORY_PATH": "${cmd: pwd}"
+      }
+    },
+    "github": {
+      "disabled": false,
+      "headers": {
+        "Authorization": "Bearer ${cmd: op read op://Personal/github.com/CodeCompanion}"
+      },
+      "url": "https://api.githubcopilot.com/mcp/"
+    }
+  },
+  "nativeMCPServers": {
+    "mcphub": {
+      "autoApprove": [
+        "get_current_servers"
+      ]
+    },
+    "neovim": {
+      "autoApprove": [
+        "execute_lua",
+        "execute_command",
+        "read_file",
+        "move_item",
+        "read_multiple_files",
+        "delete_items",
+        "find_files",
+        "list_directory",
+        "write_file",
+        "edit_file"
+      ]
+    }
+  }
+}
