@@ -31,7 +31,7 @@
 
 [core]
   editor = nvim
-	excludesfile = /Users/juliocorradi/.gitignore
+  excludesfile = /Users/juliocorradi/.gitignore
   whitespace = space-before-tab,indent-with-non-tab,trailing-space
 
 [color]
@@ -57,5 +57,7 @@
   push = HEAD
 
 [pager]
-	branch = false
+  branch = false
 
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
