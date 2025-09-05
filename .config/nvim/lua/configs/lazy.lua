@@ -5,6 +5,13 @@ return {
   defaults = { lazy = true },
   install = { colorscheme = { "nvchad" } },
 
+  git = {
+    filter = false,
+    submodules = false,
+    timeout = 300,
+    url_format = "git@github.com:%s.git",
+  },
+
   ui = {
     icons = {
       ft = "",
