@@ -7,6 +7,14 @@ local schemastore = require "schemastore"
 nvconfig.defaults()
 
 local servers = {
+  bashls = {
+    filetypes = { "sh", "bash", "zsh" },
+    settings = {
+      bashIde = {
+        globPattern = "{**/*@(.sh|.inc|.bash|.command|.zsh),**/.*{zshrc,zshenv,bashrc,bash_profile,profile,zprofile}*}",
+      },
+    },
+  },
   html = {},
   cssls = {},
   jsonls = {
