@@ -36,7 +36,7 @@ yabai -m config mouse_action1 move
 # ================================================================
 yabai -m config mouse_action2 resize
 
-#   when window is dropped in center of another window, swap them 
+#   when window is dropped in center of another window, swap them
 #   (on edges it will split it)
 # ================================================================
 yabai -m mouse_drop_action swap
@@ -45,6 +45,7 @@ yabai -m mouse_drop_action swap
 # ================================================================
 yabai -m rule --add app="^1Password$" manage=off
 yabai -m rule --add app="^AppCleaner$" manage=off
+yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^.*Armoury Crate Gear.*$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^.*Docker Desktop.*$" manage=off
@@ -54,4 +55,3 @@ yabai -m rule --add app="^Find My$" manage=off
 yabai -m rule --add app="^Notes$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Weather$" manage=off
-

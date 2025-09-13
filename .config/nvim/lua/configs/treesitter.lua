@@ -13,6 +13,10 @@ local M = {
     "markdown_inline",
     "yaml",
     "rust",
+    "go",
+    "gomod",
+    "gowork",
+    "gosum",
   }
 }
 

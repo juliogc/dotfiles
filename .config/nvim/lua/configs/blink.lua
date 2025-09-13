@@ -15,7 +15,6 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
-
 local M = {
   sources = {
     default = { "lsp", "path", "snippets", "buffer", "copilot" },
