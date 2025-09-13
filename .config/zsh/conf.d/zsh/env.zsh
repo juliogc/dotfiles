@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+
+#! █▀▀ █▄░█ █░█
+#! ██▄ █░▀█ ▀▄▀
+
+# Basic PATH prepending (user local bin)
+PATH="$HOME/.local/bin:$PATH"
+
+# XDG Base Directory Specification variables with defaults
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+XDG_DATA_DIRS="${XDG_DATA_DIRS:-$XDG_DATA_HOME:/usr/local/share:/usr/share}"
+XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
+# XDG User Directories
+XDG_DESKTOP_DIR="${XDG_DESKTOP_DIR:-$HOME/Desktop}"
+XDG_DOWNLOAD_DIR="${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
+XDG_PUBLICSHARE_DIR="${XDG_PUBLICSHARE_DIR:-$HOME/Public}"
+XDG_DOCUMENTS_DIR="${XDG_DOCUMENTS_DIR:-$HOME/Documents}"
+XDG_MUSIC_DIR="${XDG_MUSIC_DIR:-$HOME/Music}"
+XDG_PICTURES_DIR="${XDG_PICTURES_DIR:-$HOME/Pictures}"
+XDG_VIDEOS_DIR="${XDG_VIDEOS_DIR:-$HOME/Movies}"
+
+# Export all variables
+export PATH \
+  XDG_CONFIG_HOME XDG_DATA_HOME XDG_DATA_DIRS XDG_STATE_HOME XDG_CACHE_HOME \
+  XDG_DESKTOP_DIR XDG_DOWNLOAD_DIR XDG_PUBLICSHARE_DIR XDG_DOCUMENTS_DIR \
+  XDG_MUSIC_DIR XDG_PICTURES_DIR XDG_VIDEOS_DIR

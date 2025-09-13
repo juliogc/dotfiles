@@ -68,16 +68,10 @@
     },
     "neovim": {
       "autoApprove": [
-        "execute_lua",
-        "execute_command",
-        "read_file",
-        "move_item",
-        "read_multiple_files",
-        "delete_items",
         "find_files",
         "list_directory",
-        "write_file",
-        "edit_file"
+        "read_file",
+        "read_multiple_files"
       ]
     }
   }

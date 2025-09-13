@@ -10,4 +10,3 @@ source $DOTFILES/.zsh/aliases.zsh
 source $DOTFILES/.zsh/completions.zsh
 source $DOTFILES/.zsh/exports.zsh
 source $DOTFILES/.zsh/utils.zsh
-
