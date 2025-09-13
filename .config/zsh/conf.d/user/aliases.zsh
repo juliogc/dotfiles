@@ -13,7 +13,7 @@ alias www="cd $WORKSPACE";
 
 #  overrides 
 alias ls='eza --group-directories-first';
-alias ll='eza -l -h -a --group-directories-first';
+alias ll='eza -l -a --group-directories-first';
 alias lt='eza -a --tree --level=1 --group-directories-first';
 alias rm='rm -i';
 alias cp='cp -i';
