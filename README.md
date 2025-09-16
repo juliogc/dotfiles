@@ -24,6 +24,7 @@ The whole setup is heavily inspired by [TokyoNight](https://github.com/tokyo-nig
 - [homebrew](https://brew.sh/)
 - [yabai](https://github.com/koekeishiya/yabai)
 - [skhd](https://github.com/koekeishiya/skhd)
+- [borders](https://github.com/FelixKratz/JankyBorders)
 
 ### zsh plugins
 - [fzf-tab](https://github.com/Aloxaf/fzf-tab)

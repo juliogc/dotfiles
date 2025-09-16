@@ -1,48 +1,29 @@
-# ================================================================
-#
-#   yabai config
-#
-# ================================================================
-#   default layout (can be bsp, stack or float)
-# ================================================================
-yabai -m config layout bsp
+#! █▄█ ▄▀█ █▄▄ ▄▀█ █
+#! ░█░ █▀█ █▄█ █▀█ █
 
+#!  Enables yabai scripting addition 
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+#!  Enables yabai layout (bsp | stack | float) 
+yabai -m config layout bsp
 yabai -m config windows_placement second_child
 
-#   padding
-# ================================================================
-yabai -m config top_padding 10
-yabai -m config bottom_padding 10
-yabai -m config left_padding 10
-yabai -m config right_padding 10
-yabai -m config window_gap 10
+#!  padding 
+yabai -m config top_padding 15
+yabai -m config bottom_padding 15
+yabai -m config left_padding 15
+yabai -m config right_padding 15
+yabai -m config window_gap 15
 
-# ================================================================
-#   mouse settings
-# ================================================================
-#   center mouse on window with focus
-# ================================================================
-yabai -m config mouse_follows_focus on
+#!  mouse settings 
+yabai -m config mouse_follows_focus on # center mouse on window with focus
+yabai -m config mouse_modifier alt # modifier for clicking and dragging with mouse
+yabai -m config mouse_action1 move # set modifier + left-click drag to move window
+yabai -m config mouse_action2 resize # set modifier + right-click drag to resize window
+yabai -m mouse_drop_action swap # when window is dropped in center of another window, swap them (on edges it will split it)
 
-#   modifier for clicking and dragging with mouse
-# ================================================================
-yabai -m config mouse_modifier alt
-
-#   set modifier + left-click drag to move window
-# ================================================================
-yabai -m config mouse_action1 move
-
-#   set modifier + right-click drag to resize window
-# ================================================================
-yabai -m config mouse_action2 resize
-
-#   when window is dropped in center of another window, swap them
-#   (on edges it will split it)
-# ================================================================
-yabai -m mouse_drop_action swap
-
-#   disable specific apps
-# ================================================================
+#!  disable specific apps 
 yabai -m rule --add app="^1Password$" manage=off
 yabai -m rule --add app="^AppCleaner$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
@@ -55,3 +36,6 @@ yabai -m rule --add app="^Find My$" manage=off
 yabai -m rule --add app="^Notes$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Weather$" manage=off
+
+#!  borders 
+borders
