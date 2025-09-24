@@ -43,6 +43,7 @@ Thumbs.db
 #!  zsh 
 .zsh_history
 .zcompdump*
+.zsh_sessions
 
 #!  VIM/NeoVim 
 .vim/bundle

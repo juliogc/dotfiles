@@ -13,18 +13,25 @@ setopt HIST_VERIFY             # Allow editing the command before executing agai
 setopt HIST_IGNORE_SPACE       # Do not add commands prefixed with a space to the history
 
 
-#! Initialize asdf properly before using shims
+#!  Initialize asdf properly before using shims 
 export ASDF_DATA_DIR="$HOME/.asdf"
 [[ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]] && source "$(brew --prefix asdf)/libexec/asdf.sh";
 export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-#! Fury CLI
+#!  Fury CLI 
 export FURY_BIN_LOCATION="/Users/jcorradi/.fury/fury_venv/bin"
 export PATH="$PATH:$FURY_BIN_LOCATION"
 
-#! homebrew
+#!  golang 
+if [[ -d $HOME/.asdf/plugins/golang ]]; then
+  export GOPATH=$(go env GOPATH);
+  export GOPKG=$GOPATH/bin;
+  PATH=$PATH:$GOPKG;
+fi;
+
+#!  homebrew 
 [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 #!  zsh-completions 
