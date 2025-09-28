@@ -48,6 +48,66 @@ codecompanion.setup {
       end,
     },
   },
+  memory = {
+    default = {
+      description = "Collection of common project documentation",
+      files = {
+        ".clinerules",
+        ".cursorrules",
+        ".goosehints",
+        ".rules",
+        ".windsurfrules",
+        ".github/copilot-instructions.md",
+        "AGENT.md",
+        "AGENTS.md",
+        { path = "CLAUDE.md", parser = "claude" },
+        { path = "CLAUDE.local.md", parser = "claude" },
+        { path = "~/.claude/CLAUDE.md", parser = "claude" },
+        "README.md",
+        "CHANGELOG.md",
+        "CONFIGURATION.md",
+        "CONTRIBUTING.md",
+        "INSTALL.md",
+      },
+    },
+    docs = {
+      description = "Project documentation",
+      files = {
+        "docs/",
+        "./docs/",
+        "/docs/",
+      },
+    },
+    cursor = {
+      description = "Cursor AI project files",
+      files = {
+        ".cursor/",
+        ".cursorrules",
+        ".cursor/**/*.md",
+      },
+    },
+    markdown = {
+      description = "All markdown files in the project",
+      enabled = function()
+        local md_files = vim.fn.glob("**/*.md", false, true)
+        return #md_files > 0
+      end,
+      files = {
+        "**/*.md",
+        "*.md",
+      },
+    },
+    opts = {
+      chat = {
+        enabled = true,
+        default_memory = { "default", "docs", "cursor", "markdown" },
+        default_params = "watch",
+        condition = function(chat)
+          return chat.adapter.type ~= "acp"
+        end,
+      },
+    },
+  },
   extensions = {
     mcphub = {
       callback = "mcphub.extensions.codecompanion",

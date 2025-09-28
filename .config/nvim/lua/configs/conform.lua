@@ -16,6 +16,7 @@ local options = {
     objc = { "clang-format" },
     objcpp = { "clang-format" },
     cuda = { "clang-format" },
+    go = { "goimports" },
   },
 
   -- format_on_save = {

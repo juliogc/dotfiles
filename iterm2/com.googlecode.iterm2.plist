@@ -6,14 +6,30 @@
 	<string>Return commands suitable for copy/pasting into \(shell) on \(uname). Do NOT include commentary NOR Markdown triple-backtick code blocks as your whole response will be copied into my terminal automatically.
 
 The script should do this: \(ai.prompt)</string>
+	<key>AIFeatureFunctionCalling</key>
+	<true/>
+	<key>AIFeatureHostedCodeInterpeter</key>
+	<true/>
+	<key>AIFeatureHostedFileSearch</key>
+	<true/>
+	<key>AIFeatureHostedWebSearch</key>
+	<true/>
+	<key>AIFeatureStreamingResponses</key>
+	<true/>
+	<key>AITermAPI</key>
+	<integer>2</integer>
+	<key>AIVectorStore</key>
+	<integer>1</integer>
 	<key>AdjustWindowForFontSizeChange</key>
 	<false/>
 	<key>AiMaxTokens</key>
-	<integer>128000</integer>
+	<integer>1000000</integer>
 	<key>AiModel</key>
-	<string>gpt-4o-mini</string>
+	<string>gpt-4.1</string>
+	<key>AiResponseMaxTokens</key>
+	<integer>32768</integer>
 	<key>AitermURL</key>
-	<string>https://api.openai.com/v1/completions</string>
+	<string>https://api.openai.com/v1/responses</string>
 	<key>AitermUseLegacyAPI</key>
 	<false/>
 	<key>AlternateMouseScroll</key>
@@ -1482,7 +1498,7 @@ The script should do this: \(ai.prompt)</string>
 	<key>HideMenuBarInFullscreen</key>
 	<true/>
 	<key>HideScrollbar</key>
-	<false/>
+	<true/>
 	<key>HideTab</key>
 	<true/>
 	<key>HideTabNumber</key>
@@ -1948,7 +1964,7 @@ The script should do this: \(ai.prompt)</string>
 			<key>Normal Font</key>
 			<string>FiraCodeNFM-Reg 14</string>
 			<key>Only The Default BG Color Uses Transparency</key>
-			<false/>
+			<true/>
 			<key>Open Toolbelt</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -2010,7 +2026,7 @@ The script should do this: \(ai.prompt)</string>
 			<key>Title Components</key>
 			<integer>32</integer>
 			<key>Transparency</key>
-			<real>0.0</real>
+			<real>0.20750558035714287</real>
 			<key>Unlimited Scrollback</key>
 			<true/>
 			<key>Use Bold Font</key>
