@@ -1,87 +1,72 @@
--- █▀█ █░░ █░█ █▀▀ █ █▄░█ █▀
--- █▀▀ █▄▄ █▄█ █▄█ █ █░▀█ ▄█
-
 return {
+  { "nvim-tree/nvim-web-devicons", opts = {} },
+
   {
-    "folke/noice.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-    event = "VeryLazy",
-    config = require("configs.noice").setup,
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require "configs.tokyonight"
+    end,
   },
 
   {
-    "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
-    opts = require "configs.conform",
+    "folke/which-key.nvim",
+    keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
+    cmd = "WhichKey",
+    opts = function()
+      return require "configs.which-key"
+    end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
+    opts = function()
+      return require "configs.treesitter"
+    end,
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
+
+  {
+    "mason-org/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+    opts = function()
+      return require "configs.mason"
+    end,
   },
 
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
+    dependencies = {
+      { "b0o/schemastore.nvim" },
+    },
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require "configs.lspconfig"
     end,
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = { "OXY2DEV/markview.nvim" },
-    lazy = false,
-    opts = require "configs.treesitter",
-  },
-
-  {
-    "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    opts = require "configs.nvimtree",
-  },
-
-  {
-    "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      pickers = {
-        find_files = {
-          hidden = true,
-        },
-        grep_string = {
-          hidden = true,
-        },
-      },
-    },
-  },
-
-  { import = "nvchad.blink.lazyspec" },
-
-  {
-    "saghen/blink.cmp",
-    version = "1.*",
-    dependencies = { "giuxtaposition/blink-cmp-copilot" },
-    opts = require "configs.blink",
-  },
-
-  {
-    "Bekaboo/dropbar.nvim",
+    "mason-org/mason-lspconfig.nvim",
     dependencies = {
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-      },
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
     },
-    event = { "BufReadPost", "BufNewFile" },
-    config = require("configs.dropbar").config,
+    opts = function()
+      return require "configs.mason-lspconfig"
+    end,
   },
 
   {
-    "OXY2DEV/markview.nvim",
-    dependencies = {
-      "saghen/blink.cmp",
-    },
-    opts = require "configs.markview",
+    "stevearc/conform.nvim",
+    opts = function()
+      return require "configs.conform" ---@module "configs.conform"
+    end,
   },
 
   {
@@ -93,11 +78,111 @@ return {
   },
 
   {
+    "saghen/blink.cmp",
+    dependencies = {
+      "giuxtaposition/blink-cmp-copilot",
+      "rafamadriz/friendly-snippets",
+
+      {
+        "L3MON4D3/LuaSnip",
+        dependencies = "rafamadriz/friendly-snippets",
+        opts = {
+          history = true,
+          updateevents = "TextChanged,TextChangedI",
+        },
+        config = function(_, opts)
+          require("luasnip").config.set_config(opts) ---@module "luasnip"
+          require "configs.luasnip" ---@module "configs.luasnip"
+        end,
+      },
+
+      {
+        "windwp/nvim-autopairs",
+        opts = {
+          fast_wrap = {},
+          disable_filetype = { "TelescopePrompt", "vim" },
+        },
+      },
+    },
+    version = "1.*",
+    opts = function()
+      return require "configs.blink"
+    end,
+    opts_extend = { "sources.default" },
+  },
+
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = function()
+      return require "configs.gitsigns"
+    end,
+  },
+
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = function()
+      return require "configs.snacks"
+    end,
+    keys = require "configs.snacks.mappings",
+  },
+
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require "configs.noice"
+    end,
+  },
+
+  {
+    "romgrk/barbar.nvim",
+    version = "^1.0.0",
+    dependencies = {
+      "lewis6991/gitsigns.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    opts = function()
+      return require "configs.barbar"
+    end,
+  },
+
+  {
+    "Bekaboo/dropbar.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+    },
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {},
+  },
+
+  {
+    "sschleemilch/slimline.nvim",
+    opts = function()
+      return require "configs.slimline"
+    end,
+  },
+
+  {
+    "Wansmer/treesj",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    keys = { "<space>m", "<space>j", "<space>s" },
+    opts = {},
+  },
+
+  {
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "ravitemer/codecompanion-history.nvim",
+      "franco-ruggeri/codecompanion-spinner.nvim",
     },
     cmd = {
       "CodeCompanion",
@@ -118,10 +203,4 @@ return {
     build = "npm install -g mcp-hub@latest",
     config = require("configs.mcphub").setup,
   },
-
-  { "b0o/schemastore.nvim" },
-
-  { "aznhe21/actions-preview.nvim" },
-
-  { "echasnovski/mini.diff", version = "*" },
 }

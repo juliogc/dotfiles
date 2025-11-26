@@ -17,6 +17,10 @@ local M = {
   filetypes = {
     markdown = true,
     help = true,
+    codecompanion = true,
+  },
+  logger = {
+    print_log_level = vim.log.levels.ERROR,
   },
 }
 

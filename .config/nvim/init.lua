@@ -5,9 +5,6 @@
 -- ██║░╚███║░░╚██╔╝░░██║██║░╚═╝░██║
 -- ╚═╝░░╚══╝░░░╚═╝░░░╚═╝╚═╝░░░░░╚═╝
 
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
-vim.g.mapleader = " "
-
 -- █▄▄ █▀█ █▀█ ▀█▀ █▀ ▀█▀ █▀█ ▄▀█ █▀█
 -- █▄█ █▄█ █▄█ ░█░ ▄█ ░█░ █▀▄ █▀█ █▀▀
 
@@ -20,24 +17,16 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_config = require "configs.lazy"
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 -- █▀█ █░░ █░█ █▀▀ █ █▄░█ █▀
 -- █▀▀ █▄▄ █▄█ █▄█ █ █░▀█ ▄█
 
+local lazy_config = require "configs.lazy"
 require("lazy").setup({
-  {
-    "NvChad/NvChad",
-    branch = "v2.5",
-    import = "nvchad.plugins",
-  },
-
   { import = "plugins" },
 }, lazy_config)
-
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
 
 require "options"
 require "autocmds"

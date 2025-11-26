@@ -1,7 +1,7 @@
 -- █▀▀ █▀█ █▄░█ █▀▀ █▀█ █▀█ █▀▄▀█
 -- █▄▄ █▄█ █░▀█ █▀░ █▄█ █▀▄ █░▀░█
 
-local options = {
+local M = {
   formatters_by_ft = {
     lua = { "stylua" },
     css = { "prettierd" },
@@ -26,4 +26,4 @@ local options = {
   -- },
 }
 
-return options
+return M
