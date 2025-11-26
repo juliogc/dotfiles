@@ -1,13 +1,20 @@
+#!/usr/bin/env sh
+
 #! █▄█ ▄▀█ █▄▄ ▄▀█ █
 #! ░█░ █▀█ █▄█ █▀█ █
 
 #!  Enables yabai scripting addition 
-# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-# sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
 
 #!  Enables yabai layout (bsp | stack | float) 
 yabai -m config layout bsp
 yabai -m config windows_placement second_child
+
+#!  Enables transparency 
+# yabai -m config window_opacity on
+# yabai -m config active_window_opacity 0.98
+# yabai -m config normal_window_opacity 0.92
 
 #!  padding 
 yabai -m config top_padding 12
@@ -25,6 +32,7 @@ yabai -m mouse_drop_action swap # when window is dropped in center of another wi
 
 #!  disable specific apps 
 yabai -m rule --add app="^1Password$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="^AppCleaner$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^.*Armoury Crate Gear.*$" manage=off
@@ -36,6 +44,11 @@ yabai -m rule --add app="^Find My$" manage=off
 yabai -m rule --add app="^Notes$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Weather$" manage=off
+yabai -m rule --add app="^Workspace ONE.+$" manage=off
+
+#!  fix native tabs 
+yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --focus next; sleep 0.01; yabai -m space --focus prev'
+yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --focus next; sleep 0.01; yabai -m space --focus prev'
 
 #!  borders 
 borders
