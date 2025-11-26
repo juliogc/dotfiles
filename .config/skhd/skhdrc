@@ -1,99 +1,89 @@
-# ================================================================
-#
-#   skhd config
-#
-# ================================================================
+#! █▀ █▄▀ █░█ █▀▄
+#! ▄█ █░█ █▀█ █▄▀
 
-# ================================================================
-#  Changing Window Focus
-# ================================================================
-#  change window focus within space
-# ================================================================
+
+#! █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀▀ █▀█ █▀▀ █░█ █▀
+#! ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀   █▀░ █▄█ █▄▄ █▄█ ▄█
+
+#!  change window focus within space 
 ctrl + alt - left : yabai -m window --focus west
 ctrl + alt - down : yabai -m window --focus south
 ctrl + alt - up : yabai -m window --focus north
 ctrl + alt - right : yabai -m window --focus east
 
-#  change focus between external displays (left and right)
-# ================================================================
+#!  change focus between displays 
 ctrl + shift - left : yabai -m display --focus west
 ctrl + shift - down : yabai -m display --focus south
 ctrl + shift - up : yabai -m display --focus north
 ctrl + shift - right : yabai -m display --focus east
 
 
-# ================================================================
-#   Modifying the Layout
-# ================================================================
-#   rotate layout clockwise
-# ================================================================
+#! █▀▄▀█ █▀█ █▀▄ █ █▀▀ █▄█ █ █▄░█ █▀▀   █░░ ▄▀█ █▄█ █▀█ █░█ ▀█▀
+#! █░▀░█ █▄█ █▄▀ █ █▀░ ░█░ █ █░▀█ █▄█   █▄▄ █▀█ ░█░ █▄█ █▄█ ░█░
+
+#!  rotate layout clockwise 
 ctrl + alt - r : yabai -m space --rotate 270
 
-#   flip along y-axis
-# ================================================================
+#!  flip along y-axis 
 ctrl + alt - y : yabai -m space --mirror y-axis
 
-#   flip along x-axis
-# ================================================================
+#!  flip along x-axis 
 ctrl + alt - x : yabai -m space --mirror x-axis
 
-#   toggle window float
-# ================================================================
-ctrl + alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 
+#! █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█ █▀
+#! ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀ ▄█
 
-# ================================================================
-#   Modifying Window Size
-# ================================================================
-#   maximize a window
-# ================================================================
+#!  maximize a window 
 ctrl + alt - return : yabai -m window --toggle zoom-fullscreen
 
-#   balance out tree of windows (resize to occupy same area)
-# ================================================================
+#!  toggle window float 
+ctrl + alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+#!  center focused window 
+ctrl + alt - c : yabai -m window --grid 4:4:1:1:2:2
+
+#!  balance out tree of windows (resize to occupy same area)  
 ctrl + alt - e : yabai -m space --balance
 
-#   toggle split between horizontal/vertial
-# ================================================================
+#!  toggle split between horizontal/vertical 
 ctrl + alt - space : yabai -m window --toggle split
 
-#   resize windows
-# ================================================================
+#!  resize windows 
 cmd + alt - h : yabai -m window --resize right:-20:0 2> /dev/null || yabai -m window --resize left:-20:0 2> /dev/null
 cmd + alt - j : yabai -m window --resize bottom:0:20 2> /dev/null || yabai -m window --resize top:0:20 2> /dev/null
 cmd + alt - k : yabai -m window --resize bottom:0:-20 2> /dev/null || yabai -m window --resize top:0:-20 2> /dev/null
 cmd + alt - l : yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null
 
-
-# ================================================================
-#   Moving Windows Around
-# ================================================================
-#   swap windows
-# ================================================================
+#!  swap windows 
 ctrl + alt - j : yabai -m window --swap south
 ctrl + alt - k : yabai -m window --swap north
 ctrl + alt - h : yabai -m window --swap west
 ctrl + alt - l : yabai -m window --swap east
 
-#   move window and split
-# ================================================================
+#!  move window and split 
 ctrl + shift - j : yabai -m window --warp south
 ctrl + shift - k : yabai -m window --warp north
 ctrl + shift - h : yabai -m window --warp west
 ctrl + shift - l : yabai -m window --warp east
 
-#   move window to display left and right
-# ================================================================
+
+#! █░█░█ █▀█ █▀█ █▄▀ █▀ █▀█ ▄▀█ █▀▀ █▀▀ █▀
+#! ▀▄▀▄▀ █▄█ █▀▄ █░█ ▄█ █▀▀ █▀█ █▄▄ ██▄ ▄█
+
+#!  switching between spaces 
+ctrl - left : yabai -m space --focus prev
+ctrl - right : yabai -m space --focus next
+
+#!  move window to display left and right 
 ctrl + alt + cmd - h : yabai -m window --display west; yabai -m display --focus west;
 ctrl + alt + cmd - l : yabai -m window --display east; yabai -m display --focus east;
 
-#   move window to prev and next space
-# ================================================================
+#!  move window to prev and next space 
 ctrl + alt - p : yabai -m window --space prev;
 ctrl + alt - n : yabai -m window --space next;
 
-#   move window to space #
-# ================================================================
+#!  move window to space 
 ctrl + alt - 1 : yabai -m window --space 1;
 ctrl + alt - 2 : yabai -m window --space 2;
 ctrl + alt - 3 : yabai -m window --space 3;
@@ -101,11 +91,15 @@ ctrl + alt - 4 : yabai -m window --space 4;
 ctrl + alt - 5 : yabai -m window --space 5;
 ctrl + alt - 6 : yabai -m window --space 6;
 ctrl + alt - 7 : yabai -m window --space 7;
+ctrl + alt - 8 : yabai -m window --space 8;
+ctrl + alt - 9 : yabai -m window --space 9;
+ctrl + alt - 0 : yabai -m window --space 10;
 
 
-# ================================================================
-#   starting/stopping/restarting yabai
-# ================================================================
+#! █▀▄▀█ ▄▀█ █▄░█ ▄▀█ █▀▀ █▀▀
+#! █░▀░█ █▀█ █░▀█ █▀█ █▄█ ██▄
+
 shift + alt - q : yabai --stop-service
 shift + alt - s : yabai --start-service
 shift + alt - r : yabai --restart-service
+shift + alt - a : open -a "Activity Monitor" 
