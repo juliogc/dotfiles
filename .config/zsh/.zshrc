@@ -23,9 +23,10 @@ export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 #!  golang 
 if [[ -d $HOME/.asdf/plugins/golang ]]; then
-  export GOPATH=$(go env GOPATH);
-  export GOPKG=$GOPATH/bin;
-  PATH=$PATH:$GOPKG;
+  # export GOPATH=$(go env GOPATH);
+  # export GOPKG=$GOPATH/bin;
+  # PATH=$PATH:$GOPKG;
+  source ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh;
 fi;
 
 #!  homebrew 
