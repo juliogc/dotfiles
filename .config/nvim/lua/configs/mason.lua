@@ -1,6 +1,7 @@
 -- █▀▄▀█ ▄▀█ █▀ █▀█ █▄░█
 -- █░▀░█ █▀█ ▄█ █▄█ █░▀█
 
+---@type MasonSettings
 local M = {
   PATH = "skip",
 

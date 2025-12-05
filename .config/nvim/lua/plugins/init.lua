@@ -64,6 +64,7 @@ return {
 
   {
     "stevearc/conform.nvim",
+    event = "BufReadPost",
     opts = function()
       return require "configs.conform" ---@module "configs.conform"
     end,
@@ -178,6 +179,7 @@ return {
 
   {
     "olimorris/codecompanion.nvim",
+    tag = "v17.33.0",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
