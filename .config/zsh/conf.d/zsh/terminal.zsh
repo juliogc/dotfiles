@@ -15,7 +15,6 @@ function _load_functions() {
 }
 
 function _load_completions() {
-
   for file in "${ZDOTDIR:-$HOME/.config/zsh}/completions/"*.zsh; do
     [ -r "$file" ] && source "$file"
   done

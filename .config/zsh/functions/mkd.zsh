@@ -5,5 +5,5 @@
 
 #!  Attempts to create and navigate to directory specified by pathname.
 function mkd() {
-  mkdir -p "$@" && cd "$_";
+  mkdir -p "$@" && cd "$_"
 }
