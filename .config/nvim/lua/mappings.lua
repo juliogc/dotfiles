@@ -6,9 +6,24 @@ local map = vim.keymap.set
 -- General
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
-map("n", "<leader>x", function ()
+map("n", "<leader>x", function()
   require("utils.buffer").close_buffer()
 end, { desc = "barbar close buffer" })
+
+-- highlight
+map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
+
+-- file management
+map("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
+map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
+
+-- comment
+map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
+map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
+
+-- line numbers
+map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
+map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
 
 -- Insert
 map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
@@ -38,34 +53,21 @@ map("n", "<C-S-f>", "<cmd>BufferMovePrevious<CR>", { desc = "barbar move backwar
 -- map("n", "<leader>x", "<Cmd>BufferClose<CR>", { desc = "barbar close buffer" })
 map("n", "<leader>br", "<Cmd>BufferRestore<CR>", { desc = "barbar restore buffer" })
 map("n", "<leader>bp", "<Cmd>BufferPin<CR>", { desc = "barbar pin buffer" })
-map('n', '<leader>bb', '<Cmd>BufferOrderByBufferNumber<CR>', { desc = "barbar order by buffer number" })
-map('n', '<leader>bn', '<Cmd>BufferOrderByName<CR>', { desc = "barbar order by name" })
-map('n', '<leader>bd', '<Cmd>BufferOrderByDirectory<CR>', { desc = "barbar order by directory" })
-map('n', '<leader>bl', '<Cmd>BufferOrderByLanguage<CR>', { desc = "barbar order by language" })
+map("n", "<leader>bb", "<Cmd>BufferOrderByBufferNumber<CR>", { desc = "barbar order by buffer number" })
+map("n", "<leader>bn", "<Cmd>BufferOrderByName<CR>", { desc = "barbar order by name" })
+map("n", "<leader>bd", "<Cmd>BufferOrderByDirectory<CR>", { desc = "barbar order by directory" })
+map("n", "<leader>bl", "<Cmd>BufferOrderByLanguage<CR>", { desc = "barbar order by language" })
 
 --dropbar
-local dropbar_api = require("dropbar.api")
+local dropbar_api = require "dropbar.api"
 map("n", "<leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
 map("n", "[;", dropbar_api.goto_context_start, { desc = "Go to start of current context" })
 map("n", "];", dropbar_api.select_next_context, { desc = "Select next context" })
 map("n", "<leader>df", dropbar_api.fuzzy_find_toggle, { desc = "dropbar fuzzy find" })
 
--- Highlight
-map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
+map("n", "<leader>lr", "<Cmd>LspRestart<CR>", { desc = "lsp restart" })
 
--- File management
-map("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
-map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
-
--- Comment
-map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
-map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
-
--- Line numbers
-map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
-map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
-
--- Conform
+-- conform
 map({ "n", "x" }, "<leader>fm", function()
   require("conform").format { lsp_fallback = true }
 end, { desc = "general format file" })

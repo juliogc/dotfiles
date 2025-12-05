@@ -113,6 +113,8 @@ local servers = {
       },
     },
   },
+  ltex_plus = {},
 }
 
 return servers
+

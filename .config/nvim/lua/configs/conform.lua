@@ -1,6 +1,7 @@
 -- █▀▀ █▀█ █▄░█ █▀▀ █▀█ █▀█ █▀▄▀█
 -- █▄▄ █▄█ █░▀█ █▀░ █▄█ █▀▄ █░▀░█
 
+---@type conform.setupOpts
 local M = {
   formatters_by_ft = {
     lua = { "stylua" },
@@ -17,6 +18,9 @@ local M = {
     objcpp = { "clang-format" },
     cuda = { "clang-format" },
     go = { "goimports" },
+    bash = { "shfmt" },
+    sh = { "shfmt" },
+    zsh = { "shfmt" },
   },
 
   -- format_on_save = {

@@ -39,9 +39,11 @@ local M = {
     },
   },
   sources = {
-    explorer = { hidden = true },
-    keymaps = { layout = { preset = "vscode" } },
     buffers = { layout = { preset = "vertical_layout" } },
+    explorer = { hidden = true },
+    files = { hidden = true },
+    keymaps = { layout = { preset = "vscode" } },
+    notifications = { layout = { preset = "vertical_layout" } },
     recent = { layout = { preset = "vertical_layout" }, title = "Most Recently Used Files" },
   },
 }
