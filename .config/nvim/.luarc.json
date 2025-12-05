@@ -1,0 +1,60 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "runtime": {
+    "version": "LuaJIT"
+  },
+  "diagnostics": {
+    "globals": [
+      "vim",
+      "use",
+      "Snacks"
+    ],
+    "checkThirdParty": false
+  },
+  "workspace": {
+    "library": [
+      "$VIMRUNTIME",
+      "~/.local/share/nvim/lazy/barbar.nvim/lua",
+      "~/.local/share/nvim/lazy/blink-cmp-copilot/lua",
+      "~/.local/share/nvim/lazy/blink.cmp/lua",
+      "~/.local/share/nvim/lazy/codecompanion-history.nvim/lua",
+      "~/.local/share/nvim/lazy/codecompanion-spinner.nvim/lua",
+      "~/.local/share/nvim/lazy/codecompanion.nvim/lua",
+      "~/.local/share/nvim/lazy/conform.nvim/lua",
+      "~/.local/share/nvim/lazy/copilot.lua/lua",
+      "~/.local/share/nvim/lazy/dropbar.nvim/lua",
+      "~/.local/share/nvim/lazy/friendly-snippets/lua",
+      "~/.local/share/nvim/lazy/gitsigns.nvim/lua",
+      "~/.local/share/nvim/lazy/lazy.nvim/lua",
+      "~/.local/share/nvim/lazy/LuaSnip/lua",
+      "~/.local/share/nvim/lazy/mason-lspconfig.nvim/lua",
+      "~/.local/share/nvim/lazy/mason.nvim/lua",
+      "~/.local/share/nvim/lazy/mcphub.nvim/lua",
+      "~/.local/share/nvim/lazy/noice.nvim/lua",
+      "~/.local/share/nvim/lazy/nui.nvim/lua",
+      "~/.local/share/nvim/lazy/nvim-autopairs/lua",
+      "~/.local/share/nvim/lazy/nvim-lspconfig/lua",
+      "~/.local/share/nvim/lazy/nvim-treesitter/lua",
+      "~/.local/share/nvim/lazy/nvim-web-devicons/lua",
+      "~/.local/share/nvim/lazy/plenary.nvim/lua",
+      "~/.local/share/nvim/lazy/schemastore.nvim/lua",
+      "~/.local/share/nvim/lazy/slimline.nvim/lua",
+      "~/.local/share/nvim/lazy/snacks.nvim/lua",
+      "~/.local/share/nvim/lazy/telescope-fzf-native.nvim/lua",
+      "~/.local/share/nvim/lazy/tokyonight.nvim/lua",
+      "~/.local/share/nvim/lazy/treesj/lua",
+      "~/.local/share/nvim/lazy/which-key.nvim/lua",
+      "${3rd}/luv/library"
+    ],
+    "extraFileField": [
+      "lazy/lazy.nvim"
+    ]
+  },
+  "format": {
+    "enable": true,
+    "defaultConfig": {
+      "indent_style": "space",
+      "indent_size": "2"
+    }
+  }
+}

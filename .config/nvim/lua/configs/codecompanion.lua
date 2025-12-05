@@ -12,6 +12,9 @@ codecompanion.setup {
     log_level = "DEBUG",
   },
   display = {
+    chat = {
+      show_settings = true,
+    },
     diff = {
       enabled = true,
     },
@@ -19,6 +22,17 @@ codecompanion.setup {
   strategies = {
     chat = {
       adapter = "copilot",
+      slash_commands = {
+        ["image"] = {
+          opts = {
+            dirs = {
+              "~/Desktop",
+              "~/Documents/images",
+              "~/Pictures",
+            },
+          },
+        },
+      },
     },
     inline = {
       adapter = "copilot",
@@ -34,7 +48,7 @@ codecompanion.setup {
           schema = {
             model = {
               -- default = "gpt-5",
-              default = "claude-sonnet-4",
+              default = "claude-sonnet-4.5",
             },
           },
         })
@@ -122,6 +136,9 @@ codecompanion.setup {
       },
     },
     history = {
+      enabled = true,
+    },
+    spinner = {
       enabled = true,
     },
   },

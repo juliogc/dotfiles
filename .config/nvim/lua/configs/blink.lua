@@ -1,14 +1,16 @@
 -- █▄▄ █░░ █ █▄░█ █▄▀
 -- █▄█ █▄▄ █ █░▀█ █░█
 
-vim.api.nvim_create_autocmd("User", {
+local create_autocmd = vim.api.nvim_create_autocmd
+
+create_autocmd("User", {
   pattern = "BlinkCmpMenuOpen",
   callback = function()
     vim.b.copilot_suggestion_hidden = true
   end,
 })
 
-vim.api.nvim_create_autocmd("User", {
+create_autocmd("User", {
   pattern = "BlinkCmpMenuClose",
   callback = function()
     vim.b.copilot_suggestion_hidden = false
@@ -16,6 +18,30 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 local M = {
+  appearance = { nerd_font_variant = "normal" },
+  completion = {
+    documentation = { auto_show = true },
+    menu = {
+      border = "none",
+      draw = {
+        padding = 0,
+        columns = { { "label" }, { "kind_icon" }, { "kind" } },
+        components = {
+          kind_icon = {
+            text = function(ctx)
+              local icons = require "icons"
+              local icon = (icons[ctx.kind] or "󰈚")
+              return icon
+            end,
+          },
+        },
+      },
+    },
+  },
+  cmdline = { enabled = true },
+
+  snippets = { preset = "luasnip" },
+
   sources = {
     default = { "lsp", "path", "snippets", "buffer", "copilot" },
     providers = {
@@ -36,40 +62,18 @@ local M = {
       },
     },
   },
-  appearance = {
-    kind_icons = {
-      Copilot = "",
-      Text = "󰉿",
-      Method = "󰊕",
-      Function = "󰊕",
-      Constructor = "󰒓",
 
-      Field = "󰜢",
-      Variable = "󰆦",
-      Property = "󰖷",
+  fuzzy = { implementation = "prefer_rust" },
 
-      Class = "󱡠",
-      Interface = "󱡠",
-      Struct = "󱡠",
-      Module = "󰅩",
-
-      Unit = "󰪚",
-      Value = "󰦨",
-      Enum = "󰦨",
-      EnumMember = "󰦨",
-
-      Keyword = "󰻾",
-      Constant = "󰏿",
-
-      Snippet = "󱄽",
-      Color = "󰏘",
-      File = "󰈔",
-      Reference = "󰬲",
-      Folder = "󰉋",
-      Event = "󱐋",
-      Operator = "󰪚",
-      TypeParameter = "󰬛",
-    },
+  keymap = {
+    preset = "default",
+    ["<CR>"] = { "accept", "fallback" },
+    ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+    ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+    ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+    ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+    ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+    ["<C-e>"] = { "hide" },
   },
 }
 

@@ -39,3 +39,9 @@ The whole setup is heavily inspired by [TokyoNight](https://github.com/tokyo-nig
 For general neovim setup, see [here](/.config/nvim)
 
 ![nvim](./assets/nvim.png)
+### Dependencies
+
+- [chafa](https://github.com/hpjansson/chafa)
+- [mermaid-cli](https://github.com/mermaid-js/mermaid-cli)
+- [tectonic](https://github.com/tectonic-typesetting/tectonic)
+- [ghostscript](https://ghostscript.com/index.html)

@@ -1,10 +1,7 @@
--- █░░ █▀ █▀█ █▀▀ █▀█ █▄░█ █▀▀ █ █▀▀
--- █▄▄ ▄█ █▀▀ █▄▄ █▄█ █░▀█ █▀░ █ █▄█
+-- █▀ █▀▀ █▀█ █░█ █▀▀ █▀█ █▀
+-- ▄█ ██▄ █▀▄ ▀▄▀ ██▄ █▀▄ ▄█
 
-local nvconfig = require "nvchad.configs.lspconfig"
 local schemastore = require "schemastore"
-
-nvconfig.defaults()
 
 local servers = {
   bashls = {
@@ -15,33 +12,8 @@ local servers = {
       },
     },
   },
-  html = {},
+  clangd = {},
   cssls = {},
-  jsonls = {
-    settings = {
-      json = {
-        schemas = schemastore.json.schemas(),
-        validate = { enable = true },
-      },
-    },
-  },
-  yamlls = {
-    settings = {
-      yaml = {
-        schemaStore = { enable = false, url = "" },
-        schemas = schemastore.yaml.schemas(),
-      },
-    },
-  },
-  ts_ls = {
-    init_options = {
-      preferences = {
-        disableSuggestions = true,
-      },
-    },
-  },
-  eslint = {},
-  prismals = {},
   dockerls = {
     settings = {
       docker = {
@@ -54,15 +26,7 @@ local servers = {
     },
   },
   docker_compose_language_service = {},
-  rust_analyzer = {
-    settings = {
-      ["rust-analyzer"] = {
-        diagnostics = {
-          enable = false,
-        },
-      },
-    },
-  },
+  eslint = {},
   gopls = {
     settings = {
       gopls = {
@@ -100,20 +64,55 @@ local servers = {
       },
     },
   },
+  html = {},
   hyprls = {},
-  clangd = {},
+  jsonls = {
+    settings = {
+      json = {
+        schemas = schemastore.json.schemas(),
+        validate = { enable = true },
+      },
+    },
+  },
+  lua_ls = {
+    settings = {
+      Lua = {
+        runtime = { version = "LuaJIT" },
+        workspace = {
+          library = {
+            vim.fn.expand "$VIMRUNTIME/lua",
+            vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+            "${3rd}/luv/library",
+          },
+        },
+      },
+    },
+  },
+  prismals = {},
+  rust_analyzer = {
+    settings = {
+      ["rust-analyzer"] = {
+        diagnostics = {
+          enable = false,
+        },
+      },
+    },
+  },
+  ts_ls = {
+    init_options = {
+      preferences = {
+        disableSuggestions = true,
+      },
+    },
+  },
+  yamlls = {
+    settings = {
+      yaml = {
+        schemaStore = { enable = false, url = "" },
+        schemas = schemastore.yaml.schemas(),
+      },
+    },
+  },
 }
 
-vim.lsp.enable(vim.tbl_keys(servers))
-
-for name, opts in pairs(servers) do
-  vim.lsp.config(
-    name,
-    vim.tbl_deep_extend("force", {
-      on_attach = nvconfig.on_attach,
-      capabilities = nvconfig.capabilities,
-    }, opts)
-  )
-end
-
--- -- read :h vim.lsp.config for changing options of lsp servers
+return servers
