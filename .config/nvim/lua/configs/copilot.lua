@@ -1,9 +1,9 @@
--- █▀▀ █▀█ █▀█ █ █░░ █▀█ ▀█▀
--- █▄▄ █▄█ █▀▀ █ █▄▄ █▄█ ░█░
+-- █▀▀ █▀█ █▀█ █ █░░ █▀█ ▀█▀
+-- █▄▄ █▄█ █▀▀ █ █▄▄ █▄█ ░█░
 
 local M = {
   suggestion = {
-    enabled = not vim.g.ai_cmp,
+    enabled = true,
     auto_trigger = true,
     hide_during_completion = vim.g.ai_cmp,
     keymap = {
@@ -12,7 +12,6 @@ local M = {
       prev = "<M-[>",
     },
   },
-  -- suggestion = { enabled = false },
   panel = { enabled = false },
   filetypes = {
     markdown = true,
@@ -20,6 +19,7 @@ local M = {
     codecompanion = true,
   },
   logger = {
+    file = vim.fn.stdpath "log" .. "/copilot-lua.log",
     print_log_level = vim.log.levels.ERROR,
   },
 }

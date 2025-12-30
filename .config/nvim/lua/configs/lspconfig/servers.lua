@@ -14,6 +14,7 @@ local servers = {
   },
   clangd = {},
   cssls = {},
+  copilot = {},
   dockerls = {
     settings = {
       docker = {

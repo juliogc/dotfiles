@@ -17,6 +17,7 @@ create_autocmd("User", {
   end,
 })
 
+---@type blink.cmp.Config
 local M = {
   appearance = { nerd_font_variant = "normal" },
   completion = {
