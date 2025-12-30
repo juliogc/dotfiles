@@ -111,17 +111,10 @@ codecompanion.setup {
         "*.md",
       },
     },
-    meli = {
-      description = "MELI configuration and documentation",
-      files = {
-        ".meli/",
-        ".meli/**/*.md",
-      },
-    },
     opts = {
       chat = {
         enabled = true,
-        default_memory = { "default", "docs", "cursor", "markdown", "meli" },
+        default_memory = { "default", "docs", "cursor", "markdown" },
         default_params = "watch",
         condition = function(chat)
           return chat.adapter.type ~= "acp"

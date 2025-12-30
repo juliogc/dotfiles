@@ -1,7 +1,6 @@
 -- █▀▄▀█ ▄▀█ █▀█ █▀█ █ █▄░█ █▀▀ █▀
 -- █░▀░█ █▀█ █▀▀ █▀▀ █ █░▀█ █▄█ ▄█
 
----@diagnostic disable: undefined-global
 local M = {
   -- Top Pickers & Explorer
   { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
@@ -26,9 +25,9 @@ local M = {
   { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
   { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep In Open Buffers" },
   { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
-  { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
   { "<leader>si", function() Snacks.picker.icons() end, desc = "Search Icons" },
   { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Search Keymaps" },
+  { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
   -- LSP
   { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
   { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
@@ -48,8 +47,9 @@ local M = {
   { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
   { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
   { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-  { "<leader>nh",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
   { "<leader>nd", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
+  { "<leader>nh",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+  { "<leader>nl",  function() Snacks.picker.notifications() end, desc = "List all notifications" },
   { "<leader>sd", function() Snacks.dashboard() end, desc = "Snacks dashboard" },
   { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
   { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },

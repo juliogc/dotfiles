@@ -21,14 +21,10 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    lazy = false,
     build = ":TSUpdate",
-    opts = function()
-      return require "configs.treesitter"
-    end,
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+    config = function()
+      require "configs.treesitter"
     end,
   },
 
@@ -74,7 +70,7 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     build = ":Copilot auth",
-    -- event = "BufReadPost",
+    event = "InsertEnter",
     opts = require "configs.copilot",
   },
 
@@ -170,6 +166,12 @@ return {
     end,
   },
 
+  -- {
+  --   "folke/persistence.nvim",
+  --   event = "BufReadPre",
+  --   opts = {},
+  -- },
+
   {
     "Wansmer/treesj",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -179,8 +181,8 @@ return {
 
   {
     "olimorris/codecompanion.nvim",
-    tag = "v17.33.0",
     dependencies = {
+      "ravitemer/mcphub.nvim",
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "ravitemer/codecompanion-history.nvim",
@@ -204,5 +206,13 @@ return {
     },
     build = "npm install -g mcp-hub@latest",
     config = require("configs.mcphub").setup,
+  },
+
+  {
+    "norcalli/nvim-colorizer.lua",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require "configs.colorizer"
+    end,
   },
 }

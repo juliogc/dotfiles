@@ -99,3 +99,6 @@ end, { desc = "Accept Copilot suggestion or fallback to Tab" })
 map("n", "<leader>ca", "<cmd> CodeCompanionActions <cr>", { desc = "CodeCompanion - Actions" })
 map("n", "<leader>cc", "<cmd> CodeCompanionChat Toggle <cr>", { desc = "CodeCompanion - Toggle chat" })
 map("n", "<leader>cch", "<cmd> CodeCompanionHistory <cr>", { desc = "CodeCompanion - Chat history" })
+
+-- colorizer
+map("n", "<leader>bc", "<cmd>ColorizerAttachToBuffer<cr>", { desc = "Colorizer attach to buffer" })
