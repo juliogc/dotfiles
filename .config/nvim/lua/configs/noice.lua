@@ -3,6 +3,9 @@
 
 ---@type NoiceConfig
 local M = {
+  notify = {
+    enabled = false,
+  },
   lsp = {
     -- Override markdown rendering to be handled by Noice
     override = {
