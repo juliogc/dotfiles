@@ -114,7 +114,7 @@ local servers = {
       },
     },
   },
-  ltex_plus = {},
+  -- ltex_plus = {},
 }
 
 return servers
