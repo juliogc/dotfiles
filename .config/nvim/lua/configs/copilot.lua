@@ -14,6 +14,7 @@ local M = {
   },
   panel = { enabled = false },
   filetypes = {
+    ["*"] = false,  -- Disable by default
     markdown = true,
     help = true,
     codecompanion = true,

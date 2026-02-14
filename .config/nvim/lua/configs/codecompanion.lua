@@ -22,6 +22,11 @@ codecompanion.setup {
   interactions = {
     chat = {
       adapter = "copilot",
+      autoload = { "default", "docs", "cursor", "markdown" },
+      default_params = "watch",
+      enabled = function(chat)
+        return chat.adapter.type ~= "acp"
+      end,
       slash_commands = {
         ["image"] = {
           opts = {
@@ -47,8 +52,12 @@ codecompanion.setup {
         return require("codecompanion.adapters").extend("copilot", {
           schema = {
             model = {
-              -- default = "gpt-5",
-              default = "claude-sonnet-4.5",
+              default = "gpt-5.2",
+              -- "gpt-5.3-codex", "gpt-5.2-codex"
+              -- "gpt-5.1-codex-max", "gpt-5.1-codex-mini", "gpt-5.1-codex"
+              -- "gpt-5-codex", "gpt-5.2", "gpt-5.1", "gpt-5"
+              -- "gpt-5 mini", "gpt-4.1"
+              -- "claude-sonnet-4.5"
             },
           },
         })
@@ -62,7 +71,7 @@ codecompanion.setup {
       end,
     },
   },
-  memory = {
+  rules = {
     default = {
       description = "Collection of common project documentation",
       files = {
@@ -109,16 +118,6 @@ codecompanion.setup {
       files = {
         "**/*.md",
         "*.md",
-      },
-    },
-    opts = {
-      chat = {
-        enabled = true,
-        default_memory = { "default", "docs", "cursor", "markdown" },
-        default_params = "watch",
-        condition = function(chat)
-          return chat.adapter.type ~= "acp"
-        end,
       },
     },
   },
