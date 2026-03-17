@@ -50,3 +50,6 @@ Thumbs.db
 
 #!  asdf 
 .tool-versions
+
+#!  claude 
+.claude

@@ -14,12 +14,6 @@ function _load_functions() {
   done
 }
 
-function _load_completions() {
-  for file in "${ZDOTDIR:-$HOME/.config/zsh}/completions/"*.zsh; do
-    [ -r "$file" ] && source "$file"
-  done
-}
-
 # Initialize completions with optimized performance
 function _load_compinit() {
   autoload -Uz compinit
@@ -59,4 +53,3 @@ source $ZSH/oh-my-zsh.sh
 
 _load_prompt
 _load_functions
-_load_completions

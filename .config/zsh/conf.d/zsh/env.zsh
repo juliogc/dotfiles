@@ -6,6 +6,9 @@
 # Basic PATH prepending (user local bin)
 PATH="$HOME/.local/bin:$PATH"
 
+# zsh-completions — must be set before compinit
+fpath+=${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions/source
+
 # XDG Base Directory Specification variables with defaults
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
