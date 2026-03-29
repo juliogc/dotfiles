@@ -22,7 +22,7 @@ vim.diagnostic.config {
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
-    lsp.on_attach(_, args.buf)
+    lsp.on_attach(nil, args.buf)
   end,
 })
 

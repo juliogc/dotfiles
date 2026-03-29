@@ -12,6 +12,7 @@ local M = {
     -- "clang-format",
     -- "shfmt",
   }),
+  automatic_enable = false,
 }
 
 return M

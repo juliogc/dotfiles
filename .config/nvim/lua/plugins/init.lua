@@ -14,6 +14,7 @@ return {
     "folke/which-key.nvim",
     keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
     cmd = "WhichKey",
+    lazy = false,
     opts = function()
       return require "configs.which-key"
     end,
@@ -63,7 +64,7 @@ return {
     lazy = false,
     opts = {
       preview = {
-        filetypes = { "markdown", "codecompanion" },
+        filetypes = { "markdown" },
         ignore_buftypes = {},
       },
     },
@@ -83,6 +84,17 @@ return {
     build = ":Copilot auth",
     event = "InsertEnter",
     opts = require "configs.copilot",
+  },
+
+  {
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    lazy = false,
+    opts = function()
+      return require "configs.claudecode"
+    end,
+    keys = require "configs.claudecode.mappings",
+    config = true,
   },
 
   {
@@ -191,39 +203,22 @@ return {
   },
 
   {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "ravitemer/mcphub.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "ravitemer/codecompanion-history.nvim",
-      "franco-ruggeri/codecompanion-spinner.nvim",
-    },
-    cmd = {
-      "CodeCompanion",
-      "CodeCompanionActions",
-      "CodeCompanionChat",
-    },
-    lazy = false,
-    config = function()
-      require "configs.codecompanion"
-    end,
-  },
-
-  {
-    "ravitemer/mcphub.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    build = "npm install -g mcp-hub@latest",
-    config = require("configs.mcphub").setup,
-  },
-
-  {
     "norcalli/nvim-colorizer.lua",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
       require "configs.colorizer"
     end,
+  },
+
+  {
+    "folke/sidekick.nvim",
+    dependencies = {
+      "folke/snacks.nvim",
+      "zbirenbaum/copilot.lua",
+    },
+    opts = function()
+      return require "configs.sidekiq"
+    end,
+    keys = require "configs.sidekiq.mappings",
   },
 }

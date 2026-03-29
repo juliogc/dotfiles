@@ -1,5 +1,5 @@
--- █▄▄ █░░ █ █▄░█ █▄▀
--- █▄█ █▄▄ █ █░▀█ █░█
+-- █▄▄ █░░ █ █▄░█ █▄▀
+-- █▄█ █▄▄ █ █░▀█ █░█
 
 local create_autocmd = vim.api.nvim_create_autocmd
 
@@ -23,6 +23,7 @@ local M = {
   completion = {
     documentation = { auto_show = true },
     menu = {
+      auto_show = false,
       border = "none",
       draw = {
         padding = 0,
@@ -68,10 +69,17 @@ local M = {
 
   keymap = {
     preset = "default",
+    ["<Tab>"] = {
+      "select_next",
+      "snippet_forward",
+      function() -- sidekick next edit suggestion
+        return require("sidekick").nes_jump_or_apply()
+      end,
+      "fallback",
+    },
     ["<CR>"] = { "accept", "fallback" },
     ["<C-b>"] = { "scroll_documentation_up", "fallback" },
     ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-    ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
     ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
     ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
     ["<C-e>"] = { "hide" },
