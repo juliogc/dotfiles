@@ -48,8 +48,8 @@ end, { desc = "terminal toggle floating term" })
 --barbar
 map("n", "<Tab>", "<cmd>BufferNext<CR>", { desc = "barbar next buffer" })
 map("n", "<S-Tab>", "<cmd>BufferPrev<CR>", { desc = "barbar previous buffer" })
-map("n", "<C-S-b>", "<cmd>BufferMoveNext<CR>", { desc = "barbar move forward" })
-map("n", "<C-S-f>", "<cmd>BufferMovePrevious<CR>", { desc = "barbar move backward" })
+map("n", "<C-S-PageDown>", "<cmd>BufferMoveNext<CR>", { desc = "barbar move forward" })
+map("n", "<C-S-PageUp>", "<cmd>BufferMovePrevious<CR>", { desc = "barbar move backward" })
 -- map("n", "<leader>x", "<Cmd>BufferClose<CR>", { desc = "barbar close buffer" })
 map("n", "<leader>br", "<Cmd>BufferRestore<CR>", { desc = "barbar restore buffer" })
 map("n", "<leader>bp", "<Cmd>BufferPin<CR>", { desc = "barbar pin buffer" })
@@ -90,15 +90,23 @@ map("i", "<Tab>", function()
   if ok and suggestion.is_visible() then
     suggestion.accept()
   else
-    -- fallback: use regular <Tab>
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", true)
   end
 end, { desc = "Accept Copilot suggestion or fallback to Tab" })
 
--- codecompanion
-map("n", "<leader>ca", "<cmd> CodeCompanionActions <cr>", { desc = "CodeCompanion - Actions" })
-map("n", "<leader>cc", "<cmd> CodeCompanionChat Toggle <cr>", { desc = "CodeCompanion - Toggle chat" })
-map("n", "<leader>cch", "<cmd> CodeCompanionHistory <cr>", { desc = "CodeCompanion - Chat history" })
+map("i", "<M-]>", function()
+  local ok, suggestion = pcall(require, "copilot.suggestion")
+  if ok then
+    suggestion.next()
+  end
+end, { desc = "Copilot next suggestion" })
+
+map("i", "<M-[>", function()
+  local ok, suggestion = pcall(require, "copilot.suggestion")
+  if ok then
+    suggestion.prev()
+  end
+end, { desc = "Copilot prev suggestion" })
 
 -- colorizer
 map("n", "<leader>bc", "<cmd>ColorizerAttachToBuffer<cr>", { desc = "Colorizer attach to buffer" })

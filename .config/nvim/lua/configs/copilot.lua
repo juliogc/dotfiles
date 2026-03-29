@@ -7,17 +7,16 @@ local M = {
     auto_trigger = true,
     hide_during_completion = vim.g.ai_cmp,
     keymap = {
-      accept = false, -- handled by nvim-cmp / blink.cmp
-      next = "<M-]>",
-      prev = "<M-[>",
+      accept = false, -- handled by blink.cmp
+      next = false,   -- handled by mappings.lua
+      prev = false,   -- handled by mappings.lua
     },
   },
   panel = { enabled = false },
   filetypes = {
-    ["*"] = false,  -- Disable by default
+    ["*"] = true,
     markdown = true,
     help = true,
-    codecompanion = true,
   },
   logger = {
     file = vim.fn.stdpath "log" .. "/copilot-lua.log",
