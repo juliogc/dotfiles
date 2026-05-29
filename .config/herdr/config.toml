@@ -1,0 +1,36 @@
+onboarding = false
+
+[session]
+resume_agents_on_restore = true
+
+[ui]
+agent_panel_scope = "all"
+show_agent_labels_on_pane_borders = true
+prompt_new_tab_name = true
+
+[ui.toast]
+delivery = "terminal"
+
+[ui.sound]
+enabled = true
+
+[theme]
+name = "tokyo-night"
+
+[keys]
+close_pane = "prefix+x"
+reload_config = "shift+alt+,"
+previous_workspace = "ctrl+alt+["
+next_workspace = "ctrl+alt+]"
+previous_agent = "ctrl+["
+next_agent = "ctrl+]"
+previous_tab = "alt+["
+next_tab = "alt+]"
+focus_pane_left = "alt+h"
+focus_pane_down = "alt+j"
+focus_pane_up = "alt+k"
+focus_pane_right = "alt+l"
+
+[experimental]
+kitty_graphics = true
+pane_history = true
