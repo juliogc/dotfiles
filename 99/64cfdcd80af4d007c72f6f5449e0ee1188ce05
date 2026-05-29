@@ -1,0 +1,20 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "9964cfdcd80af4d007c72f6f5449e0ee1188ce05",
+  "prompts": {
+    "17ca7351cf8e04d6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "be40fe8b-db9b-4bdf-b41c-4e85cfab9c75",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "juliogc <jgcorradi@gmail.com>",
+      "total_additions": 2,
+      "total_deletions": 2,
+      "accepted_lines": 2,
+      "overriden_lines": 0
+    }
+  }
+}
