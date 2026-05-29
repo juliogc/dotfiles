@@ -5,7 +5,7 @@ local M = {
   sections = {
     {
       section = "terminal",
-      cmd = "chafa ~/.config/wallpapers/tokyo_pink.png --size 60x17 --stretch; sleep .1",
+      cmd = "chafa ~/.config/wallpapers/tokyo_pink.png --size 60x17 --stretch --threshold 0.05; sleep .1",
       height = 17,
       padding = 1,
     },
