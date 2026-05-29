@@ -1,0 +1,22 @@
+.config/yabai/yabairc
+  17ca7351cf8e04d6 12,31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "f87497a32e31daee9471656fe4ce3d1b3b704448",
+  "prompts": {
+    "17ca7351cf8e04d6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "be40fe8b-db9b-4bdf-b41c-4e85cfab9c75",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "juliogc <jgcorradi@gmail.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 2,
+      "overriden_lines": 0
+    }
+  }
+}
