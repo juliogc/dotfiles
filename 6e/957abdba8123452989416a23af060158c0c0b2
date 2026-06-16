@@ -1,0 +1,19 @@
+README.md
+  s_691486fe86212c::t_c887a66133eb88 21,25,28,46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "6e957abdba8123452989416a23af060158c0c0b2",
+  "prompts": {},
+  "sessions": {
+    "s_691486fe86212c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ece0c-9670-7232-8f1a-1c62dbfdefca",
+        "model": "gpt-5.5"
+      },
+      "human_author": "juliogc <jgcorradi@gmail.com>"
+    }
+  }
+}
