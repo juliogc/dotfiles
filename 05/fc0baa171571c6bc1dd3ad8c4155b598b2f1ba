@@ -1,0 +1,32 @@
+.config/zsh/.zshrc
+  s_43d14c921eaceb::t_d5798c4f57367f 31-38,40-41
+  s_43d14c921eaceb::t_1f8a06a3b8d60e 39
+.config/zsh/completions/pnpm.zsh
+  s_756f2c817adfd4::t_cfe644a733df55 5-7,10
+  s_756f2c817adfd4::t_ed963ee0a12583 4,11
+  s_756f2c817adfd4::t_88103e19275e2d 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "05fc0baa171571c6bc1dd3ad8c4155b598b2f1ba",
+  "prompts": {},
+  "sessions": {
+    "s_43d14c921eaceb": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019eb38d-64f9-75a1-95c5-63d6fc377b2d",
+        "model": "gpt-5.5"
+      },
+      "human_author": "juliogc <jgcorradi@gmail.com>"
+    },
+    "s_756f2c817adfd4": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ea86d-5573-7a90-ad5e-f3a4a4a43a90",
+        "model": "gpt-5.5"
+      },
+      "human_author": "juliogc <jgcorradi@gmail.com>"
+    }
+  }
+}
