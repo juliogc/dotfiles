@@ -17,15 +17,15 @@ The whole setup is heavily inspired by [TokyoNight](https://github.com/tokyo-nig
 - [ghostty](https://ghostty.org/)
 - [nvim](https://neovim.io/)
 - [oh-my-posh](https://ohmyposh.dev/)
-- [zoxide](https://github.com/ajeetdsouza/zoxide)
 - [oh-my-zsh](https://ohmyz.sh/)
+- [zoxide](https://github.com/ajeetdsouza/zoxide)
 
 ### MacOS
 
-- [homebrew](https://brew.sh/)
-- [yabai](https://github.com/koekeishiya/yabai)
-- [skhd](https://github.com/koekeishiya/skhd)
 - [borders](https://github.com/FelixKratz/JankyBorders)
+- [homebrew](https://brew.sh/)
+- [skhd](https://github.com/koekeishiya/skhd)
+- [yabai](https://github.com/koekeishiya/yabai)
 
 ### zsh plugins
 - [fzf-tab](https://github.com/Aloxaf/fzf-tab)
@@ -43,6 +43,6 @@ For general neovim setup, see [here](/.config/nvim)
 ### Dependencies
 
 - [chafa](https://github.com/hpjansson/chafa)
+- [ghostscript](https://ghostscript.com/index.html)
 - [mermaid-cli](https://github.com/mermaid-js/mermaid-cli)
 - [tectonic](https://github.com/tectonic-typesetting/tectonic)
-- [ghostscript](https://ghostscript.com/index.html)
