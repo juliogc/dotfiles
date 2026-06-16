@@ -53,3 +53,7 @@ Thumbs.db
 
 #!  claude 
 .claude
+
+#!  herdr 
+.config/herdr
+!.config/herdr/config.toml
