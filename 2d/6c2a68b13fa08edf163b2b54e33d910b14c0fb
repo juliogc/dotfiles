@@ -1,0 +1,21 @@
+.config/ghostty/config
+  s_798651f2d8d517::t_12849ef0e6bff6 23
+.gitignore
+  s_798651f2d8d517::t_c8a4d697d1ce96 56-59
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "2d6c2a68b13fa08edf163b2b54e33d910b14c0fb",
+  "prompts": {},
+  "sessions": {
+    "s_798651f2d8d517": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ecc83-1d3e-7770-b84e-b89f1e5afc4a",
+        "model": "gpt-5.5"
+      },
+      "human_author": "juliogc <jgcorradi@gmail.com>"
+    }
+  }
+}
