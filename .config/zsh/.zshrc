@@ -19,12 +19,17 @@ export ASDF_DATA_DIR="$HOME/.asdf"
 [[ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]] && source "$(brew --prefix asdf)/libexec/asdf.sh"
 export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
-#!  golang
+#! • golang •
 if [[ -d $HOME/.asdf/plugins/golang ]]; then
   source ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
 fi
 
-#!  zoxide
+#! • oh my posh •
+if (( $+commands[oh-my-posh] )) && [[ -r "$OMP_THEME_FILE" ]]; then
+  eval "$(oh-my-posh init zsh --config "$OMP_THEME_FILE")"
+fi
+
+#! • zoxide •
 [[ -x "$(command -v zoxide)" ]] && eval "$(zoxide init zsh --cmd cd --hook pwd)"
 
 fastfetch

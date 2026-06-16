@@ -16,6 +16,7 @@ The whole setup is heavily inspired by [TokyoNight](https://github.com/tokyo-nig
 - [fzf](https://junegunn.github.io/fzf/)
 - [ghostty](https://ghostty.org/)
 - [nvim](https://neovim.io/)
+- [oh-my-posh](https://ohmyposh.dev/)
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
 - [oh-my-zsh](https://ohmyz.sh/)
 

@@ -4,7 +4,6 @@
 #! █▄█ ▄█ ██▄ █▀▄
 #! • User-specific Zsh configuration •
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 #! • Plugins •

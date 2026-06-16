@@ -3,10 +3,15 @@
 #! ▀█▀ █▀▀ █▀█ █▀▄▀█ █ █▄░█ ▄▀█ █░░
 #! ░█░ ██▄ █▀▄ █░▀░█ █ █░▀█ █▀█ █▄▄
 
-
-function _load_prompt() {
-  [[ -f ${ZDOTDIR}/prompt.zsh ]] && source ${ZDOTDIR}/prompt.zsh
-}
+# Prompt preloads belong here only when a prompt engine explicitly requires
+# code to run before the rest of the terminal stack. Powerlevel10k instant
+# prompt used this pattern; Oh My Posh does not. Keep this as a reference point
+# for future prompt engines that document an early preload requirement.
+#
+# function _load_prompt() {
+#   # Example:
+#   # [[ -f ${ZDOTDIR}/prompt.zsh ]] && source ${ZDOTDIR}/prompt.zsh
+# }
 
 function _load_functions() {
   for file in "${ZDOTDIR:-$HOME/.config/zsh}/functions/"*.zsh; do
@@ -51,5 +56,4 @@ _load_compinit
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
-_load_prompt
 _load_functions
