@@ -1,0 +1,293 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+version = 4
+final_space = true
+enable_cursor_positioning = true
+
+[secondary_prompt]
+template = "❯❯ "
+foreground = "blue"
+
+[transient_prompt]
+template = "❯ "
+foreground = "76"
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+
+  [[blocks.segments]]
+  type = "os"
+  style = "plain"
+  foreground = "white"
+  template = "{{ .Icon }} "
+
+    [blocks.segments.options]
+    macos = ""
+    linux = ""
+    windows = ""
+
+  [[blocks.segments]]
+  type = "path"
+  style = "plain"
+  template = "{{ if eq .Path \"~\" }}<31> </><b><39>~/</></b>{{ else }}<31> {{ trimSuffix .Folder .Path }}</><b><39>{{ .Folder }}</></b>{{ end }} "
+
+    [blocks.segments.options]
+    style = "full"
+    home_icon = "~"
+
+  [[blocks.segments]]
+  type = "git"
+  style = "plain"
+  foreground = "76"
+  template = "<76>{{ .HEAD }}</>{{ if .BranchStatus }} <76>{{ .BranchStatus }}</>{{ end }}{{ if .Working.Changed }} <178></>{{ if gt .Working.Untracked 0 }} <178>?{{ .Working.Untracked }}</>{{ end }}{{ if gt .Working.Modified 0 }} <39>~{{ .Working.Modified }}</>{{ end }}{{ if gt .Working.Deleted 0 }} <196>-{{ .Working.Deleted }}</>{{ end }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} <178>|</>{{ end }}{{ if .Staging.Changed }} <178> {{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0 }} <178> {{ .StashCount }}</>{{ end }} "
+
+    [blocks.segments.options]
+    branch_icon = " "
+    fetch_status = true
+    fetch_upstream_icon = true
+
+[[blocks]]
+type = "prompt"
+alignment = "right"
+filler = "<240>·</>"
+
+  [[blocks.segments]]
+  type = "text"
+  style = "plain"
+  template = "<240>·</>"
+
+  [[blocks.segments]]
+  type = "status"
+  style = "plain"
+  foreground = "red"
+  template = " ✘ {{ .Code }}"
+
+    [blocks.segments.options]
+    always_enabled = false
+
+  [[blocks.segments]]
+  type = "executiontime"
+  style = "plain"
+  foreground = "magenta"
+  template = " {{ div (add .Ms 500) 1000 }}s "
+
+    [blocks.segments.options]
+    threshold = 3000
+
+  [[blocks.segments]]
+  type = "direnv"
+  style = "plain"
+  foreground = "yellow"
+  template = " ﯫ "
+
+  # CLI
+  [[blocks.segments]]
+  type = "argocd"
+  style = "plain"
+  foreground = "magenta"
+  template = "  "
+
+  [[blocks.segments]]
+  type = "bun"
+  style = "plain"
+  foreground = "yellow"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "claude"
+  style = "plain"
+  foreground = "magenta"
+  template = " 󰚩 "
+
+  [[blocks.segments]]
+  type = "cmake"
+  style = "plain"
+  foreground = "blue"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "copilot"
+  style = "plain"
+  foreground = "green"
+  template = "  "
+
+  [[blocks.segments]]
+  type = "copilot_cli"
+  style = "plain"
+  foreground = "green"
+  template = "  cli "
+
+  [[blocks.segments]]
+  type = "deno"
+  style = "plain"
+  foreground = "green"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "docker"
+  style = "plain"
+  foreground = "blue"
+  template = "  "
+
+    [blocks.segments.options]
+    display_mode = "files"
+
+  [[blocks.segments]]
+  type = "gitversion"
+  style = "plain"
+  foreground = "yellow"
+  template = "  "
+
+  [[blocks.segments]]
+  type = "helm"
+  style = "plain"
+  foreground = "blue"
+  template = " 󰠳 "
+
+    [blocks.segments.options]
+    display_mode = "files"
+
+  [[blocks.segments]]
+  type = "kubectl"
+  style = "plain"
+  foreground = "magenta"
+  template = " 󱃾 {{ .Context }}{{ if .Namespace }}/{{ .Namespace }}{{ end }} "
+
+  [[blocks.segments]]
+  type = "mvn"
+  style = "plain"
+  foreground = "red"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "npm"
+  style = "plain"
+  foreground = "red"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "nx"
+  style = "plain"
+  foreground = "white"
+  template = "{{ if and (not .Error) .Full }} Nx {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "pnpm"
+  style = "plain"
+  foreground = "yellow"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "react"
+  style = "plain"
+  foreground = "cyan"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "svelte"
+  style = "plain"
+  foreground = "red"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "terraform"
+  style = "plain"
+  foreground = "blue"
+  template = "{{ if .WorkspaceName }} 󰤚 {{ .WorkspaceName }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "xmake"
+  style = "plain"
+  foreground = "blue"
+  template = "{{ if and (not .Error) .Full }} X {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "yarn"
+  style = "plain"
+  foreground = "blue"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  # Cloud
+  [[blocks.segments]]
+  type = "aws"
+  style = "plain"
+  foreground = "yellow"
+  template = "{{ if .Profile }}  {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "gcp"
+  style = "plain"
+  foreground = "cyan"
+  template = "{{ if .Project }}  {{ .Project }} {{ end }}"
+
+  # Languages
+  [[blocks.segments]]
+  type = "go"
+  style = "plain"
+  foreground = "cyan"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "java"
+  style = "plain"
+  foreground = "cyan"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "lua"
+  style = "plain"
+  foreground = "blue"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "node"
+  style = "plain"
+  foreground = "green"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "python"
+  style = "plain"
+  foreground = "cyan"
+  template = "{{ if not .Error }}{{ if or .Venv .Full }}  {{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }} {{ end }}{{ end }}"
+
+  [[blocks.segments]]
+  type = "ruby"
+  style = "plain"
+  foreground = "red"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "rust"
+  style = "plain"
+  foreground = "red"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "swift"
+  style = "plain"
+  foreground = "red"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+  [[blocks.segments]]
+  type = "zig"
+  style = "plain"
+  foreground = "yellow"
+  template = "{{ if and (not .Error) .Full }}  {{ .Full }} {{ end }}"
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+  [[blocks.segments]]
+  type = "status"
+  style = "plain"
+  foreground = "76"
+  foreground_templates = [
+    "{{ if gt .Code 0 }}196{{ end }}"
+  ]
+  template = "❯"
+
+    [blocks.segments.options]
+    always_enabled = true
