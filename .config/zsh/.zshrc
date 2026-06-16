@@ -32,4 +32,15 @@ fi
 #! • zoxide •
 [[ -x "$(command -v zoxide)" ]] && eval "$(zoxide init zsh --cmd cd --hook pwd)"
 
-fastfetch
+#!  fastfetch
+() {
+  local -a ff_blocklist=(
+    CODEX_SHELL
+    # HERDR_ENV
+    # NVIM
+  )
+  local -a ff_params=(${(k)parameters})
+  local -a ff_blocked=(${ff_blocklist:*ff_params})
+
+  (( $#ff_blocked )) || fastfetch
+}
