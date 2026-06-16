@@ -6,4 +6,6 @@
 export HOMEBREW_BIN_LOCATION="/opt/homebrew/bin"
 export PATH="$HOMEBREW_BIN_LOCATION:$PATH"
 
-[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_NO_ASK="1";
+
+[ -x "$HOMEBREW_BIN_LOCATION/brew" ] && eval "$($HOMEBREW_BIN_LOCATION/brew shellenv)"
