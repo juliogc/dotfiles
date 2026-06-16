@@ -1,0 +1,35 @@
+.config/zsh/conf.d/zsh/terminal.zsh
+  s_798651f2d8d517::t_02c5debd01b2c2 6-14
+README.md
+  s_798651f2d8d517::t_00db55477949ff 19
+.config/zsh/conf.d/oh-my-posh/env.interactive.zsh
+  s_798651f2d8d517::t_ef4f7e934153b8 3,5-6
+.config/zsh/README.md
+  s_798651f2d8d517::t_b8af3f5c2f9b0e 3,10,25,34,39-41,81,90,108-109,196-205,207
+  s_756f2c817adfd4::t_909ba6379aa9a0 29,47,50,53
+  s_756f2c817adfd4::t_9831295e9f1ff7 86,89,91-94,121-122,129-177
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "50fc5442fe21847c773edf63c83cc907422ed146",
+  "prompts": {},
+  "sessions": {
+    "s_756f2c817adfd4": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ea86d-5573-7a90-ad5e-f3a4a4a43a90",
+        "model": "gpt-5.5"
+      },
+      "human_author": "juliogc <jgcorradi@gmail.com>"
+    },
+    "s_798651f2d8d517": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ecc83-1d3e-7770-b84e-b89f1e5afc4a",
+        "model": "gpt-5.5"
+      },
+      "human_author": "juliogc <jgcorradi@gmail.com>"
+    }
+  }
+}
