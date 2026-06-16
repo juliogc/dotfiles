@@ -6,7 +6,6 @@
 #!  █░█ █▀ █▀▀ █▀█   █▀█ █▀█ █▀▀ █▀▀ █▀
 #!  █▄█ ▄█ ██▄ █▀▄   █▀▀ █▀▄ ██▄ █▀░ ▄█
 
-custom-shader = ./shaders/cursor_blaze.glsl
 cursor-style = block
 font-family = "FiraCode Nerd Font Mono"
 font-family-bold = "FiraCode Nerd Font Mono"
@@ -15,13 +14,13 @@ font-family-bold-italic = "FiraCode Nerd Font Mono"
 font-synthetic-style = bold-italic
 font-size = 14
 theme = TokyoNight
-shell-integration = none
 unfocused-split-opacity = 0.5
 window-new-tab-position = end
 window-padding-balance = true
 window-padding-color = background
 
 app-notifications = no-clipboard-copy
+bell-features = system,audio,attention,title
 copy-on-select = clipboard
 clipboard-read = allow
 clipboard-write = allow
