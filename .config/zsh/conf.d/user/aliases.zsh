@@ -13,8 +13,8 @@ alias www="cd $WORKSPACE"
 
 #  overrides 
 alias ls="eza --group-directories-first --icons=always --sort=name -a"
-alias ll="ls -l -g --hyperlink --git --color-scale --color-scale-mode=gradient --time-style=relative"
-alias lt="ls --tree --level=1 --hyperlink"
+alias ll="ls -l -g --hyperlink=always --git --color-scale --color-scale-mode=gradient --time-style=relative"
+alias lt="ls --tree --level=1 --hyperlink=always"
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
