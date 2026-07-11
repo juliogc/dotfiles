@@ -15,6 +15,7 @@
 [user]
   email = jgcorradi@gmail.com
   name = Julio Gori Corradi
+  signingkey = ~/.ssh/id_e25519_github.pub
 
 [credential]
   username = juliogc
@@ -61,3 +62,12 @@
 
 [url "ssh://git@github.com/"]
   insteadOf = https://github.com/
+
+[commit]
+  gpgsign = true
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  allowedSignersFile = ~/.ssh/allowed_signers
