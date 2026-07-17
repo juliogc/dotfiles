@@ -49,12 +49,9 @@ alignment = "left"
 [[blocks]]
 type = "prompt"
 alignment = "right"
-filler = "<240>·</>"
-
-  [[blocks.segments]]
-  type = "text"
-  style = "plain"
-  template = "<240>·</>"
+overflow = "hide"
+force = true
+filler = "{{ if .Overflow }} {{ else }}<240>·</>{{ end }}"
 
   [[blocks.segments]]
   type = "status"
