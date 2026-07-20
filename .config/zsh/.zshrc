@@ -14,15 +14,6 @@ setopt HIST_IGNORE_DUPS       # Ignore dupes if a command is issued multiple tim
 setopt HIST_VERIFY            # Allow editing the command before executing again
 setopt HIST_IGNORE_SPACE      # Do not add commands prefixed with a space to the history
 
-#!  Initialize asdf properly before using shims
-export ASDF_DATA_DIR="$HOME/.asdf"
-[[ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]] && source "$(brew --prefix asdf)/libexec/asdf.sh"
-export PATH="$ASDF_DATA_DIR/shims:$PATH"
-
-#! • golang •
-if [[ -d $HOME/.asdf/plugins/golang ]]; then
-  source ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
-fi
 
 #! • oh my posh •
 if (( $+commands[oh-my-posh] )) && [[ -r "$OMP_THEME_FILE" ]]; then
