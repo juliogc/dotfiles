@@ -5,7 +5,6 @@ resume_agents_on_restore = true
 
 [ui]
 accent = "purple"
-agent_panel_scope = "all"
 show_agent_labels_on_pane_borders = true
 prompt_new_tab_name = true
 
