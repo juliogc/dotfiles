@@ -40,8 +40,8 @@ local M = {
   },
   sources = {
     buffers = { layout = { preset = "vertical_layout" } },
-    explorer = { hidden = true },
-    files = { hidden = true },
+    explorer = { hidden = true, exclude = { "node_modules", ".tmp", ".cache", "dist", "build" } },
+    files = { hidden = true, exclude = { "node_modules", ".tmp", ".cache", "dist", "build" } },
     keymaps = { layout = { preset = "vscode" } },
     notifications = { layout = { preset = "vertical_layout" } },
     recent = { layout = { preset = "vertical_layout" }, title = "Most Recently Used Files" },
