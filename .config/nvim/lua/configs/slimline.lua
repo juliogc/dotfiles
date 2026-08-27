@@ -3,11 +3,13 @@
 
 local M = {
   style = "fg",
+
   configs = {
     mode = {
       verbose = true,
     },
   },
+
   components = {
     left = {
       "mode",
@@ -21,6 +23,13 @@ local M = {
       "searchcount",
       "selectioncount",
       "filetype_lsp",
+      function()
+        return string.format(
+          "%%#SlimlineModeSecondary# Ln %d, Col %d%%*",
+          vim.fn.line ".",
+          vim.fn.virtcol "."
+        )
+      end,
       "progress",
     },
   },

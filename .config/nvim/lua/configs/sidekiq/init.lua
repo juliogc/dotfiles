@@ -12,6 +12,7 @@ return {
     },
     tools = {
       claude = { enabled = true },
+      codex = { enabled = true },
     },
   },
 }
