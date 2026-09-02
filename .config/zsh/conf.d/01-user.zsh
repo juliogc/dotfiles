@@ -15,3 +15,9 @@ if [[ -o interactive ]]; then
     source "$file"
   done
 fi
+
+# Initialize the interactive terminal stack after user environment options.
+if [[ -o interactive && -f "$ZDOTDIR/conf.d/zsh/terminal.zsh" ]]; then
+  source "$ZDOTDIR/conf.d/zsh/terminal.zsh" ||
+    echo "Error: Could not source $ZDOTDIR/conf.d/zsh/terminal.zsh"
+fi
