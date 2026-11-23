@@ -10,7 +10,7 @@ local M = {
     url_format = "git@github.com:%s.git",
     -- throttle = {
     --   enabled = true,
-      rate = 1,
+    --   rate = 1,
     --   duration = 3000,
     -- },
   },
