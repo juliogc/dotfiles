@@ -14,6 +14,11 @@ setopt HIST_IGNORE_DUPS       # Ignore dupes if a command is issued multiple tim
 setopt HIST_VERIFY            # Allow editing the command before executing again
 setopt HIST_IGNORE_SPACE      # Do not add commands prefixed with a space to the history
 
+#! • keybindings •
+bindkey "^U" backward-kill-line
+# bindkey "\e\e[D" backward-word
+# bindkey "\e\e[C" forward-word
+bindkey "^H" backward-kill-word
 
 #! • oh my posh •
 if (( $+commands[oh-my-posh] )) && [[ -r "$OMP_THEME_FILE" ]]; then
@@ -23,10 +28,14 @@ fi
 #! • zoxide •
 [[ -x "$(command -v zoxide)" ]] && eval "$(zoxide init zsh --cmd cd --hook pwd)"
 
+#! • mysql •
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
 #!  fastfetch
 () {
   local -a ff_blocklist=(
     CODEX_SHELL
+    MC_ORIGIN
     # HERDR_ENV
     # NVIM
   )

@@ -23,9 +23,3 @@ plugins=(
   zsh-completions
   zsh-syntax-highlighting
 )
-
-#! • keybindings •
-bindkey "^U" backward-kill-line
-# bindkey "\e\e[D" backward-word
-# bindkey "\e\e[C" forward-word
-bindkey "^H" backward-kill-word
