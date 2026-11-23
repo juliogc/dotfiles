@@ -24,10 +24,14 @@ _comp_cache() {
   local dir="${ZSH_CACHE_DIR:-${XDG_CACHE_HOME:-$HOME/.cache}/oh-my-zsh}/completions"
   local file="$dir/$cmd.zsh"
 
-  if [[ ! -s $file || ${commands[$cmd]:A} -nt $file || -n $file(#qNmw+1) ]]; then
-    "$@" >| "$file" 2>/dev/null
-    [[ -s $file ]] || { command rm -f -- "$file"; return 0; }
+  # An empty cache file means the generator printed nothing (or was killed);
+  # it is retried only when the binary changes or the cache expires.
+  if [[ ! -e $file || ${commands[$cmd]:A} -nt $file || -n $file(#qNmw+1) ]]; then
+    local out
+    out=$("$@" 2>/dev/null)
+    print -rn -- "$out" >| "$file"
   fi
+  [[ -s $file ]] || return 0
 
   if [[ $'\n'$(<$file) == *$'\n'compdef\ * ]]; then
     source "$file"
