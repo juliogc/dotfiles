@@ -32,7 +32,7 @@
 
 [core]
   editor = nvim
-  excludesfile = /Users/juliocorradi/.gitignore
+  excludesfile = ~/.gitignore
   whitespace = space-before-tab,indent-with-non-tab,trailing-space
 
 [color]
