@@ -13,6 +13,7 @@ The whole setup is heavily inspired by [TokyoNight](https://github.com/tokyo-nig
 - [bat](https://github.com/sharkdp/bat)
 - [eza](https://eza.rocks/)
 - [fastfetch](https://github.com/fastfetch-cli/fastfetch)
+- [fortune](https://github.com/shlomif/fortune-mod) — short quotes for Fastfetch
 - [fzf](https://junegunn.github.io/fzf/)
 - [ghostty](https://ghostty.org/)
 - [nvim](https://neovim.io/)
