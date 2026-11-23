@@ -53,11 +53,13 @@ A modular, cross-platform Zsh setup built on top of [Oh My Zsh](https://ohmyz.sh
 │       └── env.interactive.zsh  # _ZO_EXCLUDE_DIRS, _ZO_FZF_OPTS
 │
 ├── completions/             # Tool completion scripts (sourced by 02-completions)
-│   ├── asdf.zsh
-│   ├── colima.zsh
-│   ├── docker.zsh
-│   ├── make.zsh
-│   └── pnpm.zsh
+│   ├── asdf.zsh             # _comp_cache (cached `asdf completion zsh`)
+│   ├── colima.zsh           # _comp_cache
+│   ├── docker.zsh           # _comp_cache
+│   ├── gh.zsh               # _comp_cache
+│   ├── herdr.zsh            # _comp_cache
+│   ├── make.zsh             # bash-style `complete` (needs bashcompinit)
+│   └── pnpm.zsh             # _comp_cache
 │
 └── functions/               # Custom shell functions
     ├── file-utils.zsh       # z() compress, extract() decompress
@@ -121,6 +123,8 @@ zsh starts
 **Platform-specific config is isolated** — macOS concerns (Homebrew) live in their own modules. On Arch Linux, those files simply don't exist and the rest of the chain is unaffected.
 
 **Completions load after user env** — `02-completions.zsh` runs after `01-user.zsh`, guaranteeing all PATHs are set before any `command -v` check in a completion script.
+
+**Completions are cached, not evaluated** — `completions/*.zsh` call `_comp_cache <cmd> <generator...>` (defined in `02-completions.zsh`) instead of `eval "$(<cmd> completion zsh)"`. A tool is skipped when compinit already registered it from `$fpath` (e.g. Homebrew's `site-functions`); otherwise its generator output is cached in `$ZSH_CACHE_DIR/completions` and only regenerated when the binary is newer than the cache or the cache is older than 7 days.
 
 ---
 

@@ -3,6 +3,4 @@
 #! █▀▀ █▀█ █░░ █ █▀▄▀█ ▄▀█
 #! █▄▄ █▄█ █▄▄ █ █░▀░█ █▀█
 
-if command -v colima &>/dev/null; then
-  eval "$(colima completion zsh)"
-fi
+_comp_cache colima colima completion zsh

@@ -3,6 +3,4 @@
 #! █▀▀ █░█
 #! █▄█ █▀█
 
-if command -v gh &>/dev/null; then
-  eval "$(gh completion -s zsh)"
-fi
+_comp_cache gh gh completion -s zsh

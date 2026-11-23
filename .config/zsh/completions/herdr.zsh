@@ -3,6 +3,4 @@
 #! █░█ █▀▀ █▀█ █▀▄ █▀█
 #! █▀█ ██▄ █▀▄ █▄▀ █▀▄
 
-if command -v herdr &>/dev/null; then
-  eval "$(herdr completion zsh)"
-fi
+_comp_cache herdr herdr completion zsh

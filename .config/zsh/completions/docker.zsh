@@ -3,6 +3,4 @@
 #! █▀▄ █▀█ █▀▀ █▄▀ █▀▀ █▀█
 #! █▄▀ █▄█ █▄▄ █░█ ██▄ █▀▄
 
-if command -v docker &>/dev/null; then
-  eval "$(docker completion zsh)"
-fi
+_comp_cache docker docker completion zsh

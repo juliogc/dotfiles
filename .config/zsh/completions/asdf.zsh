@@ -3,6 +3,4 @@
 #! ▄▀█ █▀ █▀▄ █▀▀
 #! █▀█ ▄█ █▄▀ █▀░
 
-if command -v asdf &>/dev/null; then
-  eval "$(asdf completion zsh)"
-fi
+_comp_cache asdf asdf completion zsh
