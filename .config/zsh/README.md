@@ -79,8 +79,7 @@ zsh starts
 │   │   └── [interactive only]
 │   │       conf.d/zsh/terminal.zsh
 │   │           ├── user.zsh            plugins, keybindings
-│   │           ├── _load_compinit      compinit → compdef available
-│   │           ├── oh-my-zsh.sh
+│   │           ├── oh-my-zsh.sh        compinit + bashcompinit → compdef/complete available
 │   │           └── _load_functions     functions/*.zsh
 │   │
 │   ├── conf.d/01-user.zsh              sources user modules by load scope

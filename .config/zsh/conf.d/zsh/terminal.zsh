@@ -19,22 +19,8 @@ function _load_functions() {
   done
 }
 
-# Initialize completions with optimized performance
-function _load_compinit() {
-  autoload -Uz compinit
-
-  # Enable extended glob for the qualifier to work
-  setopt EXTENDED_GLOB
-
-  # Fastest - use glob qualifiers on directory pattern
-  if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-    compinit
-  else
-    compinit -C
-  fi
-
-  _comp_options+=(globdots) # tab complete hidden files
-}
+# Extended globbing (^, ~, #) for the whole interactive session.
+setopt EXTENDED_GLOB
 
 # # History configuration
 HISTFILE=${HISTFILE:-$ZDOTDIR/.zsh_history}
@@ -51,9 +37,21 @@ if [[ -f $ZDOTDIR/user.zsh ]]; then
   source $ZDOTDIR/user.zsh
 fi
 
-_load_compinit
+# Completion cache lives outside the dotfiles repo.
+export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-${ZSH_VERSION}"
+[[ -d ${ZSH_COMPDUMP:h} ]] || mkdir -p "${ZSH_COMPDUMP:h}"
 
+# NOTE: Oh My Zsh owns completion init: it runs `compinit` (after adding plugin
+# dirs to fpath) and `bashcompinit` (lib/completion.zsh). Everything loaded
+# afterwards (conf.d/02-completions.zsh: `compdef`, `complete`) relies on that.
+# When switching to another plugin manager (e.g. zinit), restore it here:
+#   autoload -Uz compinit bashcompinit
+#   compinit -d "$ZSH_COMPDUMP"
+#   bashcompinit
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
+
+# Must run after compinit, which resets _comp_options.
+_comp_options+=(globdots) # tab complete hidden files
 
 _load_functions
