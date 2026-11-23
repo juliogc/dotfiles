@@ -13,8 +13,9 @@
 #     and only regenerated when the binary is newer than the cache, or the
 #     cache is older than 7 days (asdf shims/wrappers keep their mtime across
 #     version switches).
-#   - Outputs that call `compdef` themselves are sourced; bare completion
-#     function bodies (e.g. asdf) are autoloaded as `_<cmd>`.
+#   - Outputs that call `compdef` themselves (even indented, e.g. click's
+#     `if ... else compdef ... fi`) are sourced; bare completion function
+#     bodies (e.g. asdf) are autoloaded as `_<cmd>`.
 _comp_cache() {
   emulate -L zsh -o extended_glob
   local cmd=$1; shift
@@ -33,7 +34,7 @@ _comp_cache() {
   fi
   [[ -s $file ]] || return 0
 
-  if [[ $'\n'$(<$file) == *$'\n'compdef\ * ]]; then
+  if [[ $'\n'$(<$file) == *$'\n'[[:space:]]#compdef\ * ]]; then
     source "$file"
   else
     [[ -f $dir/_$cmd && ! $file -nt $dir/_$cmd ]] || command cp -f -- "$file" "$dir/_$cmd"
