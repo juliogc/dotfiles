@@ -66,6 +66,11 @@ local servers = {
   },
   html = {},
   hyprls = {},
+  jdtls = {
+    cmd_env = {
+      JAVA_HOME = vim.fn.expand "~/.asdf/installs/java/openjdk-21.0.2",
+    },
+  },
   jsonls = {
     settings = {
       json = {
