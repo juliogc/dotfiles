@@ -56,7 +56,6 @@ A modular, cross-platform Zsh setup built on top of [Oh My Zsh](https://ohmyz.sh
 │   ├── asdf.zsh
 │   ├── colima.zsh
 │   ├── docker.zsh
-│   ├── homebrew.zsh
 │   ├── make.zsh
 │   └── pnpm.zsh
 │

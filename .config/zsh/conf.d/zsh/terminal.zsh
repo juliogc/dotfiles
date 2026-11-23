@@ -37,9 +37,10 @@ if [[ -f $ZDOTDIR/user.zsh ]]; then
   source $ZDOTDIR/user.zsh
 fi
 
-# Completion cache lives outside the dotfiles repo.
-export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-${ZSH_VERSION}"
-[[ -d ${ZSH_COMPDUMP:h} ]] || mkdir -p "${ZSH_COMPDUMP:h}"
+# Oh My Zsh cache (incl. completion dump) lives outside the dotfiles repo.
+# OMZ creates $ZSH_CACHE_DIR itself before running compinit.
+export ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/oh-my-zsh"
+export ZSH_COMPDUMP="$ZSH_CACHE_DIR/zcompdump-${ZSH_VERSION}"
 
 # NOTE: Oh My Zsh owns completion init: it runs `compinit` (after adding plugin
 # dirs to fpath) and `bashcompinit` (lib/completion.zsh). Everything loaded
