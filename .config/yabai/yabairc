@@ -43,7 +43,9 @@ yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Find My$" manage=off
 yabai -m rule --add app="^Logi Options\+$" manage=off
 yabai -m rule --add app="^Messages$" manage=off
+yabai -m rule --add app="^Meta Quest$" manage=off
 yabai -m rule --add app="^Notes$" manage=off
+yabai -m rule --add app="^Rex Beta$" title="^Settings( - .*)?$" manage=off
 yabai -m rule --add app="^Stickies$" manage=off
 yabai -m rule --add app="^.*Stream Deck.*$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
