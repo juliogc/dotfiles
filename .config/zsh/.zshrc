@@ -28,9 +28,6 @@ fi
 #! • zoxide •
 [[ -x "$(command -v zoxide)" ]] && eval "$(zoxide init zsh --cmd cd --hook pwd)"
 
-#! • mysql •
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-
 #!  fastfetch
 () {
   local -a ff_blocklist=(

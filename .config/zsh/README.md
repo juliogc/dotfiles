@@ -36,6 +36,9 @@ A modular, cross-platform Zsh setup built on top of [Oh My Zsh](https://ohmyz.sh
 │   ├── homebrew/            # Homebrew bootstrap (macOS only, exception to conf.d principles)
 │   │   └── env.zsh          # brew shellenv — sets PATH + HOMEBREW_* vars
 │   │
+│   ├── mysql-client/
+│   │   └── env.zsh          # Homebrew keg-only mysql-client PATH (when installed)
+│   │
 │   ├── oh-my-posh/
 │   │   └── env.interactive.zsh  # Oh My Posh prompt initialization
 │   │

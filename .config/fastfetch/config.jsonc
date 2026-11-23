@@ -13,7 +13,7 @@
       "type": "command",
       "key": "  󰁘",
       "keyColor": "blue",
-      "text": "fortune -s -n 36 wisdom | tr '\\n' ' '"
+      "text": "command -v fortune >/dev/null && fortune -s -n 36 wisdom | tr '\\n' ' '"
     },
     {
       "type": "custom",
