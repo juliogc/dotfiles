@@ -52,6 +52,9 @@ A modular, cross-platform Zsh setup built on top of [Oh My Zsh](https://ohmyz.sh
 │   ├── eza/
 │   │   └── env.interactive.zsh  # EZA_CONFIG_DIR
 │   │
+│   ├── yay/
+│   │   └── functions.zsh    # yay wrapper: AUR builds without asdf shims on PATH
+│   │
 │   └── zoxide/
 │       └── env.interactive.zsh  # _ZO_EXCLUDE_DIRS, _ZO_FZF_OPTS
 │
