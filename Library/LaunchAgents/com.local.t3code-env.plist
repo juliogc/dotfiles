@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  GUI apps launched from the Dock/Finder don't read zsh config, so the T3 Code
+  telemetry opt-out from .config/zsh/conf.d/t3code/env.zsh is exported into
+  the launchd user session at login. Restart T3 Code after loading this.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.local.t3code-env</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/sh</string>
+    <string>-c</string>
+    <string>/bin/launchctl setenv T3CODE_TELEMETRY_ENABLED false; /bin/launchctl setenv T3CODE_OTEL_SDK_DISABLED true</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>
