@@ -44,6 +44,7 @@ A modular, cross-platform Zsh setup built on top of [Oh My Zsh](https://ohmyz.sh
 │   │
 │   ├── t3code/
 │   │   └── env.zsh          # T3 Code telemetry opt-out (analytics + OTel export)
+│   │                        # + systemd drop-in: .config/systemd/user/t3code.service.d/
 │   │
 │   ├── user/                # Personal environment
 │   │   ├── env.zsh          # EDITOR, VISUAL
