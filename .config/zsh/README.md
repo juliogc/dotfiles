@@ -42,6 +42,9 @@ A modular, cross-platform Zsh setup built on top of [Oh My Zsh](https://ohmyz.sh
 │   ├── oh-my-posh/
 │   │   └── env.interactive.zsh  # Oh My Posh prompt initialization
 │   │
+│   ├── t3code/
+│   │   └── env.zsh          # T3 Code telemetry opt-out (analytics + OTel export)
+│   │
 │   ├── user/                # Personal environment
 │   │   ├── env.zsh          # EDITOR, VISUAL
 │   │   └── aliases.zsh      # Navigation, overrides, network aliases
